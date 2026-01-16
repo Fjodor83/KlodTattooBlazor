@@ -1,0 +1,67 @@
+{
+  "tattooStyles": [
+    {
+      "id": 1,
+      "name": "Realistic",
+      "portfolioItems": []
+    },
+    {
+      "id": 2,
+      "name": "Traditional",
+      "portfolioItems": []
+    },
+    {
+      "id": 3,
+      "name": "Blackwork",
+      "portfolioItems": []
+    },
+    {
+      "id": 4,
+      "name": "Watercolor",
+      "portfolioItems": []
+    },
+    {
+      "id": 5,
+      "name": "Japanese",
+      "portfolioItems": []
+    }
+  ],
+  "portfolioItems": [
+    {
+      "id": 1,
+      "title": "Rosa Realistica",
+      "description": "Tatuaggio realistico di una rosa con dettagli iperrealisti",
+      "imageUrl": "/images/portfolio/rosa-realistica.jpg",
+      "tattooStyleId": 1,
+      "tattooStyle": {
+        "id": 1,
+        "name": "Realistic"
+      },
+      "createdAt": "2024-01-15T00:00:00"
+    },
+    {
+      "id": 2,
+      "title": "Leone Traditional",
+      "description": "Leone in stile traditional classico con colori vivaci",
+      "imageUrl": "/images/portfolio/leone-traditional.jpg",
+      "tattooStyleId": 2,
+      "tattooStyle": {
+        "id": 2,
+        "name": "Traditional"
+      },
+      "createdAt": "2024-01-10T00:00:00"
+    },
+    {
+      "id": 3,
+      "title": "Mandala Blackwork",
+      "description": "Mandala geometrico in  blackwork puro",
+      "imageUrl": "/images/portfolio/mandala-blackwork.jpg",
+      "tattooStyleId": 3,
+      "tattooStyle": {
+        "id": 3,
+        "name": "Blackwork"
+      },
+      "createdAt": "2024-01-05T00:00:00"
+    }
+  ]
+}

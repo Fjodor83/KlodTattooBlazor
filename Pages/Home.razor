@@ -1,0 +1,133 @@
+﻿@page "/"
+@inject PortfolioService PortfolioService
+
+<PageTitle>Klod Tattoo - Art That Lasts Forever</PageTitle>
+
+<!-- HERO SECTION -->
+<div class="hero-section position-relative text-center text-white overflow-hidden" style="height: 100vh; background: url('/images/hero-bg.jpg') center/cover; background-attachment: fixed;">
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);"></div>
+    
+    <div class="content position-relative px-3 mx-auto text-center d-flex flex-column justify-content-center align-items-center h-100" style="z-index: 1; max-width: 900px;">
+        <h1 class="display-1 fw-bold text-uppercase mb-4" style="letter-spacing: 8px; color: #d4af37; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">
+            Art That Lasts Forever
+        </h1>
+        <p class="lead mb-5 fs-2" style="letter-spacing: 3px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
+            Professional Tattoo Studio
+        </p>
+        <a href="/booking" class="btn btn-gold btn-lg px-5 py-3 rounded-pill shadow-lg">
+            <i class="fas fa-calendar-check me-2"></i> Book Now
+        </a>
+    </div>
+
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" style="z-index: 2;">
+        <i class="fas fa-chevron-down fa-2x text-white animate-bounce"></i>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- BIOGRAPHY SECTION -->
+    <div class="row mb-5 align-items-center g-5">
+        <div class="col-lg-6">
+            <h2 class="text-uppercase mb-4 display-5 fw-bold" style="border-left: 5px solid #d4af37; padding-left: 20px;">
+                About Klod
+            </h2>
+            <p class="lead text-muted mb-4 fs-5">
+                Welcome to <strong style="color: #d4af37;">Klod Tattoo</strong>: Where art is not just observed... <strong>it's worn</strong>.
+            </p>
+            <p class="text-muted mb-3 lh-lg">
+                Every line, every shadow, and every detail is born from a thoughtful vision, individually crafted for you. I don't create "standard" tattoos: Each project is a unique artwork that tells your story with style, strength, and elegance.
+            </p>
+            <div class="highlight-box p-4 mb-4 rounded" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                <p class="text-light mb-0">
+                   <i class="fas fa-graduation-cap text-warning me-2"></i>
+                    My training begins at the <strong>Art High School</strong> and is perfected at the <strong>Academy of Fine Arts</strong>, where I turned drawing into a true aesthetic discipline.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="position-relative">
+                <div class="image-wrapper p-3 rounded shadow-lg" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
+                    <img src="/images/profile.jpg" class="img-fluid rounded shadow" alt="Klod Tattoo Artist" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STYLES SECTION -->
+    <div class="row text-center mb-5">
+        <div class="col-12 mb-5">
+            <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">Our Styles</h2>
+            <p class="text-muted lead">Artistic specializations for every taste</p>
+            <div class="golden-underline mx-auto" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="style-card h-100 p-4 rounded shadow-lg" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #d4af37;">
+                <i class="fas fa-eye fa-3x mb-3" style="color: #d4af37;"></i>
+                <h3 class="h4 mb-3" style="color: #d4af37;">Realistic</h3>
+                <p class="text-muted mb-3">Portraits and photographic details with surgical precision.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="style-card h-100 p-4 rounded shadow-lg" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #d4af37;">
+                <i class="fas fa-anchor fa-3x mb-3" style="color: #d4af37;"></i>
+                <h3 class="h4 mb-3" style="color: #d4af37;">Traditional</h3>
+                <p class="text-muted mb-3">Bold lines and vivid colors from the old-school tradition.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="style-card h-100 p-4 rounded shadow-lg" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #d4af37;">
+                <i class="fas fa-moon fa-3x mb-3" style="color: #d4af37;"></i>
+                <h3 class="h4 mb-3" style="color: #d4af37;">Blackwork</h3>
+                <p class="text-muted mb-3">Strong contrasts, geometries, and designs with powerful visual impact.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gold {
+        background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+        border: none;
+        color: #000;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        color: #000;
+    }
+
+    @@keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(10px); }
+    }
+
+    .animate-bounce {
+        animation: bounce 2s infinite;
+    }
+
+    .style-card {
+        transition: all 0.3s ease;
+    }
+
+    .style-card:hover {
+        transform: translateY(-10px);
+        border-color: #ffd700 !important;
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3) !important;
+    }
+</style>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Page can load portfolio stats if needed
+    }
+}

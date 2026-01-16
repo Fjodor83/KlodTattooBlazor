@@ -1,0 +1,143 @@
+@page "/booking"
+@inject EmailJsService EmailService
+@inject NavigationManager Navigation
+
+<PageTitle>Book Appointment - Klod Tattoo</PageTitle>
+
+<div class="container py-5" style="max-width: 800px;">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-uppercase" style="color: #d4af37;">Book Your Appointment</h1>
+        <p class="lead text-muted">Start your tattoo journey with a free consultation</p>
+        <div style="width: 60px; height: 3px; background-color: #d4af37; margin: 20px auto;"></div>
+    </div>
+
+    @if (_submitted)
+    {
+        <div class="alert alert-success text-center p-4">
+            <i class="fas fa-check-circle fa-3x mb-3" style="color: #d4af37;"></i>
+            <h3>Booking Request Sent!</h3>
+            <p class="mb-0">Thank you! We'll contact you soon to confirm your appointment.</p>
+        </div>
+    }
+    else
+    {
+        <EditForm Model="@_bookingRequest" OnValidSubmit="HandleSubmit" class="booking-form">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger mb-4" />
+
+            <div class="mb-4">
+                <label for="clientName" class="form-label text-light">Your Name *</label>
+                <InputText id="clientName" class="form-control form-control-lg" @bind-Value="_bookingRequest.ClientName" placeholder="Enter your full name" />
+                <ValidationMessage For="@(() => _bookingRequest.ClientName)" />
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="form-label text-light">Email *</label>
+                <InputText id="email" type="email" class="form-control form-control-lg" @bind-Value="_bookingRequest.Email" placeholder="your@email.com" />
+                <ValidationMessage For="@(() => _bookingRequest.Email)" />
+            </div>
+
+            <div class="mb-4">
+                <label for="bodyPart" class="form-label text-light">Body Part *</label>
+                <InputText id="bodyPart" class="form-control form-control-lg" @bind-Value="_bookingRequest.BodyPart" placeholder="e.g., Forearm, Back, Shoulder" />
+                <ValidationMessage For="@(() => _bookingRequest.BodyPart)" />
+            </div>
+
+            <div class="mb-4">
+                <label for="ideaDescription" class="form-label text-light">Tattoo Idea *</label>
+                <InputTextArea id="ideaDescription" class="form-control" rows="5" @bind-Value="_bookingRequest.IdeaDescription" placeholder="Describe your tattoo idea in detail..." />
+                <ValidationMessage For="@(() => _bookingRequest.IdeaDescription)" />
+            </div>
+
+            <div class="mb-4">
+                <label for="preferredDate" class="form-label text-light">Preferred Date *</label>
+                <InputDate id="preferredDate" class="form-control form-control-lg" @bind-Value="_bookingRequest.PreferredDate" />
+                <ValidationMessage For="@(() => _bookingRequest.PreferredDate)" />
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-gold btn-lg py-3" disabled="@_sending">
+                    @if (_sending)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                        <span>Sending...</span>
+                    }
+                    else
+                    {
+                        <i class="fas fa-paper-plane me-2"></i>
+                        <span>Send Booking Request</span>
+                    }
+                </button>
+            </div>
+
+            @if (!string.IsNullOrEmpty(_errorMessage))
+            {
+                <div class="alert alert-danger mt-3">
+                    @_errorMessage
+                </div>
+            }
+        </EditForm>
+    }
+</div>
+
+<style>
+    .booking-form .form-control,
+    .booking-form .form-select {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        color: #fff;
+        padding: 0.75rem 1rem;
+    }
+
+    .booking-form .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #d4af37;
+        color: #fff;
+        box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+    }
+
+    .booking-form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+@code {
+    private BookingRequest _bookingRequest = new();
+    private bool _sending = false;
+    private bool _submitted = false;
+    private string? _errorMessage;
+
+    private async Task HandleSubmit()
+    {
+        _sending = true;
+        _errorMessage = null;
+
+        try
+        {
+            var success = await EmailService.SendBookingEmailAsync(_bookingRequest);
+            
+            if (success)
+            {
+                _submitted = true;
+            }
+            else
+            {
+                _errorMessage = "Failed to send booking request. Please check your EmailJS configuration or try again later.";
+            }
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = $"An error occurred: {ex.Message}";
+            Console.WriteLine($"Booking error: {ex}");
+        }
+        finally
+        {
+            _sending = false;
+        }
+    }
+}

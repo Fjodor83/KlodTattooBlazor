@@ -1,0 +1,90 @@
+﻿@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-glass">
+    <div class="container-fluid px-3 px-lg-4">
+        <a class="navbar-brand" href="/">
+            <img src="/images/klod_logo.png" alt="Klod Tattoo" class="navbar-logo" style="height: 50px; filter: url(#gold-logo-filter);" />
+        </a>
+
+        <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="@NavMenuCssClass navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <i class="fas fa-home me-1"></i> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="portfolio">
+                        <i class="fas fa-images me-1"></i> Portfolio
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="services">
+                        <i class="fas fa-palette me-1"></i> Services
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="info">
+                        <i class="fas fa-info-circle me-1"></i> Info
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="contacts">
+                        <i class="fas fa-envelope me-1"></i> Contacts
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-gold px-4 ms-lg-3" href="booking">
+                        <i class="fas fa-calendar-check me-2"></i> Book Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<svg style="position: absolute; width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="gold-logo-filter">
+            <feColorMatrix type="matrix" values="0 0 0 0 0
+                                                  0 0 0 0 0
+                                                  0 0 0 0 0
+                                                  -1.2 0 0 0 1" result="alpha-mask"/>
+            <feFlood flood-color="#d4af37" result="gold-color"/>
+            <feComposite in="gold-color" in2="alpha-mask" operator="in" />
+        </filter>
+    </defs>
+</svg>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : "";
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                window.addEventListener('scroll', function() {
+                    const navbar = document.querySelector('.navbar');
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            ");
+        }
+    }
+}
