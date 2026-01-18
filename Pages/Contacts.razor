@@ -1,14 +1,16 @@
 @page "/contacts"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Contact Us - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Contacts_Title"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
     <!-- Header Section -->
     <div class="text-center mb-5">
         <h1 class="display-3 fw-bold text-uppercase mb-3" style="color: #d4af37; letter-spacing: 3px;">
-            Contact Us
+            @Localization["Contacts_Title"]
         </h1>
-        <p class="lead text-muted fs-4">Get in touch - we'd love to hear from you!</p>
+        <p class="lead text-muted fs-4">@Localization["Contacts_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 100px; height: 4px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
     </div>
 
@@ -18,7 +20,7 @@
             <div class="card h-100 shadow-lg border-0" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                 <div class="card-header border-0 text-center py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                     <i class="fas fa-store fa-3x text-dark mb-3"></i>
-                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">Klod Tattoo Studio</h3>
+                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">@Localization["Contacts_StudioName"]</h3>
                 </div>
                 <div class="card-body p-4">
                     <!-- Address -->
@@ -31,10 +33,10 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="h6 mb-2 text-warning">Address</h5>
+                            <h5 class="h6 mb-2 text-warning">@Localization["Contacts_Address_Label"]</h5>
                             <p class="text-light mb-1 fw-semibold">Lindenstraße 26</p>
                             <p class="text-muted mb-0">63785 Obernburg am Main</p>
-                            <p class="text-muted mb-0">Germany</p>
+                            <p class="text-muted mb-0">@Localization["Contacts_Address_Country"]</p>
                         </div>
                     </div>
 
@@ -48,11 +50,11 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="h6 mb-2 text-warning">Phone</h5>
+                            <h5 class="h6 mb-2 text-warning">@Localization["Contacts_Phone_Label"]</h5>
                             <a href="tel:+491722487670" class="text-light text-decoration-none fw-semibold d-block hover-gold">
                                 +49 172 2487670
                             </a>
-                            <small class="text-muted">WhatsApp available</small>
+                            <small class="text-muted">@Localization["Contacts_WhatsApp_Available"]</small>
                         </div>
                     </div>
 
@@ -66,11 +68,11 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="h6 mb-2 text-warning">Email</h5>
+                            <h5 class="h6 mb-2 text-warning">@Localization["Contacts_Email_Label"]</h5>
                             <a href="mailto:b.klodtattoo@gmail.com" class="text-light text-decoration-none fw-semibold d-block hover-gold">
                                 b.klodtattoo@gmail.com
                             </a>
-                            <small class="text-muted">We reply within 24h</small>
+                            <small class="text-muted">@Localization["Contacts_Email_Note"]</small>
                         </div>
                     </div>
 
@@ -84,11 +86,11 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="h6 mb-2 text-warning">Instagram</h5>
+                            <h5 class="h6 mb-2 text-warning">@Localization["Contacts_Instagram_Label"]</h5>
                             <a href="https://instagram.com/klod_tattoo" target="_blank" class="text-light text-decoration-none fw-semibold d-block hover-gold">
                                 @@klod_tattoo
                             </a>
-                            <small class="text-muted">Follow our latest work</small>
+                            <small class="text-muted">@Localization["Contacts_Instagram_Note"]</small>
                         </div>
                     </div>
 
@@ -97,29 +99,29 @@
                     <!-- Opening Hours -->
                     <div class="opening-hours">
                         <h4 class="h5 mb-4 text-center text-warning">
-                            <i class="fas fa-clock me-2"></i>Opening Hours
+                            <i class="fas fa-clock me-2"></i>@Localization["Contacts_OpeningHours_Title"]
                         </h4>
                         <div class="schedule">
                             <div class="schedule-item d-flex justify-content-between align-items-center mb-3 p-3 rounded" 
                                  style="background: rgba(212, 175, 55, 0.05);">
                                 <span class="text-light fw-semibold">
-                                    <i class="fas fa-calendar-day text-warning me-2"></i>Monday - Friday
+                                    <i class="fas fa-calendar-day text-warning me-2"></i>@Localization["Contacts_OpeningHours_MonFri"]
                                 </span>
                                 <span class="text-warning fw-bold">10:00 - 19:00</span>
                             </div>
                             <div class="schedule-item d-flex justify-content-between align-items-center mb-3 p-3 rounded" 
                                  style="background: rgba(212, 175, 55, 0.05);">
                                 <span class="text-light fw-semibold">
-                                    <i class="fas fa-calendar-day text-warning me-2"></i>Saturday
+                                    <i class="fas fa-calendar-day text-warning me-2"></i>@Localization["Contacts_OpeningHours_Sat"]
                                 </span>
-                                <span class="text-warning fw-bold">By Appointment</span>
+                                <span class="text-warning fw-bold">@Localization["Contacts_OpeningHours_ByAppointment"]</span>
                             </div>
                             <div class="schedule-item d-flex justify-content-between align-items-center p-3 rounded" 
                                  style="background: rgba(212, 175, 55, 0.05);">
                                 <span class="text-light fw-semibold">
-                                    <i class="fas fa-calendar-day text-warning me-2"></i>Sunday
+                                    <i class="fas fa-calendar-day text-warning me-2"></i>@Localization["Contacts_OpeningHours_Sun"]
                                 </span>
-                                <span class="text-danger fw-bold">Closed</span>
+                                <span class="text-danger fw-bold">@Localization["Contacts_OpeningHours_Closed"]</span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +129,7 @@
                     <!-- CTA Button -->
                     <div class="mt-4 text-center">
                         <a href="/booking" class="btn btn-gold w-100 py-3 rounded-pill shadow-lg">
-                            <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                            <i class="fas fa-calendar-check me-2"></i>@Localization["Contacts_BookAppointment"]
                         </a>
                     </div>
                 </div>
@@ -141,7 +143,7 @@
                 <div class="card shadow-lg border-0 mb-4 flex-grow-1" style="min-height: 450px;">
                     <div class="card-header border-0 py-3 text-center" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                         <h5 class="mb-0 text-light">
-                            <i class="fas fa-map-marked-alt text-warning me-2"></i>Find Us Here
+                            <i class="fas fa-map-marked-alt text-warning me-2"></i>@Localization["Contacts_Map_Title"]
                         </h5>
                     </div>
                     <div class="card-body p-0 position-relative" style="height: 100%;">
@@ -164,9 +166,9 @@
             <div class="card shadow-lg border-0 overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                 <div class="card-body p-5 text-center">
                     <h3 class="display-6 fw-bold text-uppercase mb-3" style="color: #d4af37;">
-                        Follow Us On Social Media
+                        @Localization["Contacts_Social_Title"]
                     </h3>
-                    <p class="lead text-muted mb-4">Stay updated with our latest work and studio news</p>
+                    <p class="lead text-muted mb-4">@Localization["Contacts_Social_Subtitle"]</p>
                     
                     <div class="social-buttons d-flex justify-content-center gap-3 flex-wrap">
                         <a href="https://instagram.com/klod_tattoo" 
@@ -192,7 +194,7 @@
                     <div class="mt-4">
                         <p class="text-muted mb-0">
                             <i class="fas fa-heart text-danger me-2"></i>
-                            Join 1000+ followers on Instagram
+                            @Localization["Contacts_Social_Followers"]
                         </p>
                     </div>
                 </div>
@@ -207,9 +209,9 @@
                 <div class="d-flex align-items-center">
                     <i class="fas fa-info-circle fa-2x text-white me-3"></i>
                     <div>
-                        <h6 class="alert-heading text-white fw-bold mb-1">By Appointment Only</h6>
+                        <h6 class="alert-heading text-white fw-bold mb-1">@Localization["Contacts_AppointmentOnly_Title"]</h6>
                         <p class="mb-0 text-white">
-                            We work by appointment only to guarantee you our full attention. Please book in advance via our booking form or contact us directly.
+                            @Localization["Contacts_AppointmentOnly_Text"]
                         </p>
                     </div>
                 </div>
@@ -306,3 +308,15 @@
         }
     }
 </style>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+}

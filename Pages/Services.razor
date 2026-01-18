@@ -1,14 +1,16 @@
 @page "/services"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Services - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Services_Title"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
     <!-- Header Section -->
     <div class="text-center mb-5">
         <h1 class="display-3 fw-bold text-uppercase mb-3" style="color: #d4af37; letter-spacing: 3px;">
-            Our Services
+            @Localization["Services_Title"]
         </h1>
-        <p class="lead text-muted fs-4">Professional tattoo services with attention to every detail</p>
+        <p class="lead text-muted fs-4">@Localization["Services_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 100px; height: 4px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
     </div>
 
@@ -25,30 +27,30 @@
                             <i class="fas fa-bolt fa-2x text-dark"></i>
                         </div>
                     </div>
-                    <h3 class="h4 text-light mb-2">Small Tattoos</h3>
-                    <p class="text-muted small mb-0">Quick & Detailed</p>
+                    <h3 class="h4 text-light mb-2">@Localization["Services_SmallTattoos_Title"]</h3>
+                    <p class="text-muted small mb-0">@Localization["Services_SmallTattoos_Desc"]</p>
                 </div>
                 <div class="card-body p-4">
                     <div class="price-tag mb-4">
-                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">€80+</h4>
-                        <p class="text-muted small">Starting price</p>
+                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">@Localization["Services_SmallTattoos_Price"]</h4>
+                        <p class="text-muted small">@Localization["Services_SmallTattoos_PriceDesc"]</p>
                     </div>
                     <ul class="list-unstyled text-start mb-4">
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Up to 5cm designs</span>
+                            <span class="text-light">@Localization["Services_SmallTattoos_List1"]</span>
                         </li>
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Simple or minimalist</span>
+                            <span class="text-light">@Localization["Services_SmallTattoos_List2"]</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">1-2 hours session</span>
+                            <span class="text-light">@Localization["Services_SmallTattoos_List3"]</span>
                         </li>
                     </ul>
                     <a href="/booking" class="btn btn-outline-gold w-100 py-3 rounded-pill">
-                        <i class="fas fa-calendar-check me-2"></i>Book Now
+                        <i class="fas fa-calendar-check me-2"></i>@Localization["Services_BookNow"]
                     </a>
                 </div>
             </div>
@@ -61,7 +63,7 @@
                 <!-- Popular Badge -->
                 <div class="position-absolute top-0 end-0 m-3" style="z-index: 10;">
                     <span class="badge rounded-pill py-2 px-3" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
-                        <i class="fas fa-star me-1"></i>Most Popular
+                        <i class="fas fa-star me-1"></i>@Localization["Services_MediumPieces_Badge"]
                     </span>
                 </div>
                 <div class="card-header border-0 py-4" style="background: rgba(212, 175, 55, 0.2);">
@@ -71,30 +73,30 @@
                             <i class="fas fa-hand-holding-heart fa-2x text-dark"></i>
                         </div>
                     </div>
-                    <h3 class="h4 text-light mb-2">Medium Pieces</h3>
-                    <p class="text-muted small mb-0">Detailed Artworks</p>
+                    <h3 class="h4 text-light mb-2">@Localization["Services_MediumPieces_Title"]</h3>
+                    <p class="text-muted small mb-0">@Localization["Services_MediumPieces_Desc"]</p>
                 </div>
                 <div class="card-body p-4">
                     <div class="price-tag mb-4">
-                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">€150+</h4>
-                        <p class="text-muted small">Per session</p>
+                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">@Localization["Services_MediumPieces_Price"]</h4>
+                        <p class="text-muted small">@Localization["Services_MediumPieces_PriceDesc"]</p>
                     </div>
                     <ul class="list-unstyled text-start mb-4">
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">5-15cm designs</span>
+                            <span class="text-light">@Localization["Services_MediumPieces_List1"]</span>
                         </li>
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Medium complexity</span>
+                            <span class="text-light">@Localization["Services_MediumPieces_List2"]</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">2-4 hours session</span>
+                            <span class="text-light">@Localization["Services_MediumPieces_List3"]</span>
                         </li>
                     </ul>
                     <a href="/booking" class="btn btn-gold w-100 py-3 rounded-pill shadow-lg">
-                        <i class="fas fa-calendar-check me-2"></i>Book Now
+                        <i class="fas fa-calendar-check me-2"></i>@Localization["Services_BookNow"]
                     </a>
                 </div>
             </div>
@@ -111,34 +113,34 @@
                             <i class="fas fa-dragon fa-2x text-dark"></i>
                         </div>
                     </div>
-                    <h3 class="h4 text-light mb-2">Full Sessions</h3>
-                    <p class="text-muted small mb-0">Large Masterpieces</p>
+                    <h3 class="h4 text-light mb-2">@Localization["Services_FullSessions_Title"]</h3>
+                    <p class="text-muted small mb-0">@Localization["Services_FullSessions_Desc"]</p>
                 </div>
                 <div class="card-body p-4">
                     <div class="price-tag mb-4">
-                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">€250+</h4>
-                        <p class="text-muted small">Full day session</p>
+                        <h4 class="display-4 fw-bold mb-0" style="color: #d4af37;">@Localization["Services_FullSessions_Price"]</h4>
+                        <p class="text-muted small">@Localization["Services_FullSessions_PriceDesc"]</p>
                     </div>
                     <ul class="list-unstyled text-start mb-4">
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Large scale tattoos</span>
+                            <span class="text-light">@Localization["Services_FullSessions_List1"]</span>
                         </li>
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Complex designs</span>
+                            <span class="text-light">@Localization["Services_FullSessions_List2"]</span>
                         </li>
                         <li class="mb-3 d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">Multiple sessions</span>
+                            <span class="text-light">@Localization["Services_FullSessions_List3"]</span>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="fas fa-check-circle text-success me-3 mt-1"></i>
-                            <span class="text-light">4+ hours session</span>
+                            <span class="text-light">@Localization["Services_FullSessions_List4"]</span>
                         </li>
                     </ul>
                     <a href="/booking" class="btn btn-outline-gold w-100 py-3 rounded-pill">
-                        <i class="fas fa-calendar-check me-2"></i>Book Now
+                        <i class="fas fa-calendar-check me-2"></i>@Localization["Services_BookNow"]
                     </a>
                 </div>
             </div>
@@ -159,7 +161,7 @@
             <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                 <div class="card-header border-0 py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                     <h2 class="h4 mb-0 text-uppercase fw-bold text-dark text-center">
-                        <i class="fas fa-list-ol me-2"></i>How It Works
+                        <i class="fas fa-list-ol me-2"></i>@Localization["Services_HowItWorks"]
                     </h2>
                 </div>
                 <div class="card-body p-4">
@@ -173,10 +175,10 @@
                         </div>
                         <div class="step-content">
                             <h5 class="text-light mb-2">
-                                <i class="fas fa-comments text-warning me-2"></i>Initial Consultation
+                                <i class="fas fa-comments text-warning me-2"></i>@Localization["Services_Step1_Title"]
                             </h5>
                             <p class="text-muted mb-0">
-                                We discuss your ideas, preferences, and create a design tailored to you
+                                @Localization["Services_Step1_Desc"]
                             </p>
                         </div>
                     </div>
@@ -191,10 +193,10 @@
                         </div>
                         <div class="step-content">
                             <h5 class="text-light mb-2">
-                                <i class="fas fa-pencil-ruler text-warning me-2"></i>Design Creation
+                                <i class="fas fa-pencil-ruler text-warning me-2"></i>@Localization["Services_Step2_Title"]
                             </h5>
                             <p class="text-muted mb-0">
-                                Custom artwork created specifically for your tattoo, with revisions included
+                                @Localization["Services_Step2_Desc"]
                             </p>
                         </div>
                     </div>
@@ -209,10 +211,10 @@
                         </div>
                         <div class="step-content">
                             <h5 class="text-light mb-2">
-                                <i class="fas fa-calendar-check text-warning me-2"></i>Book Your Session
+                                <i class="fas fa-calendar-check text-warning me-2"></i>@Localization["Services_Step3_Title"]
                             </h5>
                             <p class="text-muted mb-0">
-                                Choose your preferred date and pay the deposit to secure your appointment
+                                @Localization["Services_Step3_Desc"]
                             </p>
                         </div>
                     </div>
@@ -227,17 +229,17 @@
                         </div>
                         <div class="step-content">
                             <h5 class="text-light mb-2">
-                                <i class="fas fa-paint-brush text-warning me-2"></i>Tattoo Session
+                                <i class="fas fa-paint-brush text-warning me-2"></i>@Localization["Services_Step4_Title"]
                             </h5>
                             <p class="text-muted mb-0">
-                                Professional tattooing in a clean, comfortable environment with aftercare instructions
+                                @Localization["Services_Step4_Desc"]
                             </p>
                         </div>
                     </div>
 
                     <div class="mt-4 text-center">
                         <a href="/booking" class="btn btn-gold btn-lg px-5 py-3 rounded-pill shadow-lg">
-                            <i class="fas fa-calendar-plus me-2"></i>Start Your Journey
+                            <i class="fas fa-calendar-plus me-2"></i>@Localization["Services_StartJourney"]
                         </a>
                     </div>
                 </div>
@@ -251,19 +253,19 @@
                 <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); border: 2px solid #d4af37 !important;">
                     <div class="card-body p-4">
                         <h3 class="h5 mb-4 text-warning text-center">
-                            <i class="fas fa-euro-sign me-2"></i>Deposit Policy
+                            <i class="fas fa-euro-sign me-2"></i>@Localization["Services_Deposit_Title"]
                         </h3>
                         <div class="deposit-info">
                             <div class="mb-3 p-3 rounded" style="background: rgba(212, 175, 55, 0.1);">
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fas fa-money-bill-wave text-warning me-3 fs-4"></i>
                                     <div>
-                                        <strong class="text-light d-block">Deposit Required</strong>
-                                        <span class="text-muted small">€50 to secure appointment</span>
+                                        <strong class="text-light d-block">@Localization["Services_Deposit_Required"]</strong>
+                                        <span class="text-muted small">@Localization["Services_Deposit_RequiredDesc"]</span>
                                     </div>
                                 </div>
                                 <p class="text-muted small mb-0 ps-5">
-                                    Non-refundable but deducted from final price
+                                    @Localization["Services_Deposit_RequiredNote"]
                                 </p>
                             </div>
 
@@ -271,12 +273,12 @@
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fas fa-calendar-alt text-success me-3 fs-4"></i>
                                     <div>
-                                        <strong class="text-light d-block">Free Reschedule</strong>
-                                        <span class="text-muted small">With 48h notice</span>
+                                        <strong class="text-light d-block">@Localization["Services_Deposit_Reschedule"]</strong>
+                                        <span class="text-muted small">@Localization["Services_Deposit_RescheduleDesc"]</span>
                                     </div>
                                 </div>
                                 <p class="text-muted small mb-0 ps-5">
-                                    Reschedule for free if you notify us 48 hours in advance
+                                    @Localization["Services_Deposit_RescheduleNote"]
                                 </p>
                             </div>
 
@@ -284,12 +286,12 @@
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fas fa-exclamation-triangle text-danger me-3 fs-4"></i>
                                     <div>
-                                        <strong class="text-light d-block">No-Show Policy</strong>
-                                        <span class="text-muted small">Deposit forfeited</span>
+                                        <strong class="text-light d-block">@Localization["Services_Deposit_NoShow"]</strong>
+                                        <span class="text-muted small">@Localization["Services_Deposit_NoShowDesc"]</span>
                                     </div>
                                 </div>
                                 <p class="text-muted small mb-0 ps-5">
-                                    Late cancellation or no-show results in deposit loss
+                                    @Localization["Services_Deposit_NoShowNote"]
                                 </p>
                             </div>
                         </div>
@@ -300,32 +302,32 @@
                 <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                     <div class="card-body p-4">
                         <h3 class="h6 mb-4 text-warning text-center">
-                            <i class="fas fa-credit-card me-2"></i>Payment Methods
+                            <i class="fas fa-credit-card me-2"></i>@Localization["Services_Payment_Title"]
                         </h3>
                         <div class="payment-methods text-center">
                             <div class="row g-2">
                                 <div class="col-6">
                                     <div class="payment-badge p-2 rounded" style="background: rgba(212, 175, 55, 0.1);">
                                         <i class="fas fa-money-bill-wave text-warning fs-3 mb-2"></i>
-                                        <p class="small text-light mb-0">Cash</p>
+                                        <p class="small text-light mb-0">@Localization["Services_Payment_Cash"]</p>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="payment-badge p-2 rounded" style="background: rgba(212, 175, 55, 0.1);">
                                         <i class="fas fa-credit-card text-warning fs-3 mb-2"></i>
-                                        <p class="small text-light mb-0">Card</p>
+                                        <p class="small text-light mb-0">@Localization["Services_Payment_Card"]</p>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="payment-badge p-2 rounded" style="background: rgba(212, 175, 55, 0.1);">
                                         <i class="fas fa-university text-warning fs-3 mb-2"></i>
-                                        <p class="small text-light mb-0">Bank Transfer</p>
+                                        <p class="small text-light mb-0">@Localization["Services_Payment_Bank"]</p>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="payment-badge p-2 rounded" style="background: rgba(212, 175, 55, 0.1);">
                                         <i class="fab fa-paypal text-warning fs-3 mb-2"></i>
-                                        <p class="small text-light mb-0">PayPal</p>
+                                        <p class="small text-light mb-0">@Localization["Services_Payment_PayPal"]</p>
                                     </div>
                                 </div>
                             </div>
@@ -337,9 +339,9 @@
                 <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #28a745 0%, #20923b 100%);">
                     <div class="card-body p-4 text-center">
                         <i class="fas fa-shield-alt fa-3x text-white mb-3"></i>
-                        <h4 class="h6 text-white fw-bold mb-2">100% Satisfaction Guarantee</h4>
+                        <h4 class="h6 text-white fw-bold mb-2">@Localization["Services_Guarantee_Title"]</h4>
                         <p class="small text-white mb-0">
-                            Free touch-ups within 3 months if needed
+                            @Localization["Services_Guarantee_Desc"]
                         </p>
                     </div>
                 </div>
@@ -353,17 +355,17 @@
             <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                 <div class="card-body p-5 text-center">
                     <h3 class="display-6 fw-bold text-dark mb-3">
-                        <i class="fas fa-question-circle me-2"></i>Have Questions?
+                        <i class="fas fa-question-circle me-2"></i>@Localization["Services_FAQ_Title"]
                     </h3>
                     <p class="lead text-dark mb-4">
-                        Contact us for a free consultation or visit our FAQ page
+                        @Localization["Services_FAQ_Desc"]
                     </p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
                         <a href="/contacts" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow">
-                            <i class="fas fa-envelope me-2"></i>Contact Us
+                            <i class="fas fa-envelope me-2"></i>@Localization["Services_ContactUs"]
                         </a>
                         <a href="/info" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill shadow">
-                            <i class="fas fa-info-circle me-2"></i>Read FAQ
+                            <i class="fas fa-info-circle me-2"></i>@Localization["Services_ReadFAQ"]
                         </a>
                     </div>
                 </div>
@@ -403,6 +405,7 @@
         color: #000;
         transform: translateY(-3px);
         box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        color: #000;
     }
 
     .pricing-card {
@@ -440,8 +443,13 @@
 </style>
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        // Page initialization
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+    
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
     }
 }

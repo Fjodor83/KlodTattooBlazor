@@ -1,14 +1,16 @@
 @page "/info"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Info & FAQ - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Info_Title"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
     <!-- Header Section -->
     <div class="text-center mb-5">
         <h1 class="display-3 fw-bold text-uppercase mb-3" style="color: #d4af37; letter-spacing: 3px;">
-            Info & FAQ
+            @Localization["Info_Title"]
         </h1>
-        <p class="lead text-muted fs-4">Everything you need to know</p>
+        <p class="lead text-muted fs-4">@Localization["Info_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 100px; height: 4px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
     </div>
 
@@ -19,11 +21,11 @@
             <div class="card h-100 shadow-lg border-0 overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                 <div class="card-header border-0 text-center py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                     <i class="fas fa-hand-holding-medical fa-3x text-dark mb-3"></i>
-                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">Aftercare Instructions</h3>
+                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">@Localization["Info_Aftercare_Title"]</h3>
                 </div>
                 <div class="card-body p-4">
                     <p class="text-light mb-4 lead">
-                        Follow these steps carefully for optimal healing and to preserve your tattoo's quality.
+                        @Localization["Info_Aftercare_Desc"]
                     </p>
 
                     <div class="aftercare-steps">
@@ -37,9 +39,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-clock text-warning me-2"></i>Remove Bandage After 2-4 Hours
+                                    <i class="fas fa-clock text-warning me-2"></i>@Localization["Info_Aftercare_Step1_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">Gently remove the protective bandage and wash with lukewarm water and unscented soap.</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step1_Desc"]</p>
                             </div>
                         </div>
 
@@ -53,9 +55,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-hand-sparkles text-warning me-2"></i>Daily Cleaning
+                                    <i class="fas fa-hand-sparkles text-warning me-2"></i>@Localization["Info_Aftercare_Step2_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">Clean 2-3 times daily with unscented soap and pat dry with a clean paper towel.</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step2_Desc"]</p>
                             </div>
                         </div>
 
@@ -69,9 +71,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-wind text-warning me-2"></i>Let It Breathe
+                                    <i class="fas fa-wind text-warning me-2"></i>@Localization["Info_Aftercare_Step3_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">After washing, let your tattoo air dry. Don't cover it unless necessary.</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step3_Desc"]</p>
                             </div>
                         </div>
 
@@ -85,9 +87,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-pump-medical text-warning me-2"></i>Apply Thin Lotion Layer
+                                    <i class="fas fa-pump-medical text-warning me-2"></i>@Localization["Info_Aftercare_Step4_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">Use a thin layer of fragrance-free moisturizer 2-3 times daily. Don't over-moisturize!</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step4_Desc"]</p>
                             </div>
                         </div>
 
@@ -101,9 +103,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-ban text-warning me-2"></i>Avoid Water Exposure
+                                    <i class="fas fa-ban text-warning me-2"></i>@Localization["Info_Aftercare_Step5_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">No swimming, soaking, or prolonged water exposure for 2-3 weeks.</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step5_Desc"]</p>
                             </div>
                         </div>
 
@@ -117,9 +119,9 @@
                             </div>
                             <div class="step-content">
                                 <h5 class="text-light mb-2">
-                                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>Signs of Infection
+                                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>@Localization["Info_Aftercare_Step6_Title"]
                                 </h5>
-                                <p class="text-muted mb-0">Contact us immediately if you notice excessive redness, swelling, or discharge.</p>
+                                <p class="text-muted mb-0">@Localization["Info_Aftercare_Step6_Desc"]</p>
                             </div>
                         </div>
                     </div>
@@ -132,34 +134,34 @@
             <div class="card h-100 shadow-lg border-0 overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
                 <div class="card-header border-0 text-center py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                     <i class="fas fa-lightbulb fa-3x text-dark mb-3"></i>
-                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">Important Tips</h3>
+                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">@Localization["Info_Tips_Title"]</h3>
                 </div>
                 <div class="card-body p-4">
                     <!-- Do's Section -->
                     <div class="mb-4">
                         <h5 class="text-success mb-3">
-                            <i class="fas fa-check-circle me-2"></i>Do's
+                            <i class="fas fa-check-circle me-2"></i>@Localization["Info_Tips_Dos"]
                         </h5>
                         <ul class="list-unstyled">
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-check text-gold me-3 mt-1"></i>
-                                <span class="text-light">Keep your tattoo clean and moisturized</span>
+                                <span class="text-light">@Localization["Info_Tips_Do1"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-check text-gold me-3 mt-1"></i>
-                                <span class="text-light">Use fragrance-free, hypoallergenic products</span>
+                                <span class="text-light">@Localization["Info_Tips_Do2"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-check text-gold me-3 mt-1"></i>
-                                <span class="text-light">Wear loose, breathable clothing over the tattoo</span>
+                                <span class="text-light">@Localization["Info_Tips_Do3"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-check text-gold me-3 mt-1"></i>
-                                <span class="text-light">Protect from sun exposure (use SPF 50+)</span>
+                                <span class="text-light">@Localization["Info_Tips_Do4"]</span>
                             </li>
                             <li class="d-flex align-items-start">
                                 <i class="fas fa-check text-gold me-3 mt-1"></i>
-                                <span class="text-light">Contact us with any concerns or questions</span>
+                                <span class="text-light">@Localization["Info_Tips_Do5"]</span>
                             </li>
                         </ul>
                     </div>
@@ -167,28 +169,28 @@
                     <!-- Don'ts Section -->
                     <div>
                         <h5 class="text-danger mb-3">
-                            <i class="fas fa-times-circle me-2"></i>Don'ts
+                            <i class="fas fa-times-circle me-2"></i>@Localization["Info_Tips_Donts"]
                         </h5>
                         <ul class="list-unstyled">
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-times text-danger me-3 mt-1"></i>
-                                <span class="text-light">Don't pick, scratch, or peel scabs</span>
+                                <span class="text-light">@Localization["Info_Tips_Dont1"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-times text-danger me-3 mt-1"></i>
-                                <span class="text-light">Don't expose to direct sunlight or tanning beds</span>
+                                <span class="text-light">@Localization["Info_Tips_Dont2"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-times text-danger me-3 mt-1"></i>
-                                <span class="text-light">Don't swim in pools, oceans, or hot tubs</span>
+                                <span class="text-light">@Localization["Info_Tips_Dont3"]</span>
                             </li>
                             <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-times text-danger me-3 mt-1"></i>
-                                <span class="text-light">Don't use petroleum-based products (Vaseline)</span>
+                                <span class="text-light">@Localization["Info_Tips_Dont4"]</span>
                             </li>
                             <li class="d-flex align-items-start">
                                 <i class="fas fa-times text-danger me-3 mt-1"></i>
-                                <span class="text-light">Don't wear tight or abrasive clothing</span>
+                                <span class="text-light">@Localization["Info_Tips_Dont5"]</span>
                             </li>
                         </ul>
                     </div>
@@ -196,10 +198,10 @@
                     <!-- Emergency Alert -->
                     <div class="alert alert-warning mt-4 mb-0" role="alert">
                         <h6 class="alert-heading fw-bold">
-                            <i class="fas fa-exclamation-triangle me-2"></i>When to Seek Medical Attention
+                            <i class="fas fa-exclamation-triangle me-2"></i>@Localization["Info_Medical_Title"]
                         </h6>
                         <p class="mb-0 small">
-                            If you experience excessive swelling, severe pain, pus, fever, or red streaks around the tattoo, contact a doctor immediately.
+                            @Localization["Info_Medical_Text"]
                         </p>
                     </div>
                 </div>
@@ -211,8 +213,8 @@
     <div class="row mt-5">
         <div class="col-lg-10 mx-auto">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">Frequently Asked Questions</h2>
-                <p class="text-muted lead">Find answers to common questions about tattoos and our services</p>
+                <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">@Localization["Info_FAQ_Title"]</h2>
+                <p class="text-muted lead">@Localization["Info_FAQ_Subtitle"]</p>
                 <div class="golden-underline mx-auto" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
             </div>
 
@@ -228,16 +230,16 @@
                                 aria-controls="collapseOne"
                                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                             <i class="fas fa-question-circle text-warning me-3"></i>
-                            How much does a tattoo hurt?
+                            @Localization["Info_FAQ_Q1"]
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
                             <p class="mb-3">
-                                Pain levels vary depending on the location, size, and your personal pain tolerance. Generally, areas with more muscle and fat are less painful, while bony areas (ribs, ankles, elbows) can be more sensitive.
+                                @Localization["Info_FAQ_A1_1"]
                             </p>
                             <p class="mb-0">
-                                Most clients describe it as manageable discomfort rather than intense pain. We work at your pace and take breaks as needed to ensure your comfort.
+                                @Localization["Info_FAQ_A1_2"]
                             </p>
                         </div>
                     </div>
@@ -254,22 +256,22 @@
                                 aria-controls="collapseTwo"
                                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                             <i class="fas fa-euro-sign text-warning me-3"></i>
-                            How is the price determined?
+                            @Localization["Info_FAQ_Q2"]
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
                             <p class="mb-3">
-                                Tattoo pricing depends on several factors:
+                                @Localization["Info_FAQ_A2_Intro"]
                             </p>
                             <ul class="mb-3">
-                                <li>Size and complexity of the design</li>
-                                <li>Placement on the body</li>
-                                <li>Time required to complete</li>
-                                <li>Color vs. black and white</li>
+                                <li>@Localization["Info_FAQ_A2_List1"]</li>
+                                <li>@Localization["Info_FAQ_A2_List2"]</li>
+                                <li>@Localization["Info_FAQ_A2_List3"]</li>
+                                <li>@Localization["Info_FAQ_A2_List4"]</li>
                             </ul>
                             <div class="alert alert-info mb-0" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
-                                We provide free consultations where we can give you an accurate quote based on your specific design and requirements.
+                                @Localization["Info_FAQ_A2_Note"]
                             </div>
                         </div>
                     </div>
@@ -286,16 +288,16 @@
                                 aria-controls="collapseThree"
                                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                             <i class="fas fa-users text-warning me-3"></i>
-                            Can I bring a friend to my appointment?
+                            @Localization["Info_FAQ_Q3"]
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
                             <p class="mb-3">
-                                Yes! You're welcome to bring one person for support during your session. We ask that they remain respectful and quiet to maintain a focused working environment.
+                                @Localization["Info_FAQ_Q3_A3_1"]
                             </p>
                             <p class="mb-0">
-                                Please inform us in advance if you'll be bringing someone so we can ensure we have adequate space.
+                                @Localization["Info_FAQ_Q3_A3_2"]
                             </p>
                         </div>
                     </div>
@@ -312,17 +314,17 @@
                                 aria-controls="collapseFour"
                                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                             <i class="fas fa-calendar-alt text-warning me-3"></i>
-                            Can I reschedule my appointment?
+                            @Localization["Info_FAQ_Q4"]
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
                             <p class="mb-3">
-                                Yes, you can reschedule with the following conditions:
+                                @Localization["Info_FAQ_A4_Intro"]
                             </p>
                             <ul class="mb-0">
-                                <li>At least 48 hours notice required for free rescheduling</li>
-                                <li>Late cancellations or no-shows will forfeit the deposit</li>
+                                <li>@Localization["Info_FAQ_A4_List1"]</li>
+                                <li>@Localization["Info_FAQ_A4_List2"]</li>
                             </ul>
                         </div>
                     </div>
@@ -339,16 +341,16 @@
                                 aria-controls="collapseFive"
                                 style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                             <i class="fas fa-pencil-ruler text-warning me-3"></i>
-                            Can I bring my own design?
+                            @Localization["Info_FAQ_Q5"]
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
                         <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
                             <p class="mb-3">
-                                Absolutely! We love working with your ideas. You can bring reference images, sketches, or a complete design concept.
+                                @Localization["Info_FAQ_A5_1"]
                             </p>
                             <p class="mb-0">
-                                During our consultation, we'll work together to refine the design and make any necessary adjustments to ensure it looks perfect as a tattoo.
+                                @Localization["Info_FAQ_A5_2"]
                             </p>
                         </div>
                     </div>
@@ -362,13 +364,13 @@
         <div class="col-lg-8 mx-auto">
             <div class="text-center p-5 rounded shadow-lg" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
                 <i class="fas fa-comments fa-3x text-dark mb-4"></i>
-                <h3 class="display-6 fw-bold text-dark mb-3">Still have questions?</h3>
-                <p class="lead text-dark mb-4">We're here to help! Contact us or book a free consultation</p>
+                <h3 class="display-6 fw-bold text-dark mb-3">@Localization["Info_CTA_Title"]</h3>
+                <p class="lead text-dark mb-4">@Localization["Info_CTA_Text"]</p>
                 <a href="/contacts" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow me-2">
-                    <i class="fas fa-envelope me-2"></i>Contact Us
+                    <i class="fas fa-envelope me-2"></i>@Localization["Info_CTA_Btn_Contact"]
                 </a>
                 <a href="/booking" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill shadow">
-                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                    <i class="fas fa-calendar-check me-2"></i>@Localization["Info_CTA_Btn_Book"]
                 </a>
             </div>
         </div>
@@ -416,3 +418,15 @@
         }
     }
 </style>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+}

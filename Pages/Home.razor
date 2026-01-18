@@ -1,6 +1,8 @@
 ﻿@page "/"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Klod Tattoo - Art That Lasts Forever</PageTitle>
+<PageTitle>Klod Tattoo - @Localization["Home_Title"]</PageTitle>
 
 <!-- HERO SECTION -->
 <div class="hero-section position-relative text-center text-white overflow-hidden">
@@ -9,13 +11,13 @@
 
     <div class="content position-relative px-3 mx-auto text-center d-flex flex-column justify-content-center align-items-center h-100" style="z-index: 1; max-width: 900px;">
         <h1 class="display-1 fw-bold text-uppercase mb-4" style="letter-spacing: 8px; color: #d4af37; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">
-            Art That Lasts Forever
+            @Localization["Home_Title"]
         </h1>
         <p class="lead mb-5 fs-2" style="letter-spacing: 3px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
-            Professional Tattoo Studio
+            @Localization["Home_Subtitle"]
         </p>
         <a href="/booking" class="btn btn-gold btn-lg px-5 py-3 rounded-pill shadow-lg">
-            <i class="fas fa-calendar-check me-2"></i>Book Now
+            <i class="fas fa-calendar-check me-2"></i>@Localization["Home_BookNow"]
         </a>
     </div>
 
@@ -34,58 +36,58 @@
             <div class="position-relative">
                 <h2 class="text-uppercase mb-4 display-5 fw-bold"
                     style="border-left: 5px solid #d4af37; padding-left: 20px;">
-                    About Klod
+                    @Localization["Home_AboutTitle"]
                 </h2>
 
                 <p class="lead text-muted mb-4 fs-5">
-                    Welcome to <strong style="color: #d4af37;">Klod Tattoo</strong>: Where art is not just observed... <strong>it's worn</strong>.
+                    @((MarkupString)Localization["Home_AboutText1"])
                 </p>
 
                 <p class="text-muted mb-3 lh-lg">
-                    Every line, every shadow, and every detail is born from a thoughtful vision, individually crafted for you. I don't create "standard" tattoos: Each project is a unique artwork that tells your story with style, strength, and elegance.
+                    @Localization["Home_AboutText2"]
                 </p>
 
                 <div class="highlight-box p-4 mb-4 rounded" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
                     <p class="text-light mb-0">
                         <i class="fas fa-graduation-cap text-warning me-2"></i>
-                        My training begins at the <strong>Art High School</strong> and is perfected at the <strong>Academy of Fine Arts</strong>, where I turned drawing into a true aesthetic discipline.
+                        @((MarkupString)Localization["Home_AboutEducation"])
                     </p>
                 </div>
 
                 <p class="text-muted mb-4 lh-lg">
-                    Today, every tattoo I create is not just an image on your skin, but a <strong>creative collaboration</strong> in which we bring your ideas to life with cutting-edge techniques and unmatched artistic sensibility.
+                    @((MarkupString)Localization["Home_AboutCreative"])
                 </p>
 
                 <div class="row g-3 mb-4">
                     <div class="col-6">
                         <div class="feature-badge text-center p-3 rounded bg-dark">
                             <i class="fas fa-certificate text-warning fs-3 mb-2"></i>
-                            <p class="small text-light mb-0">Premium Quality Inks</p>
+                            <p class="small text-light mb-0">@Localization["Home_Feature_Inks"]</p>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="feature-badge text-center p-3 rounded bg-dark">
                             <i class="fas fa-shield-alt text-warning fs-3 mb-2"></i>
-                            <p class="small text-light mb-0">Maximum Hygiene</p>
+                            <p class="small text-light mb-0">@Localization["Home_Feature_Hygiene"]</p>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="feature-badge text-center p-3 rounded bg-dark">
                             <i class="fas fa-tools text-warning fs-3 mb-2"></i>
-                            <p class="small text-light mb-0">Professional Equipment</p>
+                            <p class="small text-light mb-0">@Localization["Home_Feature_Equipment"]</p>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="feature-badge text-center p-3 rounded bg-dark">
                             <i class="fas fa-infinity text-warning fs-3 mb-2"></i>
-                            <p class="small text-light mb-0">Lasting Results</p>
+                            <p class="small text-light mb-0">@Localization["Home_Feature_Results"]</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="quote-box p-4 rounded shadow-sm" style="background: #f8f9fa; border-left: 5px solid #d4af37;">
                     <p class="mb-0 text-dark fs-5 fst-italic">
-                        "Your skin is the canvas, my art is the language, and together we create a masterpiece that speaks of who you truly are."
+                        "@Localization["Home_Quote"]"
                     </p>
                 </div>
             </div>
@@ -103,19 +105,19 @@
                         <div class="col-4">
                             <div class="stat-card text-center p-2 rounded shadow" style="background: rgba(212, 175, 55, 0.95);">
                                 <h4 class="mb-0 fw-bold text-dark">10+</h4>
-                                <small class="text-dark">Years</small>
+                                <small class="text-dark">@Localization["Home_Stats_Years"]</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-card text-center p-2 rounded shadow" style="background: rgba(212, 175, 55, 0.95);">
                                 <h4 class="mb-0 fw-bold text-dark">1000+</h4>
-                                <small class="text-dark">Tattoos</small>
+                                <small class="text-dark">@Localization["Home_Stats_Tattoos"]</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-card text-center p-2 rounded shadow" style="background: rgba(212, 175, 55, 0.95);">
                                 <h4 class="mb-0 fw-bold text-dark">5⭐</h4>
-                                <small class="text-dark">Rating</small>
+                                <small class="text-dark">@Localization["Home_Stats_Rating"]</small>
                             </div>
                         </div>
                     </div>
@@ -134,8 +136,8 @@
     <!-- STYLES SECTION -->
     <div class="row text-center mb-5">
         <div class="col-12 mb-5">
-            <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">Our Styles</h2>
-            <p class="text-muted lead">Artistic specializations for every taste</p>
+            <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">@Localization["Home_Styles_Title"]</h2>
+            <p class="text-muted lead">@Localization["Home_Styles_Subtitle"]</p>
             <div class="golden-underline mx-auto" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
         </div>
 
@@ -145,12 +147,12 @@
                 <div class="style-icon mb-3">
                     <i class="fas fa-eye fa-3x" style="color: #d4af37;"></i>
                 </div>
-                <h3 class="h4 mb-3" style="color: #d4af37;">Realistic</h3>
-                <p class="text-muted mb-3">Portraits and photographic details with surgical precision.</p>
+                <h3 class="h4 mb-3" style="color: #d4af37;">@Localization["Home_Style_Realistic"]</h3>
+                <p class="text-muted mb-3">@Localization["Home_Style_Realistic_Desc"]</p>
                 <ul class="list-unstyled text-muted small">
-                    <li><i class="fas fa-check text-gold me-2"></i>Hyper-realistic portraits</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Nature and animals</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Black & gray masterpieces</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Realistic_1"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Realistic_2"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Realistic_3"]</li>
                 </ul>
             </div>
         </div>
@@ -161,12 +163,12 @@
                 <div class="style-icon mb-3">
                     <i class="fas fa-anchor fa-3x" style="color: #d4af37;"></i>
                 </div>
-                <h3 class="h4 mb-3" style="color: #d4af37;">Traditional</h3>
-                <p class="text-muted mb-3">Bold lines and vivid colors from the old-school tradition.</p>
+                <h3 class="h4 mb-3" style="color: #d4af37;">@Localization["Home_Style_Traditional"]</h3>
+                <p class="text-muted mb-3">@Localization["Home_Style_Traditional_Desc"]</p>
                 <ul class="list-unstyled text-muted small">
-                    <li><i class="fas fa-check text-gold me-2"></i>Classic American style</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Bold outlines</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Timeless designs</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Traditional_1"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Traditional_2"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Traditional_3"]</li>
                 </ul>
             </div>
         </div>
@@ -177,12 +179,12 @@
                 <div class="style-icon mb-3">
                     <i class="fas fa-moon fa-3x" style="color: #d4af37;"></i>
                 </div>
-                <h3 class="h4 mb-3" style="color: #d4af37;">Blackwork</h3>
-                <p class="text-muted mb-3">Strong contrasts, geometries, and designs with powerful visual impact.</p>
+                <h3 class="h4 mb-3" style="color: #d4af37;">@Localization["Home_Style_Blackwork"]</h3>
+                <p class="text-muted mb-3">@Localization["Home_Style_Blackwork_Desc"]</p>
                 <ul class="list-unstyled text-muted small">
-                    <li><i class="fas fa-check text-gold me-2"></i>Geometric patterns</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Ornamental designs</li>
-                    <li><i class="fas fa-check text-gold me-2"></i>Bold dark aesthetics</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Blackwork_1"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Blackwork_2"]</li>
+                    <li><i class="fas fa-check text-gold me-2"></i>@Localization["Home_Style_Blackwork_3"]</li>
                 </ul>
             </div>
         </div>
@@ -200,10 +202,10 @@
         <div class="col-12">
             <div class="cta-box text-center p-5 rounded shadow-lg position-relative overflow-hidden"
                  style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
-                <h3 class="display-6 fw-bold text-dark mb-3">Ready to Start Your Journey?</h3>
-                <p class="lead text-dark mb-4">Book your consultation today and let's bring your vision to life</p>
+                <h3 class="display-6 fw-bold text-dark mb-3">@Localization["Home_CTA_Title"]</h3>
+                <p class="lead text-dark mb-4">@Localization["Home_CTA_Subtitle"]</p>
                 <a href="/booking" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow">
-                    <i class="fas fa-calendar-check me-2"></i>Book Your Appointment
+                    <i class="fas fa-calendar-check me-2"></i>@Localization["Home_CTA_Button"]
                 </a>
             </div>
         </div>
@@ -273,8 +275,13 @@
 </style>
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        // Page initialization
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+    
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
     }
 }

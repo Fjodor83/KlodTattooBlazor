@@ -1,0 +1,139 @@
+@using KlodTattooBlazor.Services
+@inject LocalizationService Localization
+
+<div class="dropdown d-inline-block position-relative">
+    <button class="btn btn-link text-white dropdown-toggle text-decoration-none d-flex align-items-center" 
+            type="button" 
+            @onclick="ToggleDropdown">
+        <img src="@CurrentLanguageFlag" alt="Flag" class="me-2 flag-icon" />
+        <span class="d-none d-md-inline">@CurrentLanguageName</span>
+        <span class="d-inline d-md-none">@CurrentLanguageCode</span>
+    </button>
+    
+    @if (IsDropdownOpen)
+    {
+        <div class="dropdown-backdrop" @onclick="CloseDropdown"></div>
+    }
+
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow @(IsDropdownOpen ? "show" : "")" 
+        style="border: 1px solid rgba(212, 175, 55, 0.2);">
+        <li>
+            <button class="dropdown-item d-flex align-items-center justify-content-between @(CurrentLanguage == "de-DE" ? "active" : "")" 
+                    @onclick="@(() => ChangeLanguage("de-DE"))">
+                <span class="d-flex align-items-center"><img src="/images/flags/de.svg" class="flag-icon me-2" /> Deutsch</span>
+                @if (CurrentLanguage == "de-DE") { <i class="fas fa-check text-gold small"></i> }
+            </button>
+        </li>
+        <li>
+            <button class="dropdown-item d-flex align-items-center justify-content-between @(CurrentLanguage == "en" ? "active" : "")" 
+                    @onclick="@(() => ChangeLanguage("en"))">
+                <span class="d-flex align-items-center"><img src="/images/flags/en.svg" class="flag-icon me-2" /> English</span>
+                @if (CurrentLanguage == "en") { <i class="fas fa-check text-gold small"></i> }
+            </button>
+        </li>
+        <li>
+            <button class="dropdown-item d-flex align-items-center justify-content-between @(CurrentLanguage == "it-IT" ? "active" : "")" 
+                    @onclick="@(() => ChangeLanguage("it-IT"))">
+                <span class="d-flex align-items-center"><img src="/images/flags/it.svg" class="flag-icon me-2" /> Italiano</span>
+                @if (CurrentLanguage == "it-IT") { <i class="fas fa-check text-gold small"></i> }
+            </button>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .text-gold { color: #d4af37; }
+    
+    .flag-icon {
+        width: 20px;
+        height: 15px;
+        object-fit: cover;
+        border-radius: 2px;
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+    
+    .dropdown-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 900;
+        background: transparent;
+    }
+
+    .dropdown-menu {
+        z-index: 1000;
+    }
+    
+    .dropdown-item {
+        color: #e0e0e0;
+        transition: all 0.2s ease;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(212, 175, 55, 0.1);
+        color: #d4af37;
+    }
+
+    .dropdown-item.active {
+        background-color: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        font-weight: 600;
+    }
+</style>
+
+@code {
+    private bool IsDropdownOpen = false;
+
+    private string CurrentLanguage => Localization.CurrentCulture;
+    
+    private string CurrentLanguageName => CurrentLanguage switch
+    {
+        "de-DE" => "Deutsch",
+        "it-IT" => "Italiano",
+        _ => "English"
+    };
+
+    private string CurrentLanguageCode => CurrentLanguage switch
+    {
+        "de-DE" => "DE",
+        "it-IT" => "IT",
+        _ => "EN"
+    };
+
+    private string CurrentLanguageFlag => CurrentLanguage switch
+    {
+        "de-DE" => "/images/flags/de.svg",
+        "it-IT" => "/images/flags/it.svg",
+        _ => "/images/flags/en.svg"
+    };
+
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+
+    private void ToggleDropdown()
+    {
+        IsDropdownOpen = !IsDropdownOpen;
+    }
+
+    private void CloseDropdown()
+    {
+        IsDropdownOpen = false;
+    }
+
+    private async Task ChangeLanguage(string culture)
+    {
+        await Localization.SetCultureAsync(culture);
+        IsDropdownOpen = false;
+    }
+}

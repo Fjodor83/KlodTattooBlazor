@@ -1,11 +1,13 @@
 @page "/cookie"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Cookie Policy - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Cookie_PageTitle"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">Cookie Policy</h1>
-        <p class="lead text-muted">Understanding how we use cookies</p>
+        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">@Localization["Cookie_Title"]</h1>
+        <p class="lead text-muted">@Localization["Cookie_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
     </div>
 
@@ -15,119 +17,120 @@
                 <div class="card-body">
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-cookie-bite me-2"></i>What Are Cookies?
+                            <i class="fas fa-cookie-bite me-2"></i>@Localization["Cookie_Section1_Title"]
                         </h2>
                         <p class="text-muted lh-lg">
-                            Cookies are small text files that are placed on your computer or mobile device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our site.
+                            @Localization["Cookie_Section1_Text"]
                         </p>
                     </section>
 
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-list me-2"></i>Types of Cookies We Use
+                            <i class="fas fa-list me-2"></i>@Localization["Cookie_Section2_Title"]
                         </h2>
                         
                         <div class="cookie-type-card mb-3 p-4 rounded" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid #28a745;">
                             <h3 class="h6 text-light mb-2">
-                                <i class="fas fa-check-circle text-success me-2"></i>Essential Cookies (Always Active)
+                                <i class="fas fa-check-circle text-success me-2"></i>@Localization["Cookie_Type1_Title"]
                             </h3>
                             <p class="text-muted small mb-0">
-                                These cookies are necessary for the website to function and cannot be switched off. They enable core functionality such as security, network management, and accessibility.
+                                @Localization["Cookie_Type1_Text"]
                             </p>
                         </div>
 
                         <div class="cookie-type-card mb-3 p-4 rounded" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid #d4af37;">
                             <h3 class="h6 text-light mb-2">
-                                <i class="fas fa-chart-line text-warning me-2"></i>Analytics Cookies
+                                <i class="fas fa-chart-line text-warning me-2"></i>@Localization["Cookie_Type2_Title"]
                             </h3>
                             <p class="text-muted small mb-0">
-                                These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our site.
+                                @Localization["Cookie_Type2_Text"]
                             </p>
                         </div>
 
                         <div class="cookie-type-card mb-3 p-4 rounded" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid #17a2b8;">
                             <h3 class="h6 text-light mb-2">
-                                <i class="fas fa-sliders-h text-info me-2"></i>Preference Cookies
+                                <i class="fas fa-sliders-h text-info me-2"></i>@Localization["Cookie_Type3_Title"]
                             </h3>
                             <p class="text-muted small mb-0">
-                                These cookies enable the website to remember choices you make (such as language preference) and provide enhanced, more personal features.
+                                @Localization["Cookie_Type3_Text"]
                             </p>
                         </div>
 
                         <div class="cookie-type-card p-4 rounded" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid #6c757d;">
                             <h3 class="h6 text-light mb-2">
-                                <i class="fas fa-bullhorn text-secondary me-2"></i>Marketing Cookies (Not Currently Used)
+                                <i class="fas fa-bullhorn text-secondary me-2"></i>@Localization["Cookie_Type4_Title"]
                             </h3>
                             <p class="text-muted small mb-0">
-                                We do not currently use marketing or advertising cookies on our website.
+                                @Localization["Cookie_Type4_Text"]
                             </p>
                         </div>
                     </section>
 
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-cog me-2"></i>Managing Your Cookies
+                            <i class="fas fa-cog me-2"></i>@Localization["Cookie_Section3_Title"]
                         </h2>
                         <p class="text-muted lh-lg mb-3">
-                            You can control and manage cookies in several ways:
+                            @Localization["Cookie_Section3_Intro"]
                         </p>
                         <ul class="text-muted lh-lg">
-                            <li class="mb-2"><strong>Cookie Preferences:</strong> Use our cookie banner to accept or decline non-essential cookies</li>
-                            <li class="mb-2"><strong>Browser Settings:</strong> Most browsers allow you to refuse cookies or delete existing ones</li>
-                            <li class="mb-2"><strong>Third-Party Tools:</strong> Use opt-out tools provided by third-party analytics providers</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section3_Item1_Title"]</strong> @Localization["Cookie_Section3_Item1_Text"]</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section3_Item2_Title"]</strong> @Localization["Cookie_Section3_Item2_Text"]</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section3_Item3_Title"]</strong> @Localization["Cookie_Section3_Item3_Text"]</li>
                         </ul>
                         <div class="alert alert-warning mt-3" style="background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107;">
                             <i class="fas fa-exclamation-triangle me-2"></i>
-                            <strong>Note:</strong> Blocking or deleting cookies may affect your experience and some features may not work properly.
+                            <strong>@Localization["Cookie_Section3_Note_Title"]</strong>
+                            @Localization["Cookie_Section3_Note_Text"]
                         </div>
                     </section>
 
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-external-link-alt me-2"></i>Third-Party Cookies
+                            <i class="fas fa-external-link-alt me-2"></i>@Localization["Cookie_Section4_Title"]
                         </h2>
                         <p class="text-muted lh-lg">
-                            Our website may use third-party services that set cookies, including:
+                            @Localization["Cookie_Section4_Intro"]
                         </p>
                         <ul class="text-muted lh-lg">
-                            <li class="mb-2"><strong>EmailJS:</strong> For contact form functionality</li>
-                            <li class="mb-2"><strong>Google Fonts:</strong> For typography</li>
-                            <li class="mb-2"><strong>Font Awesome:</strong> For icons</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section4_Item1_Title"]</strong> @Localization["Cookie_Section4_Item1_Text"]</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section4_Item2_Title"]</strong> @Localization["Cookie_Section4_Item2_Text"]</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section4_Item3_Title"]</strong> @Localization["Cookie_Section4_Item3_Text"]</li>
                         </ul>
                     </section>
 
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-clock me-2"></i>Cookie Duration
+                            <i class="fas fa-clock me-2"></i>@Localization["Cookie_Section5_Title"]
                         </h2>
                         <p class="text-muted lh-lg">
-                            Cookies can be either:
+                            @Localization["Cookie_Section5_Intro"]
                         </p>
                         <ul class="text-muted lh-lg">
-                            <li class="mb-2"><strong>Session Cookies:</strong> Temporary cookies that expire when you close your browser</li>
-                            <li class="mb-2"><strong>Persistent Cookies:</strong> Remain on your device for a set period or until you delete them</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section5_Item1_Title"]</strong> @Localization["Cookie_Section5_Item1_Text"]</li>
+                            <li class="mb-2"><strong>@Localization["Cookie_Section5_Item2_Title"]</strong> @Localization["Cookie_Section5_Item2_Text"]</li>
                         </ul>
                     </section>
 
                     <section class="mb-5">
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-sync-alt me-2"></i>Updates to This Policy
+                            <i class="fas fa-sync-alt me-2"></i>@Localization["Cookie_Section6_Title"]
                         </h2>
                         <p class="text-muted lh-lg">
-                            We may update this cookie policy to reflect changes in technology or legislation. Please check this page periodically for updates.
+                            @Localization["Cookie_Section6_Text"]
                         </p>
-                        <p class="text-muted small"><strong>Last updated:</strong> January 2025</p>
+                        <p class="text-muted small"><strong>@Localization["Cookie_LastUpdated"]</strong> @Localization["Cookie_Date"]</p>
                     </section>
 
                     <section>
                         <h2 class="h4 mb-3" style="color: #d4af37;">
-                            <i class="fas fa-question-circle me-2"></i>Questions?
+                            <i class="fas fa-question-circle me-2"></i>@Localization["Cookie_Section7_Title"]
                         </h2>
                         <p class=" text-muted lh-lg">
-                            If you have questions about our use of cookies, please contact us at:
+                            @Localization["Cookie_Section7_Text"]
                         </p>
                         <div class="mt-3 p-3 rounded" style="background: rgba(212, 175, 55, 0.1);">
-                            <p class="text-light mb-0"><strong>Email:</strong> b.klodtattoo@gmail.com</p>
+                            <p class="text-light mb-0"><strong>@Localization["Cookie_Email_Label"]</strong> b.klodtattoo@gmail.com</p>
                         </div>
                     </section>
                 </div>
@@ -137,7 +140,7 @@
 
     <div class="text-center mt-5">
         <a href="/" class="btn btn-outline-gold px-5 py-3 rounded-pill">
-            <i class="fas fa-home me-2"></i>Back to Home
+            <i class="fas fa-home me-2"></i>@Localization["Cookie_BackToHome"]
         </a>
     </div>
 </div>
@@ -167,3 +170,15 @@
         transform: translateX(10px);
     }
 </style>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+}

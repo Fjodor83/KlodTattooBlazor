@@ -1,5 +1,7 @@
 ﻿@inject NavigationManager NavigationManager
 @inject IJSRuntime JS
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
 <nav class="navbar navbar-expand-lg navbar-dark @NavbarClass" data-dynamic-navbar="@IsDynamicNavbar.ToString().ToLower()">
     <div class="container-fluid px-3 px-lg-4">
@@ -14,32 +16,32 @@
         </button>
 
         <!-- Nav Items -->
-        <div class="@NavMenuCssClass navbar-collapse" id="navbarNav">
+        <div class="@NavMenuCssClass navbar-collapse align-items-center" id="navbarNav">
             <!-- Main Navigation -->
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <ul class="navbar-nav ms-auto align-items-center gap-2 mb-3 mb-lg-0">
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom" href="" Match="NavLinkMatch.All">
-                        <i class="fas fa-home me-1"></i>Home
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="" Match="NavLinkMatch.All">
+                        <i class="fas fa-home me-1"></i>@Localization["Nav_Home"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom" href="portfolio">
-                        <i class="fas fa-images me-1"></i>Portfolio
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="portfolio">
+                        <i class="fas fa-images me-1"></i>@Localization["Nav_Portfolio"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom" href="services">
-                        <i class="fas fa-palette me-1"></i>Services
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="services">
+                        <i class="fas fa-palette me-1"></i>@Localization["Nav_Services"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom" href="info">
-                        <i class="fas fa-info-circle me-1"></i>Info
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="info">
+                        <i class="fas fa-info-circle me-1"></i>@Localization["Nav_Info"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom" href="contacts">
-                        <i class="fas fa-envelope me-1"></i>Contacts
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="contacts">
+                        <i class="fas fa-envelope me-1"></i>@Localization["Nav_Contacts"]
                     </NavLink>
                 </li>
             </ul>
@@ -47,11 +49,14 @@
             <!-- Desktop Divider -->
             <div class="d-none d-lg-block mx-3" style="border-right: 1px solid rgba(255,255,255,0.2); height: 24px;"></div>
 
-            <!-- Functional Group (Booking) -->
-            <div class="d-flex align-items-lg-center gap-3 flex-column flex-lg-row mt-3 mt-lg-0">
+            <!-- Functional Group (Language + Booking) -->
+            <div class="d-flex align-items-center gap-3 flex-column flex-lg-row">
+                <!-- Language Switcher -->
+                <LanguageSwitcher />
+                
                 <!-- Booking Button -->
                 <a class="btn btn-gold px-4 py-2 rounded-pill shadow-sm" href="booking">
-                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                    <i class="fas fa-calendar-check me-2"></i>@Localization["Nav_BookNow"]
                 </a>
             </div>
         </div>
@@ -134,6 +139,16 @@
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : "";
     private bool IsDynamicNavbar => IsHomePage;
     private string NavbarClass => IsHomePage ? "navbar-transparent shadow-none" : "navbar-glass shadow-sm";
+
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+    
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
 
     private void ToggleNavMenu()
     {

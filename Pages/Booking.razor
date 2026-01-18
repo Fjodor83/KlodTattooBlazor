@@ -1,12 +1,14 @@
 @page "/booking"
+@inject KlodTattooBlazor.Services.LocalizationService Localization
 @inject IJSRuntime JS
+@implements IDisposable
 
-<PageTitle>Book Appointment - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Booking_PageTitle"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">Book Your Appointment</h1>
-        <p class="lead text-muted">Start your tattoo journey with us</p>
+        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">@Localization["Booking_Title"]</h1>
+        <p class="lead text-muted">@Localization["Booking_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
     </div>
 
@@ -18,7 +20,7 @@
                     {
                         <div class="alert alert-success mb-4" style="background: rgba(40, 167, 69, 0.2); border-left: 4px solid #28a745;">
                             <i class="fas fa-check-circle me-2"></i>
-                            <strong>Booking request sent successfully!</strong> We'll confirm your appointment via email soon.
+                            <strong>@Localization["Booking_Success"]</strong>
                         </div>
                     }
 
@@ -26,7 +28,7 @@
                     {
                         <div class="alert alert-danger mb-4" style="background: rgba(220, 53, 69, 0.2); border-left: 4px solid #dc3545;">
                             <i class="fas fa-exclamation-triangle me-2"></i>
-                            <strong>Error!</strong> Please try again or contact us directly.
+                            <strong>@Localization["Booking_Error"]</strong>
                         </div>
                     }
 
@@ -35,47 +37,47 @@
                             <!-- Personal Information -->
                             <div class="col-12">
                                 <h2 class="h5 mb-3" style="color: #d4af37;">
-                                    <i class="fas fa-user me-2"></i>Personal Information
+                                    <i class="fas fa-user me-2"></i>@Localization["Booking_PersonalInfo_Title"]
                                 </h2>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="name" class="form-label text-light">Full Name *</label>
+                                <label for="name" class="form-label text-light">@Localization["Booking_Name_Label"]</label>
                                 <input type="text" class="form-control" id="name" @bind="Name" required />
                             </div>
 
                             <div class="col-md-6">
-                                <label for="email" class="form-label text-light">Email *</label>
+                                <label for="email" class="form-label text-light">@Localization["Booking_Email_Label"]</label>
                                 <input type="email" class="form-control" id="email" @bind="Email" required />
                             </div>
 
                             <div class="col-md-6">
-                                <label for="phone" class="form-label text-light">Phone Number *</label>
+                                <label for="phone" class="form-label text-light">@Localization["Booking_Phone_Label"]</label>
                                 <input type="tel" class="form-control" id="phone" @bind="Phone" required />
                             </div>
 
                             <div class="col-md-6">
-                                <label for="age" class="form-label text-light">Age *</label>
+                                <label for="age" class="form-label text-light">@Localization["Booking_Age_Label"]</label>
                                 <input type="number" class="form-control" id="age" @bind="Age" min="18" required />
-                                <small class="text-muted">Minimum age: 18 years</small>
+                                <small class="text-muted">@Localization["Booking_Age_Min"]</small>
                             </div>
 
                             <!-- Appointment Details -->
                             <div class="col-12 mt-4">
                                 <h2 class="h5 mb-3" style="color: #d4af37;">
-                                    <i class="fas fa-calendar me-2"></i>Appointment Details
+                                    <i class="fas fa-calendar me-2"></i>@Localization["Booking_Appointment_Title"]
                                 </h2>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="preferredDate" class="form-label text-light">Preferred Date *</label>
+                                <label for="preferredDate" class="form-label text-light">@Localization["Booking_Date_Label"]</label>
                                 <input type="text" class="form-control" id="preferredDate" @bind="PreferredDate" placeholder="YYYY-MM-DD" required />
                             </div>
 
                             <div class="col-md-6">
-                                <label for="preferredTime" class="form-label text-light">Preferred Time</label>
+                                <label for="preferredTime" class="form-label text-light">@Localization["Booking_Time_Label"]</label>
                                 <select class="form-control" id="preferredTime" @bind="PreferredTime">
-                                    <option value="">Select time</option>
+                                    <option value="">@Localization["Booking_Time_Select"]</option>
                                     <option value="10:00">10:00 AM</option>
                                     <option value="11:00">11:00 AM</option>
                                     <option value="12:00">12:00 PM</option>
@@ -90,14 +92,14 @@
                             <!-- Tattoo Details -->
                             <div class="col-12 mt-4">
                                 <h2 class="h5 mb-3" style="color: #d4af37;">
-                                    <i class="fas fa-paint-brush me-2"></i>Tattoo Details
+                                    <i class="fas fa-paint-brush me-2"></i>@Localization["Booking_Tattoo_Title"]
                                 </h2>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="tattooStyle" class="form-label text-light">Tattoo Style</label>
+                                <label for="tattooStyle" class="form-label text-light">@Localization["Booking_Style_Label"]</label>
                                 <select class="form-control" id="tattooStyle" @bind="TattooStyle">
-                                    <option value="">Select style</option>
+                                    <option value="">@Localization["Booking_Style_Select"]</option>
                                     <option value="Realistic">Realistic</option>
                                     <option value="Traditional">Traditional</option>
                                     <option value="Blackwork">Blackwork</option>
@@ -106,41 +108,41 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="tattooSize" class="form-label text-light">Approximate Size</label>
+                                <label for="tattooSize" class="form-label text-light">@Localization["Booking_Size_Label"]</label>
                                 <select class="form-control" id="tattooSize" @bind="TattooSize">
-                                    <option value="">Select size</option>
-                                    <option value="Small (up to 5cm)">Small (up to 5cm)</option>
-                                    <option value="Medium (5-15cm)">Medium (5-15cm)</option>
-                                    <option value="Large (15cm+)">Large (15cm+)</option>
+                                    <option value="">@Localization["Booking_Size_Select"]</option>
+                                    <option value="Small (up to 5cm)">@Localization["Booking_Size_Small"]</option>
+                                    <option value="Medium (5-15cm)">@Localization["Booking_Size_Medium"]</option>
+                                    <option value="Large (15cm+)">@Localization["Booking_Size_Large"]</option>
                                 </select>
                             </div>
 
                             <div class="col-12">
-                                <label for="placement" class="form-label text-light">Body Placement</label>
-                                <input type="text" class="form-control" id="placement" @bind="Placement" placeholder="e.g., arm, back, leg..." />
+                                <label for="placement" class="form-label text-light">@Localization["Booking_Placement_Label"]</label>
+                                <input type="text" class="form-control" id="placement" @bind="Placement" placeholder="@Localization["Booking_Placement_Placeholder"]" />
                             </div>
 
                             <div class="col-12">
-                                <label for="description" class="form-label text-light">Design Description *</label>
+                                <label for="description" class="form-label text-light">@Localization["Booking_Description_Label"]</label>
                                 <textarea class="form-control" id="description" rows="5" @bind="Description" 
-                                          placeholder="Describe your tattoo idea in detail..." required></textarea>
+                                          placeholder="@Localization["Booking_Description_Placeholder"]" required></textarea>
                             </div>
 
                             <!-- Additional Information -->
                             <div class="col-12">
-                                <label for="comments" class="form-label text-light">Additional Comments</label>
+                                <label for="comments" class="form-label text-light">@Localization["Booking_Comments_Label"]</label>
                                 <textarea class="form-control" id="comments" rows="3" @bind="Comments" 
-                                          placeholder="Any allergies, medications, or other information..."></textarea>
+                                          placeholder="@Localization["Booking_Comments_Placeholder"]"></textarea>
                             </div>
 
                             <!-- Deposit Information -->
                             <div class="col-12 mt-4">
                                 <div class="alert alert-info" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
                                     <h3 class="h6 text-warning mb-2">
-                                        <i class="fas fa-info-circle me-2"></i>Deposit Information
+                                        <i class="fas fa-info-circle me-2"></i>@Localization["Booking_Deposit_Title"]
                                     </h3>
                                     <p class="text-muted small mb-0">
-                                        A €50 deposit is required to secure your appointment. We'll send payment instructions via email after reviewing your booking request.
+                                        @Localization["Booking_Deposit_Text"]
                                     </p>
                                 </div>
                             </div>
@@ -151,12 +153,12 @@
                                     @if (IsSubmitting)
                                     {
                                         <span class="spinner-border spinner-border-sm me-2"></span>
-                                        <text>Sending...</text>
+                                        <text>@Localization["Booking_Btn_Sending"]</text>
                                     }
                                     else
                                     {
                                         <i class="fas fa-calendar-check me-2"></i>
-                                        <text>Request Appointment</text>
+                                        <text>@Localization["Booking_Btn_Request"]</text>
                                     }
                                 </button>
                             </div>
@@ -168,7 +170,7 @@
             <!-- Contact Alternative -->
             <div class="text-center mt-4">
                 <p class="text-muted">
-                    Prefer to talk? Call us at <a href="tel:+491722487670" class="text-warning">+49 172 2487670</a>
+                    @Localization["Booking_CallUs"] <a href="tel:+491722487670" class="text-warning">+49 172 2487670</a>
                 </p>
             </div>
         </div>
@@ -211,6 +213,16 @@
     private bool IsSubmitting = false;
     private bool ShowSuccessMessage = false;
     private bool ShowErrorMessage = false;
+
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
 
     private async Task HandleSubmit()
     {

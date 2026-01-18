@@ -1,3 +1,6 @@
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
+
 <footer class="footer-custom mt-5" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); border-top: 2px solid #d4af37;">
     <div class="container py-5">
         <!-- Top Section -->
@@ -6,7 +9,7 @@
             <div class="col-lg-4 col-md-6">
                 <img src="/images/klod_logo.png" alt="Klod Tattoo Logo" class="navbar-logo-custom mb-3" />
                 <p class="text-muted small">
-                    Professional tattoo studio in Obernburg am Main, Germany. Specialized in Realistic, Traditional, and Blackwork tattoos. Art on skin since 2015.
+                    @Localization["Footer_Description"]
                 </p>
                 <div class="social-links mt-3">
                     <a href="https://instagram.com/klod_tattoo" target="_blank" class="social-icon me-2" title="Instagram">
@@ -26,36 +29,36 @@
 
             <!-- Quick Links Column -->
             <div class="col-lg-2 col-md-6">
-                <h6 class="text-uppercase fw-bold mb-3 text-light">Quick Links</h6>
+                <h6 class="text-uppercase fw-bold mb-3 text-light">@Localization["Footer_QuickLinks"]</h6>
                 <ul class="list-unstyled footer-links">
                     <li class="mb-2">
                         <a href="/" class="text-muted text-decoration-none d-flex align-items-center hover-gold">
                             <i class="fas fa-chevron-right me-2" style="color: #d4af37; font-size: 0.7rem;"></i>
-                            <span>Home</span>
+                            <span>@Localization["Footer_Home"]</span>
                         </a>
                     </li>
                     <li class="mb-2">
                         <a href="/portfolio" class="text-muted text-decoration-none d-flex align-items-center hover-gold">
                             <i class="fas fa-chevron-right me-2" style="color: #d4af37; font-size: 0.7rem;"></i>
-                            <span>Portfolio</span>
+                            <span>@Localization["Footer_Portfolio"]</span>
                         </a>
                     </li>
                     <li class="mb-2">
                         <a href="/services" class="text-muted text-decoration-none d-flex align-items-center hover-gold">
                             <i class="fas fa-chevron-right me-2" style="color: #d4af37; font-size: 0.7rem;"></i>
-                            <span>Services</span>
+                            <span>@Localization["Footer_Services"]</span>
                         </a>
                     </li>
                     <li class="mb-2">
                         <a href="/info" class="text-muted text-decoration-none d-flex align-items-center hover-gold">
                             <i class="fas fa-chevron-right me-2" style="color: #d4af37; font-size: 0.7rem;"></i>
-                            <span>Info & FAQ</span>
+                            <span>@Localization["Footer_InfoFAQ"]</span>
                         </a>
                     </li>
                     <li class="mb-2">
                         <a href="/contacts" class="text-muted text-decoration-none d-flex align-items-center hover-gold">
                             <i class="fas fa-chevron-right me-2" style="color: #d4af37; font-size: 0.7rem;"></i>
-                            <span>Contacts</span>
+                            <span>@Localization["Footer_Contacts"]</span>
                         </a>
                     </li>
                 </ul>
@@ -63,30 +66,30 @@
 
             <!-- Services Column -->
             <div class="col-lg-3 col-md-6">
-                <h6 class="text-uppercase fw-bold mb-3 text-light">Services</h6>
+                <h6 class="text-uppercase fw-bold mb-3 text-light">@Localization["Footer_ServicesTitle"]</h6>
                 <ul class="list-unstyled footer-links">
                     <li class="mb-2 d-flex align-items-center">
                         <i class="fas fa-check text-gold me-2"></i>
-                        <span class="text-muted">Custom Tattoos</span>
+                        <span class="text-muted">@Localization["Footer_Service_Custom"]</span>
                     </li>
                     <li class="mb-2 d-flex align-items-center">
                         <i class="fas fa-check text-gold me-2"></i>
-                        <span class="text-muted">Cover Ups</span>
+                        <span class="text-muted">@Localization["Footer_Service_CoverUp"]</span>
                     </li>
                     <li class="mb-2 d-flex align-items-center">
                         <i class="fas fa-check text-gold me-2"></i>
-                        <span class="text-muted">Tattoo Restoration</span>
+                        <span class="text-muted">@Localization["Footer_Service_Restoration"]</span>
                     </li>
                     <li class="mb-2 d-flex align-items-center">
                         <i class="fas fa-check text-gold me-2"></i>
-                        <span class="text-muted">Free Consultation</span>
+                        <span class="text-muted">@Localization["Footer_Service_Consultation"]</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Contact Column -->
             <div class="col-lg-3 col-md-6">
-                <h6 class="text-uppercase fw-bold mb-3 text-light">Contact</h6>
+                <h6 class="text-uppercase fw-bold mb-3 text-light">@Localization["Footer_ContactTitle"]</h6>
                 <ul class="list-unstyled">
                     <li class="mb-2 d-flex align-items-start">
                         <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
@@ -122,18 +125,18 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <p class="text-muted small mb-0">
-                    &copy; 2025 <strong style="color: #d4af37;">Klod Tattoo Studio</strong>. All rights reserved.
+                    &copy; 2025 <strong style="color: #d4af37;">Klod Tattoo Studio</strong>. @Localization["Footer_Rights"]
                 </p>
             </div>
             <div class="col-md-6 text-center text-md-end">
                 <a href="/privacy" class="text-muted text-decoration-none small me-3 hover-gold">
-                    <i class="fas fa-shield-alt me-1"></i>Privacy
+                    <i class="fas fa-shield-alt me-1"></i>@Localization["Footer_Privacy"]
                 </a>
                 <a href="/cookie" class="text-muted text-decoration-none small me-3 hover-gold">
-                    <i class="fas fa-cookie-bite me-1"></i>Cookie Policy
+                    <i class="fas fa-cookie-bite me-1"></i>@Localization["Footer_Cookie"]
                 </a>
                 <a href="#" class="text-muted text-decoration-none small hover-gold">
-                    <i class="fas fa-file-contract me-1"></i>Terms
+                    <i class="fas fa-file-contract me-1"></i>@Localization["Footer_Terms"]
                 </a>
             </div>
         </div>
@@ -144,6 +147,19 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 </footer>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+    
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+}
+
 
 <style>
     .social-icon {

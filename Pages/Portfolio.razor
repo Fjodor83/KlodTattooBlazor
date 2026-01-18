@@ -1,12 +1,14 @@
 @page "/portfolio"
 @inject IJSRuntime JS
+@inject KlodTattooBlazor.Services.LocalizationService Localization
+@implements IDisposable
 
-<PageTitle>Portfolio - Klod Tattoo Studio</PageTitle>
+<PageTitle>@Localization["Portfolio_PageTitle"] - Klod Tattoo Studio</PageTitle>
 
 <div class="container-fluid py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">Our Work</h1>
-        <p class="lead text-muted">Explore our gallery of unique tattoo designs</p>
+        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">@Localization["Portfolio_Title"]</h1>
+        <p class="lead text-muted">@Localization["Portfolio_Subtitle"]</p>
         <div class="golden-underline mx-auto mt-3" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
     </div>
 
@@ -15,19 +17,19 @@
         <div class="btn-group" role="group">
             <button type="button" class="btn @(SelectedFilter == "all" ? "btn-gold" : "btn-outline-gold")" 
                     @onclick="@(() => FilterPortfolio("all"))">
-                All
+                @Localization["Portfolio_Filter_All"]
             </button>
             <button type="button" class="btn @(SelectedFilter == "realistic" ? "btn-gold" : "btn-outline-gold")" 
                     @onclick="@(() => FilterPortfolio("realistic"))">
-                Realistic
+                @Localization["Portfolio_Filter_Realistic"]
             </button>
             <button type="button" class="btn @(SelectedFilter == "traditional" ? "btn-gold" : "btn-outline-gold")" 
                     @onclick="@(() => FilterPortfolio("traditional"))">
-                Traditional
+                @Localization["Portfolio_Filter_Traditional"]
             </button>
             <button type="button" class="btn @(SelectedFilter == "blackwork" ? "btn-gold" : "btn-outline-gold")" 
                     @onclick="@(() => FilterPortfolio("blackwork"))">
-                Blackwork
+                @Localization["Portfolio_Filter_Blackwork"]
             </button>
         </div>
     </div>
@@ -40,12 +42,12 @@
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="portfolio-item position-relative overflow-hidden rounded shadow-lg">
-                        <img src="@item.ImageUrl" alt="@item.Title" class="img-fluid w-100" style="aspect-ratio: 1; object-fit: cover;" />
+                        <img src="@item.ImageUrl" alt="@Localization[item.TitleKey]" class="img-fluid w-100" style="aspect-ratio: 1; object-fit: cover;" />
                         <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
-                            <h3 class="h5 text-white mb-2">@item.Title</h3>
-                            <p class="small text-white-50 mb-0">@item.Category</p>
+                            <h3 class="h5 text-white mb-2">@Localization[item.TitleKey]</h3>
+                            <p class="small text-white-50 mb-0">@Localization[$"Portfolio_Filter_{item.Category}"]</p>
                             <a href="@item.ImageUrl" class="glightbox position-absolute top-0 start-0 w-100 h-100" data-gallery="gallery1">
-                                <span class="visually-hidden">View @item.Title</span>
+                                <span class="visually-hidden">View @Localization[item.TitleKey]</span>
                             </a>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
         else
         {
             <div class="col-12 text-center py-5">
-                <p class="text-muted">No images available. Our portfolio is coming soon!</p>
+                <p class="text-muted">@Localization["Portfolio_Empty"]</p>
             </div>
         }
     </div>
@@ -64,13 +66,13 @@
     <div class="text-center mt-5 pt-5">
         <div class="card shadow-lg border-0 mx-auto p-5" style="max-width: 600px; background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
             <h2 class="h4 text-dark mb-3">
-                <i class="fas fa-calendar-check me-2"></i>Ready to Get Your Own?
+                <i class="fas fa-calendar-check me-2"></i>@Localization["Portfolio_CTA_Title"]
             </h2>
             <p class="text-dark mb-4">
-                Let's bring your vision to life. Book a consultation today!
+                @Localization["Portfolio_CTA_Text"]
             </p>
             <a href="/booking" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow">
-                <i class="fas fa-calendar-plus me-2"></i>Book Appointment
+                <i class="fas fa-calendar-plus me-2"></i>@Localization["Portfolio_CTA_Button"]
             </a>
         </div>
     </div>
@@ -101,6 +103,7 @@
     .btn-outline-gold:hover {
         background: rgba(212, 175, 55, 0.1);
         color: #d4af37;
+        transform: translateY(-2px);
     }
 
     .portfolio-item {
@@ -129,9 +132,9 @@
     private List<PortfolioItem> AllImages = new List<PortfolioItem>
     {
         // Placeholder data - replace with actual portfolio images
-        new PortfolioItem { Title = "Realistic Portrait", Category = "Realistic", ImageUrl = "/images/profile.jpg" },
-        new PortfolioItem { Title = "Traditional Anchor", Category = "Traditional", ImageUrl = "/images/profile.jpg" },
-        new PortfolioItem { Title = "Geometric Design", Category = "Blackwork", ImageUrl = "/images/profile.jpg" },
+        new PortfolioItem { TitleKey = "Portfolio_Item_RealisticPortrait", Category = "Realistic", ImageUrl = "/images/profile.jpg" },
+        new PortfolioItem { TitleKey = "Portfolio_Item_TraditionalAnchor", Category = "Traditional", ImageUrl = "/images/profile.jpg" },
+        new PortfolioItem { TitleKey = "Portfolio_Item_GeometricDesign", Category = "Blackwork", ImageUrl = "/images/profile.jpg" },
         // Add more portfolio items here
     };
 
@@ -144,6 +147,11 @@
         SelectedFilter = filter;
     }
 
+    protected override void OnInitialized()
+    {
+        Localization.OnCultureChanged += StateHasChanged;
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -153,9 +161,14 @@
         }
     }
 
+    public void Dispose()
+    {
+        Localization.OnCultureChanged -= StateHasChanged;
+    }
+
     public class PortfolioItem
     {
-        public string Title { get; set; } = "";
+        public string TitleKey { get; set; } = "";
         public string Category { get; set; } = "";
         public string ImageUrl { get; set; } = "";
     }
