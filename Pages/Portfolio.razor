@@ -1,139 +1,162 @@
 @page "/portfolio"
-@inject PortfolioService PortfolioService
 @inject IJSRuntime JS
 
-<PageTitle>Portfolio - Klod Tattoo</PageTitle>
+<PageTitle>Portfolio - Klod Tattoo Studio</PageTitle>
 
-<div class="container py-5">
+<div class="container-fluid py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 text-uppercase" style="color: #d4af37;">Portfolio</h1>
-        <p class="lead text-muted">Browse our latest  tattoo works</p>
-        <div style="width: 60px; height: 3px; background-color: #d4af37; margin: 20px auto;"></div>
+        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">Our Work</h1>
+        <p class="lead text-muted">Explore our gallery of unique tattoo designs</p>
+        <div class="golden-underline mx-auto mt-3" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
     </div>
 
-    <!-- FILTERS -->
-    <div class="text-center mb-4">
-        <button class="btn btn-outline-light btn-sm me-2 mb-2 @(string.IsNullOrEmpty(_selectedStyle) ? "active" : "")" @onclick="() => FilterByStyle(null)">
-            All
-        </button>
-        @foreach (var style in _styles)
-        {
-            <button class="btn btn-outline-light btn-sm me-2 mb-2 @(style == _selectedStyle ? "active" : "")" @onclick="() => FilterByStyle(style)">
-                @style
+    <!-- Filter Buttons -->
+    <div class="text-center mb-5">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn @(SelectedFilter == "all" ? "btn-gold" : "btn-outline-gold")" 
+                    @onclick="@(() => FilterPortfolio("all"))">
+                All
             </button>
-        }
+            <button type="button" class="btn @(SelectedFilter == "realistic" ? "btn-gold" : "btn-outline-gold")" 
+                    @onclick="@(() => FilterPortfolio("realistic"))">
+                Realistic
+            </button>
+            <button type="button" class="btn @(SelectedFilter == "traditional" ? "btn-gold" : "btn-outline-gold")" 
+                    @onclick="@(() => FilterPortfolio("traditional"))">
+                Traditional
+            </button>
+            <button type="button" class="btn @(SelectedFilter == "blackwork" ? "btn-gold" : "btn-outline-gold")" 
+                    @onclick="@(() => FilterPortfolio("blackwork"))">
+                Blackwork
+            </button>
+        </div>
     </div>
 
-    @if (_loading)
-    {
-        <div class="text-center py-5">
-            <div class="spinner-border text-warning" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    }
-    else if (_portfolioItems == null || !_portfolioItems.Any())
-    {
-        <div class="alert alert-warning text-center">
-            No portfolio items found. Please add tattoo images to the <code>wwwroot/data/portfolio.json</code> file.
-        </div>
-    }
-    else
-    {
-        <div class="row g-4 portfolio-container">
-            @foreach (var item in _portfolioItems)
+    <!-- Portfolio Grid -->
+    <div class="row g-4 portfolio-grid">
+        @if (FilteredImages.Any())
+        {
+            @foreach (var item in FilteredImages)
             {
-                <div class="col-md-4 col-lg-3 portfolio-item">
-                    <div class="position-relative overflow-hidden rounded shadow-sm" style="height: 300px; cursor: pointer;">
-                        <a href="@item.ImageUrl" class="glightbox" data-gallery="tattoo-gallery" data-title="@item.Title">
-                            <img src="@item.ImageUrl" class="w-100 h-100" alt="@item.Title" loading="lazy" style="object-fit: cover; transition: transform 0.6s ease;" />
-                        </a>
-                        
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center p-3"
-                             style="background: rgba(0,0,0,0.85); opacity: 0; transition: opacity 0.4s ease;">
-                            <h5 class="text-uppercase mb-2" style="color: #d4af37;">@item.Title</h5>
-                            <p class="text-white small mb-3">@item.TattooStyle?.Name</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item position-relative overflow-hidden rounded shadow-lg">
+                        <img src="@item.ImageUrl" alt="@item.Title" class="img-fluid w-100" style="aspect-ratio: 1; object-fit: cover;" />
+                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4">
+                            <h3 class="h5 text-white mb-2">@item.Title</h3>
+                            <p class="small text-white-50 mb-0">@item.Category</p>
+                            <a href="@item.ImageUrl" class="glightbox position-absolute top-0 start-0 w-100 h-100" data-gallery="gallery1">
+                                <span class="visually-hidden">View @item.Title</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">No images available. Our portfolio is coming soon!</p>
+            </div>
+        }
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5 pt-5">
+        <div class="card shadow-lg border-0 mx-auto p-5" style="max-width: 600px; background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
+            <h2 class="h4 text-dark mb-3">
+                <i class="fas fa-calendar-check me-2"></i>Ready to Get Your Own?
+            </h2>
+            <p class="text-dark mb-4">
+                Let's bring your vision to life. Book a consultation today!
+            </p>
+            <a href="/booking" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow">
+                <i class="fas fa-calendar-plus me-2"></i>Book Appointment
+            </a>
         </div>
-    }
+    </div>
 </div>
 
 <style>
-    .portfolio-item:hover img {
-        transform: scale(1.12);
+    .btn-gold {
+        background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+        border: none;
+        color: #000;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-outline-gold {
+        background: transparent;
+        border: 2px solid #d4af37;
+        color: #d4af37;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-gold:hover {
+        background: rgba(212, 175, 55, 0.1);
+        color: #d4af37;
+    }
+
+    .portfolio-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-10px);
+    }
+
+    .portfolio-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .portfolio-item:hover .portfolio-overlay {
-        opacity: 1 !important;
-    }
-
-    .btn-outline-light.active {
-        background-color: #d4af37;
-        color: #1e1e1e;
-        border-color: #d4af37;
+        opacity: 1;
     }
 </style>
 
 @code {
-    private List<PortfolioItem> _portfolioItems = new();
-    private List<string> _styles = new();
-    private string? _selectedStyle;
-    private bool _loading = true;
-
-    protected override async Task OnInitializedAsync()
+    private string SelectedFilter = "all";
+    
+    private List<PortfolioItem> AllImages = new List<PortfolioItem>
     {
-        await LoadPortfolioAsync();
-        await InitializeGLightbox();
+        // Placeholder data - replace with actual portfolio images
+        new PortfolioItem { Title = "Realistic Portrait", Category = "Realistic", ImageUrl = "/images/profile.jpg" },
+        new PortfolioItem { Title = "Traditional Anchor", Category = "Traditional", ImageUrl = "/images/profile.jpg" },
+        new PortfolioItem { Title = "Geometric Design", Category = "Blackwork", ImageUrl = "/images/profile.jpg" },
+        // Add more portfolio items here
+    };
+
+    private List<PortfolioItem> FilteredImages => SelectedFilter == "all" 
+        ? AllImages 
+        : AllImages.Where(i => i.Category.ToLower() == SelectedFilter).ToList();
+
+    private void FilterPortfolio(string filter)
+    {
+        SelectedFilter = filter;
     }
 
-    private async Task LoadPortfolioAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _loading = true;
-        try
+        if (firstRender)
         {
-            _portfolioItems = await PortfolioService.GetAllItemsAsync();
-            _styles = await PortfolioService.GetAllStylesAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error loading portfolio: {ex.Message}");
-        }
-        finally
-        {
-            _loading = false;
+            // Initialize GLightbox for portfolio gallery
+            await JS.InvokeVoidAsync("initGLightbox");
         }
     }
 
-    private async Task FilterByStyle(string? styleName)
+    public class PortfolioItem
     {
-        _selectedStyle = styleName;
-        if (string.IsNullOrEmpty(styleName))
-        {
-            _portfolioItems = await PortfolioService.GetAllItemsAsync();
-        }
-        else
-        {
-            _portfolioItems = await PortfolioService.GetItemsByStyleAsync(styleName);
-        }
-        StateHasChanged();
-        await Task.Delay(100); // Give time for DOM to update
-        await InitializeGLightbox();
-    }
-
-    private async Task InitializeGLightbox()
-    {
-        await JS.InvokeVoidAsync("eval", @"
-            if (typeof GLightbox !== 'undefined') {
-                const lightbox = GLightbox({ 
-                    touchNavigation: true, 
-                    loop: true, 
-                    closeButton: true, 
-                    zoomable: true 
-                });
-            }
-        ");
+        public string Title { get; set; } = "";
+        public string Category { get; set; } = "";
+        public string ImageUrl { get; set; } = "";
     }
 }

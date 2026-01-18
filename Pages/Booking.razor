@@ -1,143 +1,268 @@
 @page "/booking"
-@inject EmailJsService EmailService
-@inject NavigationManager Navigation
+@inject IJSRuntime JS
 
-<PageTitle>Book Appointment - Klod Tattoo</PageTitle>
+<PageTitle>Book Appointment - Klod Tattoo Studio</PageTitle>
 
-<div class="container py-5" style="max-width: 800px;">
+<div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 text-uppercase" style="color: #d4af37;">Book Your Appointment</h1>
-        <p class="lead text-muted">Start your tattoo journey with a free consultation</p>
-        <div style="width: 60px; height: 3px; background-color: #d4af37; margin: 20px auto;"></div>
+        <h1 class="display-4 fw-bold text-uppercase mb-3" style="color: #d4af37;">Book Your Appointment</h1>
+        <p class="lead text-muted">Start your tattoo journey with us</p>
+        <div class="golden-underline mx-auto mt-3" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
     </div>
 
-    @if (_submitted)
-    {
-        <div class="alert alert-success text-center p-4">
-            <i class="fas fa-check-circle fa-3x mb-3" style="color: #d4af37;"></i>
-            <h3>Booking Request Sent!</h3>
-            <p class="mb-0">Thank you! We'll contact you soon to confirm your appointment.</p>
-        </div>
-    }
-    else
-    {
-        <EditForm Model="@_bookingRequest" OnValidSubmit="HandleSubmit" class="booking-form">
-            <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger mb-4" />
-
-            <div class="mb-4">
-                <label for="clientName" class="form-label text-light">Your Name *</label>
-                <InputText id="clientName" class="form-control form-control-lg" @bind-Value="_bookingRequest.ClientName" placeholder="Enter your full name" />
-                <ValidationMessage For="@(() => _bookingRequest.ClientName)" />
-            </div>
-
-            <div class="mb-4">
-                <label for="email" class="form-label text-light">Email *</label>
-                <InputText id="email" type="email" class="form-control form-control-lg" @bind-Value="_bookingRequest.Email" placeholder="your@email.com" />
-                <ValidationMessage For="@(() => _bookingRequest.Email)" />
-            </div>
-
-            <div class="mb-4">
-                <label for="bodyPart" class="form-label text-light">Body Part *</label>
-                <InputText id="bodyPart" class="form-control form-control-lg" @bind-Value="_bookingRequest.BodyPart" placeholder="e.g., Forearm, Back, Shoulder" />
-                <ValidationMessage For="@(() => _bookingRequest.BodyPart)" />
-            </div>
-
-            <div class="mb-4">
-                <label for="ideaDescription" class="form-label text-light">Tattoo Idea *</label>
-                <InputTextArea id="ideaDescription" class="form-control" rows="5" @bind-Value="_bookingRequest.IdeaDescription" placeholder="Describe your tattoo idea in detail..." />
-                <ValidationMessage For="@(() => _bookingRequest.IdeaDescription)" />
-            </div>
-
-            <div class="mb-4">
-                <label for="preferredDate" class="form-label text-light">Preferred Date *</label>
-                <InputDate id="preferredDate" class="form-control form-control-lg" @bind-Value="_bookingRequest.PreferredDate" />
-                <ValidationMessage For="@(() => _bookingRequest.PreferredDate)" />
-            </div>
-
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-gold btn-lg py-3" disabled="@_sending">
-                    @if (_sending)
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 p-4" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                <div class="card-body">
+                    @if (ShowSuccessMessage)
                     {
-                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-                        <span>Sending...</span>
+                        <div class="alert alert-success mb-4" style="background: rgba(40, 167, 69, 0.2); border-left: 4px solid #28a745;">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Booking request sent successfully!</strong> We'll confirm your appointment via email soon.
+                        </div>
                     }
-                    else
-                    {
-                        <i class="fas fa-paper-plane me-2"></i>
-                        <span>Send Booking Request</span>
-                    }
-                </button>
-            </div>
 
-            @if (!string.IsNullOrEmpty(_errorMessage))
-            {
-                <div class="alert alert-danger mt-3">
-                    @_errorMessage
+                    @if (ShowErrorMessage)
+                    {
+                        <div class="alert alert-danger mb-4" style="background: rgba(220, 53, 69, 0.2); border-left: 4px solid #dc3545;">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Error!</strong> Please try again or contact us directly.
+                        </div>
+                    }
+
+                    <form @onsubmit="HandleSubmit" @onsubmit:preventDefault>
+                        <div class="row g-4">
+                            <!-- Personal Information -->
+                            <div class="col-12">
+                                <h2 class="h5 mb-3" style="color: #d4af37;">
+                                    <i class="fas fa-user me-2"></i>Personal Information
+                                </h2>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="name" class="form-label text-light">Full Name *</label>
+                                <input type="text" class="form-control" id="name" @bind="Name" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="email" class="form-label text-light">Email *</label>
+                                <input type="email" class="form-control" id="email" @bind="Email" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label text-light">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" @bind="Phone" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="age" class="form-label text-light">Age *</label>
+                                <input type="number" class="form-control" id="age" @bind="Age" min="18" required />
+                                <small class="text-muted">Minimum age: 18 years</small>
+                            </div>
+
+                            <!-- Appointment Details -->
+                            <div class="col-12 mt-4">
+                                <h2 class="h5 mb-3" style="color: #d4af37;">
+                                    <i class="fas fa-calendar me-2"></i>Appointment Details
+                                </h2>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="preferredDate" class="form-label text-light">Preferred Date *</label>
+                                <input type="text" class="form-control" id="preferredDate" @bind="PreferredDate" placeholder="YYYY-MM-DD" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="preferredTime" class="form-label text-light">Preferred Time</label>
+                                <select class="form-control" id="preferredTime" @bind="PreferredTime">
+                                    <option value="">Select time</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                </select>
+                            </div>
+
+                            <!-- Tattoo Details -->
+                            <div class="col-12 mt-4">
+                                <h2 class="h5 mb-3" style="color: #d4af37;">
+                                    <i class="fas fa-paint-brush me-2"></i>Tattoo Details
+                                </h2>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="tattooStyle" class="form-label text-light">Tattoo Style</label>
+                                <select class="form-control" id="tattooStyle" @bind="TattooStyle">
+                                    <option value="">Select style</option>
+                                    <option value="Realistic">Realistic</option>
+                                    <option value="Traditional">Traditional</option>
+                                    <option value="Blackwork">Blackwork</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="tattooSize" class="form-label text-light">Approximate Size</label>
+                                <select class="form-control" id="tattooSize" @bind="TattooSize">
+                                    <option value="">Select size</option>
+                                    <option value="Small (up to 5cm)">Small (up to 5cm)</option>
+                                    <option value="Medium (5-15cm)">Medium (5-15cm)</option>
+                                    <option value="Large (15cm+)">Large (15cm+)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="placement" class="form-label text-light">Body Placement</label>
+                                <input type="text" class="form-control" id="placement" @bind="Placement" placeholder="e.g., arm, back, leg..." />
+                            </div>
+
+                            <div class="col-12">
+                                <label for="description" class="form-label text-light">Design Description *</label>
+                                <textarea class="form-control" id="description" rows="5" @bind="Description" 
+                                          placeholder="Describe your tattoo idea in detail..." required></textarea>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="col-12">
+                                <label for="comments" class="form-label text-light">Additional Comments</label>
+                                <textarea class="form-control" id="comments" rows="3" @bind="Comments" 
+                                          placeholder="Any allergies, medications, or other information..."></textarea>
+                            </div>
+
+                            <!-- Deposit Information -->
+                            <div class="col-12 mt-4">
+                                <div class="alert alert-info" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                                    <h3 class="h6 text-warning mb-2">
+                                        <i class="fas fa-info-circle me-2"></i>Deposit Information
+                                    </h3>
+                                    <p class="text-muted small mb-0">
+                                        A €50 deposit is required to secure your appointment. We'll send payment instructions via email after reviewing your booking request.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-gold w-100 py-3 rounded-pill" disabled="@IsSubmitting">
+                                    @if (IsSubmitting)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                        <text>Sending...</text>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-calendar-check me-2"></i>
+                                        <text>Request Appointment</text>
+                                    }
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            }
-        </EditForm>
-    }
+            </div>
+
+            <!-- Contact Alternative -->
+            <div class="text-center mt-4">
+                <p class="text-muted">
+                    Prefer to talk? Call us at <a href="tel:+491722487670" class="text-warning">+49 172 2487670</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-    .booking-form .form-control,
-    .booking-form .form-select {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        color: #fff;
-        padding: 0.75rem 1rem;
+    .btn-gold {
+        background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+        border: none;
+        color: #000;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
     }
 
-    .booking-form .form-control:focus {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: #d4af37;
-        color: #fff;
-        box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+    .btn-gold:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
     }
 
-    .booking-form .form-control::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .form-label {
-        font-weight: 500;
-        margin-bottom: 0.5rem;
+    .btn-gold:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
     }
 </style>
 
 @code {
-    private BookingRequest _bookingRequest = new();
-    private bool _sending = false;
-    private bool _submitted = false;
-    private string? _errorMessage;
+    private string Name = "";
+    private string Email = "";
+    private string Phone = "";
+    private int? Age;
+    private string PreferredDate = "";
+    private string PreferredTime = "";
+    private string TattooStyle = "";
+    private string TattooSize = "";
+    private string Placement = "";
+    private string Description = "";
+    private string Comments = "";
+    private bool IsSubmitting = false;
+    private bool ShowSuccessMessage = false;
+    private bool ShowErrorMessage = false;
 
     private async Task HandleSubmit()
     {
-        _sending = true;
-        _errorMessage = null;
+        IsSubmitting = true;
+        ShowSuccessMessage = false;
+        ShowErrorMessage = false;
 
         try
         {
-            var success = await EmailService.SendBookingEmailAsync(_bookingRequest);
-            
-            if (success)
+            // EmailJS integration
+            var templateParams = new
             {
-                _submitted = true;
-            }
-            else
-            {
-                _errorMessage = "Failed to send booking request. Please check your EmailJS configuration or try again later.";
-            }
+                from_name = Name,
+                from_email = Email,
+                phone = Phone,
+                age = Age,
+                preferred_date = PreferredDate,
+                preferred_time = PreferredTime,
+                tattoo_style = TattooStyle,
+                tattoo_size = TattooSize,
+                placement = Placement,
+                description = Description,
+                comments = Comments,
+                to_name = "Klod Tattoo Studio"
+            };
+
+            await JS.InvokeVoidAsync("emailjs.send", 
+                "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+                "YOUR_BOOKING_TEMPLATE_ID", // Replace with your EmailJS booking template ID
+                templateParams);
+
+            ShowSuccessMessage = true;
+            // Clear form
+            Name = "";
+            Email = "";
+            Phone = "";
+            Age = null;
+            PreferredDate = "";
+            PreferredTime = "";
+            TattooStyle = "";
+            TattooSize = "";
+            Placement = "";
+            Description = "";
+            Comments = "";
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _errorMessage = $"An error occurred: {ex.Message}";
-            Console.WriteLine($"Booking error: {ex}");
+            ShowErrorMessage = true;
         }
         finally
         {
-            _sending = false;
+            IsSubmitting = false;
         }
     }
 }

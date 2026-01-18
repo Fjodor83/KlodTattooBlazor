@@ -1,55 +1,418 @@
 @page "/info"
 
-<PageTitle>Info & FAQ - Klod Tattoo</PageTitle>
+<PageTitle>Info & FAQ - Klod Tattoo Studio</PageTitle>
 
 <div class="container py-5">
+    <!-- Header Section -->
     <div class="text-center mb-5">
-        <h1 class="display-4 text-uppercase" style="color: #d4af37;">Info & FAQ</h1>
-        <div style="width: 60px; height: 3px; background-color: #d4af37; margin: 20px auto;"></div>
+        <h1 class="display-3 fw-bold text-uppercase mb-3" style="color: #d4af37; letter-spacing: 3px;">
+            Info & FAQ
+        </h1>
+        <p class="lead text-muted fs-4">Everything you need to know</p>
+        <div class="golden-underline mx-auto mt-3" style="width: 100px; height: 4px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8 mx-auto">
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #d4af37;">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" style="background: #1a1a1a; color: #d4af37;">
-                            How do I book an appointment?
+    <!-- Main Content -->
+    <div class="row g-4 mb-5">
+        <!-- Aftercare Card -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-lg border-0 overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                <div class="card-header border-0 text-center py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
+                    <i class="fas fa-hand-holding-medical fa-3x text-dark mb-3"></i>
+                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">Aftercare Instructions</h3>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-light mb-4 lead">
+                        Follow these steps carefully for optimal healing and to preserve your tattoo's quality.
+                    </p>
+
+                    <div class="aftercare-steps">
+                        <!-- Step 1 -->
+                        <div class="step-item d-flex mb-4 p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">1</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-clock text-warning me-2"></i>Remove Bandage After 2-4 Hours
+                                </h5>
+                                <p class="text-muted mb-0">Gently remove the protective bandage and wash with lukewarm water and unscented soap.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-item d-flex mb-4 p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">2</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-hand-sparkles text-warning me-2"></i>Daily Cleaning
+                                </h5>
+                                <p class="text-muted mb-0">Clean 2-3 times daily with unscented soap and pat dry with a clean paper towel.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-item d-flex mb-4 p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">3</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-wind text-warning me-2"></i>Let It Breathe
+                                </h5>
+                                <p class="text-muted mb-0">After washing, let your tattoo air dry. Don't cover it unless necessary.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-item d-flex mb-4 p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">4</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-pump-medical text-warning me-2"></i>Apply Thin Lotion Layer
+                                </h5>
+                                <p class="text-muted mb-0">Use a thin layer of fragrance-free moisturizer 2-3 times daily. Don't over-moisturize!</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="step-item d-flex mb-4 p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">5</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-ban text-warning me-2"></i>Avoid Water Exposure
+                                </h5>
+                                <p class="text-muted mb-0">No swimming, soaking, or prolonged water exposure for 2-3 weeks.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div class="step-item d-flex p-3 rounded" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                            <div class="step-number me-3">
+                                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                     style="width: 40px; height: 40px; min-width: 40px;">
+                                    <span class="fw-bold text-dark">6</span>
+                                </div>
+                            </div>
+                            <div class="step-content">
+                                <h5 class="text-light mb-2">
+                                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>Signs of Infection
+                                </h5>
+                                <p class="text-muted mb-0">Contact us immediately if you notice excessive redness, swelling, or discharge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Tips Card -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-lg border-0 overflow-hidden" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                <div class="card-header border-0 text-center py-4" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
+                    <i class="fas fa-lightbulb fa-3x text-dark mb-3"></i>
+                    <h3 class="h4 mb-0 text-uppercase fw-bold text-dark">Important Tips</h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Do's Section -->
+                    <div class="mb-4">
+                        <h5 class="text-success mb-3">
+                            <i class="fas fa-check-circle me-2"></i>Do's
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check text-gold me-3 mt-1"></i>
+                                <span class="text-light">Keep your tattoo clean and moisturized</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check text-gold me-3 mt-1"></i>
+                                <span class="text-light">Use fragrance-free, hypoallergenic products</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check text-gold me-3 mt-1"></i>
+                                <span class="text-light">Wear loose, breathable clothing over the tattoo</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check text-gold me-3 mt-1"></i>
+                                <span class="text-light">Protect from sun exposure (use SPF 50+)</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <i class="fas fa-check text-gold me-3 mt-1"></i>
+                                <span class="text-light">Contact us with any concerns or questions</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Don'ts Section -->
+                    <div>
+                        <h5 class="text-danger mb-3">
+                            <i class="fas fa-times-circle me-2"></i>Don'ts
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-times text-danger me-3 mt-1"></i>
+                                <span class="text-light">Don't pick, scratch, or peel scabs</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-times text-danger me-3 mt-1"></i>
+                                <span class="text-light">Don't expose to direct sunlight or tanning beds</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-times text-danger me-3 mt-1"></i>
+                                <span class="text-light">Don't swim in pools, oceans, or hot tubs</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-times text-danger me-3 mt-1"></i>
+                                <span class="text-light">Don't use petroleum-based products (Vaseline)</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <i class="fas fa-times text-danger me-3 mt-1"></i>
+                                <span class="text-light">Don't wear tight or abrasive clothing</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Emergency Alert -->
+                    <div class="alert alert-warning mt-4 mb-0" role="alert">
+                        <h6 class="alert-heading fw-bold">
+                            <i class="fas fa-exclamation-triangle me-2"></i>When to Seek Medical Attention
+                        </h6>
+                        <p class="mb-0 small">
+                            If you experience excessive swelling, severe pain, pus, fever, or red streaks around the tattoo, contact a doctor immediately.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mt-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-uppercase mb-3" style="color: #d4af37;">Frequently Asked Questions</h2>
+                <p class="text-muted lead">Find answers to common questions about tattoos and our services</p>
+                <div class="golden-underline mx-auto" style="width: 80px; height: 4px; background-color: #d4af37;"></div>
+            </div>
+
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <!-- Question 1 -->
+                <div class="accordion-item mb-3 border-0 rounded overflow-hidden shadow" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed fw-bold text-light py-4"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne"
+                                aria-expanded="false"
+                                aria-controls="collapseOne"
+                                style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                            <i class="fas fa-question-circle text-warning me-3"></i>
+                            How much does a tattoo hurt?
                         </button>
                     </h2>
-                    <div class="accordion-collapse collapse">
-                        <div class="accordion-body text-light">
-                            You can book an appointment through our <a href="/booking" style="color: #d4af37;">booking page</a> or contact us directly via phone or WhatsApp.
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
+                            <p class="mb-3">
+                                Pain levels vary depending on the location, size, and your personal pain tolerance. Generally, areas with more muscle and fat are less painful, while bony areas (ribs, ankles, elbows) can be more sensitive.
+                            </p>
+                            <p class="mb-0">
+                                Most clients describe it as manageable discomfort rather than intense pain. We work at your pace and take breaks as needed to ensure your comfort.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #d4af37;">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" style="background: #1a1a1a; color: #d4af37;">
-                            How much does a tattoo cost?
+                <!-- Question 2 -->
+                <div class="accordion-item mb-3 border-0 rounded overflow-hidden shadow" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed fw-bold text-light py-4"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo"
+                                aria-expanded="false"
+                                aria-controls="collapseTwo"
+                                style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                            <i class="fas fa-euro-sign text-warning me-3"></i>
+                            How is the price determined?
                         </button>
                     </h2>
-                    <div class="accordion-collapse collapse">
-                        <div class="accordion-body text-light">
-                            Pricing depends on size, complexity, and placement. Contact us for a personalized quote.
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
+                            <p class="mb-3">
+                                Tattoo pricing depends on several factors:
+                            </p>
+                            <ul class="mb-3">
+                                <li>Size and complexity of the design</li>
+                                <li>Placement on the body</li>
+                                <li>Time required to complete</li>
+                                <li>Color vs. black and white</li>
+                            </ul>
+                            <div class="alert alert-info mb-0" style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37;">
+                                We provide free consultations where we can give you an accurate quote based on your specific design and requirements.
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #d4af37;">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" style="background: #1a1a1a; color: #d4af37;">
-                            What should I do before my appointment?
+                <!-- Question 3 -->
+                <div class="accordion-item mb-3 border-0 rounded overflow-hidden shadow" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed fw-bold text-light py-4"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree"
+                                aria-expanded="false"
+                                aria-controls="collapseThree"
+                                style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                            <i class="fas fa-users text-warning me-3"></i>
+                            Can I bring a friend to my appointment?
                         </button>
                     </h2>
-                    <div class="accordion-collapse collapse">
-                        <div class="accordion-body text-light">
-                            Get plenty of rest, stay hydrated, eat a good meal, and avoid alcohol 24 hours before your session.
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
+                            <p class="mb-3">
+                                Yes! You're welcome to bring one person for support during your session. We ask that they remain respectful and quiet to maintain a focused working environment.
+                            </p>
+                            <p class="mb-0">
+                                Please inform us in advance if you'll be bringing someone so we can ensure we have adequate space.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item mb-3 border-0 rounded overflow-hidden shadow" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed fw-bold text-light py-4"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour"
+                                aria-expanded="false"
+                                aria-controls="collapseFour"
+                                style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                            <i class="fas fa-calendar-alt text-warning me-3"></i>
+                            Can I reschedule my appointment?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
+                            <p class="mb-3">
+                                Yes, you can reschedule with the following conditions:
+                            </p>
+                            <ul class="mb-0">
+                                <li>At least 48 hours notice required for free rescheduling</li>
+                                <li>Late cancellations or no-shows will forfeit the deposit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="accordion-item mb-3 border-0 rounded overflow-hidden shadow" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed fw-bold text-light py-4"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive"
+                                aria-expanded="false"
+                                aria-controls="collapseFive"
+                                style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-left: 4px solid #d4af37;">
+                            <i class="fas fa-pencil-ruler text-warning me-3"></i>
+                            Can I bring my own design?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted p-4" style="background: #1a1a1a;">
+                            <p class="mb-3">
+                                Absolutely! We love working with your ideas. You can bring reference images, sketches, or a complete design concept.
+                            </p>
+                            <p class="mb-0">
+                                During our consultation, we'll work together to refine the design and make any necessary adjustments to ensure it looks perfect as a tattoo.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- CTA Section -->
+    <div class="row mt-5 pt-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center p-5 rounded shadow-lg" style="background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);">
+                <i class="fas fa-comments fa-3x text-dark mb-4"></i>
+                <h3 class="display-6 fw-bold text-dark mb-3">Still have questions?</h3>
+                <p class="lead text-dark mb-4">We're here to help! Contact us or book a free consultation</p>
+                <a href="/contacts" class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow me-2">
+                    <i class="fas fa-envelope me-2"></i>Contact Us
+                </a>
+                <a href="/booking" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill shadow">
+                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Custom Styles -->
+<style>
+    .accordion-button:not(.collapsed) {
+        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+        color: #d4af37 !important;
+        border-left: 4px solid #d4af37 !important;
+    }
+
+    .accordion-button::after {
+        filter: brightness(0) invert(1);
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: #d4af37;
+    }
+
+    .step-item {
+        transition: all 0.3s ease;
+    }
+
+    .step-item:hover {
+        transform: translateX(10px);
+        background: rgba(212, 175, 55, 0.2) !important;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .text-gold {
+        color: #d4af37;
+    }
+
+    @@media (max-width: 768px) {
+        .display-3 {
+            font-size: 2.5rem !important;
+        }
+    }
+</style>

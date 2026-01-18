@@ -1,42 +1,87 @@
 ﻿@inherits LayoutComponentBase
-@inject LocalizationService Localization
+@inject NavigationManager NavigationManager
 @inject IJSRuntime JS
+@implements IDisposable
 
-<div class="page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- SVG Filter Definition for Logo -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="gold-logo-filter" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values="0 0 0 0 0
+                                                     0 0 0 0 0
+                                                     0 0 0 0 0
+                                                     -1.2 0 0 0 1" result="alpha-mask"/>
+                <feFlood flood-color="#d4af37" result="gold-color"/>
+                <feComposite in="gold-color" in2="alpha-mask" operator="in" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Header/Navbar -->
     <header class="fixed-top">
-        <NavMenu />
+        <NavMenu IsHomePage="@IsDynamicNavbar" />
     </header>
 
-    <main class="flex-grow-1">
-        @Body
-    </main>
+    <!-- Main Content -->
+    <div class="flex-grow-1 @(IsHomePage ? "hero-page-wrapper" : "page-content-wrapper")">
+        <main role="main">
+            @Body
+        </main>
+    </div>
 
+    <!-- Footer -->
     <Footer />
-</div>
 
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
+    <!-- Error UI -->
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+</body>
+</html>
 
 @code {
+    // Make navbar dynamic on ALL pages (transparent → glass on scroll)
+    private bool IsDynamicNavbar => true;
+    private bool IsHomePage => NavigationManager.ToBaseRelativePath(NavigationManager.Uri).Trim('/') == "";
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // Initialize EmailJS
+            // Initialize EmailJS (you'll need to replace with your actual public key)
             await JS.InvokeVoidAsync("eval", @"
                 (function(){
                     var script = document.createElement('script');
                     script.type = 'text/javascript';
                     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
                     script.onload = function() {
-                        emailjs.init('your_public_key_here');
+                        emailjs.init('YOUR_EMAILJS_PUBLIC_KEY_HERE');
                     };
                     document.head.appendChild(script);
                 })();
             ");
         }
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
     }
 }
