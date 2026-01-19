@@ -1,40 +1,84 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #0a0a0a;
-    color: #ffffff;
-}
-
-.page {
+/* Main Layout Container */
+.app-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
 }
 
-main {
-    flex: 1;
-    padding-top: 80px;
+.page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
 }
 
-.fixed-top {
+/* Navbar Container */
+.navbar-container {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 1000;
+    background-color: transparent;
+    transition: all 0.3s ease;
 }
 
+/* Main Content Area - with padding for fixed navbar */
+main {
+    flex: 1;
+    width: 100%;
+    background-color: #0a0a0a;
+}
+
+/* Page Content Wrapper - for regular pages */
+.page-content-wrapper {
+    padding-top: 100px;
+    background-color: #0a0a0a;
+    min-height: calc(100vh - 100px);
+}
+
+/* Hero Page Wrapper - for home page */
+.hero-page-wrapper {
+    padding-top: 0 !important;
+    background-color: #0a0a0a;
+}
+
+/* Footer */
+footer {
+    background-color: #121212;
+    border-top: 2px solid #d4af37;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Fixed positioning for navbar on scroll */
+.navbar-container.scrolled {
+    background-color: rgba(18, 18, 18, 0.95) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-content-wrapper {
+        padding-top: 80px;
+    }
+}
+
+/* Error UI */
 #blazor-error-ui {
-    background: lightyellow;
+    background: #b32121;
     bottom: 0;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3);
     display: none;
     left: 0;
     padding: 0.6rem 1.25rem 0.7rem 1.25rem;
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    z-index: 1001;
+    color: white;
 }
 
 #blazor-error-ui .dismiss {
@@ -44,8 +88,6 @@ main {
     top: 0.5rem;
 }
 
-/* Gold theme color */
-:root {
-    --gold: #d4af37;
-    --gold-dark: #c9a22e;
+#blazor-error-ui .dismiss::after {
+    content: '✕';
 }
