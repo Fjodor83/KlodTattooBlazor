@@ -14,23 +14,15 @@
 
     <!-- Filter Buttons -->
     <div class="text-center mb-5">
-        <div class="btn-group" role="group">
-            <button type="button" class="btn @(SelectedFilter == "all" ? "btn-gold" : "btn-outline-gold")" 
-                    @onclick="@(() => FilterPortfolio("all"))">
-                @Localization["Portfolio_Filter_All"]
-            </button>
-            <button type="button" class="btn @(SelectedFilter == "realistic" ? "btn-gold" : "btn-outline-gold")" 
-                    @onclick="@(() => FilterPortfolio("realistic"))">
-                @Localization["Portfolio_Filter_Realistic"]
-            </button>
-            <button type="button" class="btn @(SelectedFilter == "traditional" ? "btn-gold" : "btn-outline-gold")" 
-                    @onclick="@(() => FilterPortfolio("traditional"))">
-                @Localization["Portfolio_Filter_Traditional"]
-            </button>
-            <button type="button" class="btn @(SelectedFilter == "blackwork" ? "btn-gold" : "btn-outline-gold")" 
-                    @onclick="@(() => FilterPortfolio("blackwork"))">
-                @Localization["Portfolio_Filter_Blackwork"]
-            </button>
+        <div class="btn-group flex-wrap" role="group">
+            @foreach (var filter in FilterOptions)
+            {
+                <button type="button" 
+                        class="btn @(SelectedFilter == filter.Key ? "btn-gold" : "btn-outline-gold")" 
+                        @onclick="@(() => FilterPortfolio(filter.Key))">
+                    @Localization[filter.Value]
+                </button>
+            }
         </div>
     </div>
 
@@ -82,11 +74,18 @@
 
 @inject KlodTattooBlazor.Services.PortfolioService PortfolioService
 
-<!-- ... existing markup ... -->
-
 @code {
     private string SelectedFilter = "all";
     private List<PortfolioItem> AllImages = new();
+
+    private static readonly Dictionary<string, string> FilterOptions = new()
+    {
+        { "all", "Portfolio_Filter_All" },
+        { "realistic", "Portfolio_Filter_Realistic" },
+        { "traditional", "Portfolio_Filter_Traditional" },
+        { "blackwork", "Portfolio_Filter_Blackwork" },
+        { "cartoons", "Portfolio_Filter_Cartoons" }
+    };
 
     private List<PortfolioItem> FilteredImages => SelectedFilter == "all" 
         ? AllImages 

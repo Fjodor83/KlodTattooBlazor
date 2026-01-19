@@ -11,6 +11,10 @@
     {
       "id": 3,
       "name": "Blackwork"
+    },
+    {
+      "id": 4,
+      "name": "Cartoons"
     }
   ],
   "portfolioItems": [
@@ -36,6 +40,14 @@
       "description": "Geometric blackwork sleeve with intricate patterns",
       "imageUrl": "/images/portfolio/blackwork/Blackwork.jpg",
       "tattooStyleId": 3,
+      "createdAt": "2024-09-15T00:00:00"
+    },
+    {
+      "id": 8,
+      "title": "Portfolio_Item_Cartoon1",
+      "description": "Cartoon tattoo with vibrant colors and fun design",
+      "imageUrl": "/images/portfolio/cartoons/Taz.jpg",
+      "tattooStyleId": 4,
       "createdAt": "2024-09-15T00:00:00"
     }
   ]
