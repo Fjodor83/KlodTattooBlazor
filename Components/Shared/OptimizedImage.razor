@@ -1,0 +1,91 @@
+@* 
+    OptimizedImage Component
+    Automatically serves WebP with JPEG/PNG fallback
+    Includes lazy loading built-in
+*@
+
+<picture>
+    @if (!string.IsNullOrEmpty(WebPSrc))
+    {
+        <source srcset="@WebPSrc" type="image/webp">
+    }
+    @if (!string.IsNullOrEmpty(Srcset))
+    {
+        <source srcset="@Srcset">
+    }
+    <img src="@PlaceholderSrc" 
+         data-src="@Src" 
+         alt="@Alt"
+         class="@GetCssClass()"
+         width="@Width"
+         height="@Height"
+         loading="lazy"
+         decoding="async"
+         @attributes="AdditionalAttributes" />
+</picture>
+
+@code {
+    /// <summary>
+    /// Main image source (JPEG/PNG)
+    /// </summary>
+    [Parameter, EditorRequired]
+    public string Src { get; set; } = string.Empty;
+
+    /// <summary>
+    /// WebP version of the image (optional but recommended)
+    /// </summary>
+    [Parameter]
+    public string? WebPSrc { get; set; }
+
+    /// <summary>
+    /// Srcset for responsive images (optional)
+    /// Example: "image-320w.jpg 320w, image-640w.jpg 640w, image-1280w.jpg 1280w"
+    /// </summary>
+    [Parameter]
+    public string? Srcset { get; set; }
+
+    /// <summary>
+    /// Placeholder image (low quality, small size)
+    /// Falls back to a 1x1 transparent pixel if not provided
+    /// </summary>
+    [Parameter]
+    public string PlaceholderSrc { get; set; } = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
+
+    /// <summary>
+    /// Alt text for accessibility
+    /// </summary>
+    [Parameter]
+    public string Alt { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Additional CSS classes
+    /// </summary>
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    /// <summary>
+    /// Width attribute (optional, helps prevent layout shift)
+    /// </summary>
+    [Parameter]
+    public string? Width { get; set; }
+
+    /// <summary>
+    /// Height attribute (optional, helps prevent layout shift)
+    /// </summary>
+    [Parameter]
+    public string? Height { get; set; }
+
+    /// <summary>
+    /// Additional attributes
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    /// <summary>
+    /// Gets the combined CSS classes
+    /// </summary>
+    private string GetCssClass()
+    {
+        return string.IsNullOrEmpty(CssClass) ? "lazy" : $"lazy {CssClass}";
+    }
+}

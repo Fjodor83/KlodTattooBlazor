@@ -390,3 +390,110 @@ code {
 .validation-message {
     color: red;
 }
+
+/* ========================================
+   Lazy Loading Image Styles
+   ======================================== */
+
+/* Default state: hidden and blurred */
+img.lazy {
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+    background-color: #1e1e1e;
+}
+
+/* Loading state: slight opacity with blur */
+img.lazy-loading {
+    opacity: 0.5;
+    filter: blur(5px);
+}
+
+/* Loaded state: full opacity, no blur */
+img.lazy-loaded {
+    opacity: 1;
+    filter: blur(0);
+}
+
+/* Error state: slightly visible with red border */
+img.lazy-error {
+    opacity: 0.4;
+    border: 2px solid #dc3545;
+    filter: blur(0);
+}
+
+/* Optional: Add blur-up placeholder effect */
+img.lazy[data-placeholder] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Prevent layout shift during lazy loading */
+img.lazy,
+img.lazy-loading,
+img.lazy-loaded {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================================
+   Back to Top Button
+   ======================================== */
+
+.btn-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.btn-back-to-top:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+.btn-back-to-top:active {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .btn-back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Skip to main content (accessibility) */
+.skip-to-main:focus {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    background: #d4af37 !important;
+    color: #000 !important;
+    padding: 10px 20px !important;
+    z-index: 10000 !important;
+    text-decoration: none;
+    font-weight: bold;
+}

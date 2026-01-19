@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# BuildBundlerMinifier - auto-generated minified files
+*.min.css
+*.min.js
+wwwroot/css/site.min.css
+wwwroot/js/site.min.js

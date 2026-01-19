@@ -1,0 +1,25 @@
+{
+    "name": "Klod Tattoo Studio",
+    "short_name": "Klod Tattoo",
+    "description": "Professional tattoo studio in Obernburg am Main, Germany. Specializing in Realistic, Traditional, and Blackwork tattoos.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#d4af37",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "de",
+    "dir": "ltr",
+    "categories": [
+        "lifestyle",
+        "art"
+    ],
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

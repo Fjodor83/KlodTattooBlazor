@@ -1,0 +1,167 @@
+@* Components/MetaTags.razor *@
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+
+<PageTitle>@Title</PageTitle>
+<HeadContent>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="@Title" />
+    <meta name="description" content="@Description" />
+    <meta name="keywords" content="@Keywords" />
+    <meta name="author" content="Klod Tattoo Studio" />
+    <link rel="canonical" href="@CanonicalUrl" />
+
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="en" href="@GetAlternateUrl("en")" />
+    <link rel="alternate" hreflang="de" href="@GetAlternateUrl("de")" />
+    <link rel="alternate" hreflang="it" href="@GetAlternateUrl("it")" />
+    <link rel="alternate" hreflang="x-default" href="@GetAlternateUrl("en")" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@CanonicalUrl" />
+    <meta property="og:title" content="@Title" />
+    <meta property="og:description" content="@Description" />
+    <meta property="og:image" content="@AbsoluteImageUrl" />
+    <meta property="og:locale" content="@OgLocale" />
+    <meta property="og:site_name" content="Klod Tattoo Studio" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="@CanonicalUrl" />
+    <meta property="twitter:title" content="@Title" />
+    <meta property="twitter:description" content="@Description" />
+    <meta property="twitter:image" content="@AbsoluteImageUrl" />
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="DE-BY" />
+    <meta name="geo.placename" content="Obernburg am Main" />
+    <meta name="geo.position" content="49.8425661;9.1415053" />
+    <meta name="ICBM" content="49.8425661, 9.1415053" />
+
+    <!-- Business Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "TattooShop",
+        "name": "Klod Tattoo Studio",
+        "image": "@AbsoluteImageUrl",
+        "@@id": "@CanonicalUrl",
+        "url": "@BaseUrl",
+        "telephone": "+491722487670",
+        "email": "b.klodtattoo@gmail.com",
+        "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "Lindenstraße 26",
+            "addressLocality": "Obernburg am Main",
+            "postalCode": "63785",
+            "addressCountry": "DE"
+        },
+        "geo": {
+            "@@type": "GeoCoordinates",
+            "latitude": 49.8425661,
+            "longitude": 9.1415053
+        },
+        "openingHoursSpecification": [
+            {
+                "@@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "10:00",
+                "closes": "19:00"
+            }
+        ],
+        "priceRange": "€€",
+        "sameAs": [
+            "https://instagram.com/klod_tattoo",
+            "https://facebook.com/klod.backa"
+        ]
+    }
+    </script>
+</HeadContent>
+
+@code {
+    [Parameter] public string Title { get; set; } = "Klod Tattoo Studio - Professional Tattoo Art in Obernburg";
+    [Parameter] public string Description { get; set; } = "Professional tattoo studio in Obernburg am Main, Germany. Specializing in Realistic, Traditional, and Blackwork tattoos. Custom designs by experienced artist.";
+    [Parameter] public string Keywords { get; set; } = "tattoo, tattoo studio, Obernburg, realistic tattoo, traditional tattoo, blackwork, custom tattoo, Germany";
+    [Parameter] public string ImageUrl { get; set; } = "/images/og-image.jpg";
+
+    private string BaseUrl => NavigationManager.BaseUri.TrimEnd('/');
+    private string CanonicalUrl => BaseUrl + NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+    
+    /// <summary>
+    /// Returns absolute image URL for Open Graph and Twitter meta tags
+    /// </summary>
+    private string AbsoluteImageUrl
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(ImageUrl))
+                return $"{BaseUrl}/images/og-image.jpg";
+            
+            // If ImageUrl is already absolute, return as-is
+            if (ImageUrl.StartsWith("http://") || ImageUrl.StartsWith("https://"))
+                return ImageUrl;
+            
+            // Convert relative to absolute
+            var relativeUrl = ImageUrl.StartsWith("/") ? ImageUrl : $"/{ImageUrl}";
+            return $"{BaseUrl}{relativeUrl}";
+        }
+    }
+    
+    /// <summary>
+    /// Detects locale from URL path segments (improved precision)
+    /// </summary>
+    private string OgLocale
+    {
+        get
+        {
+            var path = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+            var segments = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            
+            // Check if first segment is a language code
+            if (segments.Length > 0)
+            {
+                var firstSegment = segments[0].ToLowerInvariant();
+                
+                switch (firstSegment)
+                {
+                    case "de":
+                        return "de_DE";
+                    case "it":
+                        return "it_IT";
+                    case "en":
+                        return "en_US";
+                }
+            }
+            
+            // Default to English
+            return "en_US";
+        }
+    }
+
+    /// <summary>
+    /// Generates alternate URLs for different languages
+    /// </summary>
+    private string GetAlternateUrl(string langCode)
+    {
+        var path = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        var segments = path.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+        
+        // Remove existing language code if present
+        if (segments.Count > 0)
+        {
+            var firstSegment = segments[0].ToLowerInvariant();
+            if (firstSegment == "en" || firstSegment == "de" || firstSegment == "it")
+            {
+                segments.RemoveAt(0);
+            }
+        }
+        
+        // Build new path with language code
+        var newPath = langCode == "en" 
+            ? string.Join("/", segments) 
+            : $"{langCode}/{string.Join("/", segments)}";
+        
+        return $"{BaseUrl}/{newPath}";
+    }
+}
