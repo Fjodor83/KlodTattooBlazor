@@ -1,28 +1,28 @@
 [
-    {
-        "outputFileName": "wwwroot/css/site.min.css",
-        "inputFiles": [
-            "wwwroot/css/app.css",
-            "wwwroot/css/cookie-banner.css"
-        ],
-        "minify": {
-            "enabled": true,
-            "commentMode": "none"
-        }
-    },
-    {
-        "outputFileName": "wwwroot/js/site.min.js",
-        "inputFiles": [
-            "wwwroot/js/lazy-load.js",
-            "wwwroot/js/site.js",
-            "wwwroot/js/cookie-consent.js",
-            "wwwroot/js/i18n-cookie.js"
-        ],
-        "minify": {
-            "enabled": true,
-            "renameLocals": true,
-            "commentMode": "none"
-        },
-        "sourceMap": false
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/styles-unified.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "commentMode": "none",
+      "adjustRelativePaths": true
     }
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/lazy-load.js",
+      "wwwroot/js/site.js",
+      "wwwroot/js/cookie-consent.js",
+      "wwwroot/js/i18n-cookie.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "commentMode": "none"
+    },
+    "sourceMap": false
+  }
 ]

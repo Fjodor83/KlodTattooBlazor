@@ -6,7 +6,7 @@
 <div class="page-layout d-flex flex-column min-vh-100">
     <!-- Header/Navbar - Fixed Top -->
     <header class="fixed-top navbar-container">
-        <NavMenu IsHomePage="@IsDynamicNavbar" />
+        <NavMenu IsHomePage="@IsHomePage" />
     </header>
 
     <!-- Main Content Area -->
@@ -24,8 +24,6 @@
 <CookieConsent />
 
 @code {
-    // Make navbar dynamic on ALL pages (transparent → glass on scroll)
-    private bool IsDynamicNavbar => true;
     private bool IsHomePage => NavigationManager.ToBaseRelativePath(NavigationManager.Uri).Trim('/') == "";
 
     protected override void OnInitialized()

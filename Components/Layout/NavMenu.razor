@@ -3,7 +3,7 @@
 @inject KlodTattooBlazor.Services.LocalizationService Localization
 @implements IDisposable
 
-<nav class="navbar navbar-expand-lg navbar-dark @NavbarClass" data-dynamic-navbar="@IsDynamicNavbar.ToString().ToLower()">
+<nav class="navbar navbar-expand-lg navbar-dark @NavbarClass" data-dynamic-navbar="@IsHomePage.ToString().ToLower()">
     <div class="container-fluid px-3 px-lg-4">
         <!-- Logo/Brand -->
         <a class="navbar-brand d-flex align-items-center" href="/">
@@ -53,7 +53,7 @@
             <div class="d-flex align-items-center gap-3 flex-column flex-lg-row">
                 <!-- Language Switcher -->
                 <LanguageSwitcher />
-                
+
                 <!-- Booking Button -->
                 <a class="btn btn-gold px-4 py-2 rounded-pill shadow-sm" href="booking">
                     <i class="fas fa-calendar-check me-2"></i>@Localization["Nav_BookNow"]
@@ -68,15 +68,14 @@
     public bool IsHomePage { get; set; }
 
     private bool collapseNavMenu = true;
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : "";
-    private bool IsDynamicNavbar => IsHomePage;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
     private string NavbarClass => IsHomePage ? "navbar-transparent shadow-none" : "navbar-glass shadow-sm";
 
     protected override void OnInitialized()
     {
         Localization.OnCultureChanged += StateHasChanged;
     }
-    
+
     public void Dispose()
     {
         Localization.OnCultureChanged -= StateHasChanged;

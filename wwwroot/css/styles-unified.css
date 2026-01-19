@@ -1,0 +1,815 @@
+﻿/* ============================================
+   KLOD TATTOO - UNIFIED CSS SYSTEM
+   Versione Ottimizzata - Gennaio 2025
+   ============================================ */
+
+/* ============================================
+   1. CSS VARIABLES (Design System)
+   ============================================ */
+/* ============================================
+   FLAG ICONS FIX - Patch Rapida
+   Aggiungi questo in cima a styles-unified.css
+   oppure crea un file separato per testare
+   ============================================ */
+
+/* Forza dimensioni corrette per tutte le flag-icon */
+.flag-icon,
+img.flag-icon,
+.dropdown-toggle .flag-icon,
+.dropdown-item .flag-icon,
+.navbar .flag-icon {
+    width: 20px !important;
+    height: 15px !important;
+    min-width: 20px !important;
+    min-height: 15px !important;
+    max-width: 20px !important;
+    max-height: 15px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* Fix per il contenitore del dropdown toggle */
+.dropdown-toggle {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    line-height: 1;
+}
+
+/* Fix per gli item nel dropdown menu */
+.dropdown-item {
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1.5;
+}
+
+    /* Previeni che le immagini SVG si espandano */
+    .dropdown-toggle img,
+    .dropdown-item img {
+        flex-shrink: 0 !important;
+    }
+
+
+.flag-icon {
+    width: 18px !important;
+    height: 13px !important;
+}
+
+:root {
+    /* Colors */
+    --color-gold: #d4af37;
+    --color-gold-light: #f7ce5a;
+    --color-gold-dark: #c9a22e;
+    --color-dark: #0a0a0a;
+    --color-dark-alt: #1a1a1a;
+    --color-dark-light: #2d2d2d;
+    --color-light: #e0e0e0;
+    --color-muted: #999;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --gradient-dark-reverse: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 10px 25px rgba(212, 175, 55, 0.4);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-full: 50%;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+}
+
+/* ============================================
+   2. GLOBAL RESETS & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   3. NAVBAR SYSTEM (Completamente Ridisegnato)
+   ============================================ */
+
+/* Navbar Container */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0;
+    z-index: var(--z-fixed);
+    transition: all var(--transition-base);
+}
+
+/* Navbar States */
+.navbar-transparent {
+    background: transparent;
+    box-shadow: none;
+}
+
+.navbar-glass {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Navbar Inner Container */
+.navbar .container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo Section - OTTIMIZZATO */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    transition: transform var(--transition-base);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-logo-custom {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+    transition: filter var(--transition-base);
+}
+
+.navbar-brand:hover .navbar-logo-custom {
+    filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.5));
+}
+
+/* Navbar Toggle (Mobile) */
+.navbar-toggler {
+    border: none;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.navbar-toggler:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.05);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4af37' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Navigation Menu Container */
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+/* Navigation Items - ALLINEAMENTO OTTIMIZZATO */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Links - DESIGN MIGLIORATO */
+.nav-link-custom {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    color: var(--color-light);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link-custom i {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity var(--transition-fast);
+}
+
+.nav-link-custom:hover {
+    color: var(--color-gold);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link-custom:hover i {
+    opacity: 1;
+}
+
+/* Active State */
+.nav-link-custom.active {
+    color: var(--color-gold);
+    background: rgba(212, 175, 55, 0.15);
+    font-weight: 600;
+}
+
+.nav-link-custom.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--color-gold);
+    border-radius: 2px;
+}
+
+/* Divider (Desktop) */
+.navbar-nav .d-none.d-lg-block {
+    width: 1px;
+    height: 24px;
+    background: rgba(212, 175, 55, 0.2);
+    margin: 0 0.75rem;
+}
+
+/* Functional Group (Language + Booking) */
+.navbar-collapse > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Book Now Button - OTTIMIZZATO */
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--gradient-gold);
+    color: var(--color-black);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-gold:hover {
+    background: var(--gradient-gold);
+    color: var(--color-black);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-gold:active {
+    transform: translateY(-1px);
+}
+
+.btn-gold i {
+    font-size: 1rem;
+}
+
+/* ============================================
+   4. LANGUAGE SWITCHER (Ottimizzato)
+   ============================================ */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    color: var(--color-light);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    background: rgba(26, 26, 26, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem 0;
+    z-index: var(--z-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-base);
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--color-light);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--color-gold);
+}
+
+.dropdown-item.active {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+.dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: calc(var(--z-dropdown) - 10);
+}
+
+/* ============================================
+   5. HERO SECTION
+   ============================================ */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%),
+                url('/images/hero-bg.jpg') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+}
+
+.hero-section .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-section h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-section p {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.hero-section .btn-gold {
+    font-size: var(--font-size-lg);
+    padding: 1rem 2.5rem;
+    animation: fadeInUp 1s ease-out 0.4s backwards;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   6. UTILITY CLASSES
+   ============================================ */
+.text-gold { color: var(--color-gold) !important; }
+.bg-gold { background-color: var(--color-gold) !important; }
+.bg-dark-custom { background: var(--gradient-dark); }
+
+.golden-underline {
+    width: 80px;
+    height: 4px;
+    background: var(--color-gold);
+    margin: 1rem auto;
+}
+
+.golden-divider {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    border: none;
+    margin: 3rem auto;
+}
+
+/* ============================================
+   7. BUTTONS (Sistema Unificato)
+   ============================================ */
+.btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.btn-outline-gold:hover {
+    background: var(--color-gold);
+    color: var(--color-black);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-dark {
+    background: var(--color-black);
+    color: var(--color-gold);
+    border: 2px solid var(--color-black);
+}
+
+.btn-dark:hover {
+    background: transparent;
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+/* ============================================
+   8. BACK TO TOP BUTTON
+   ============================================ */
+.btn-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-gold);
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--color-black);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-base);
+    z-index: var(--z-sticky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+}
+
+/* ============================================
+   9. LAZY LOADING IMAGES
+   ============================================ */
+img.lazy {
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+img.lazy-loading {
+    opacity: 0.5;
+    filter: blur(5px);
+}
+
+img.lazy-loaded {
+    opacity: 1;
+    filter: blur(0);
+}
+
+img.lazy-error {
+    opacity: 0.3;
+    border: 2px solid #dc3545;
+}
+
+/* ============================================
+   10. RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
+    .navbar-logo-custom {
+        height: 45px;
+    }
+    
+    .navbar .container-fluid {
+        padding: 0.5rem 1rem;
+    }
+    
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-link-custom {
+        justify-content: flex-start;
+        padding: 0.75rem 1rem;
+    }
+    
+    .navbar-collapse > div:last-child {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    .btn-gold,
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Hide divider on mobile */
+    .navbar-nav .d-none.d-lg-block {
+        display: none !important;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+    :root {
+        --font-size-base: 0.9rem;
+    }
+    
+    .navbar-logo-custom {
+        height: 40px;
+    }
+    
+    .hero-section {
+        min-height: 70vh;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+        letter-spacing: 3px;
+    }
+    
+    .hero-section p {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .btn-back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Large Desktop (> 1400px) */
+@media (min-width: 1400px) {
+    .navbar-logo-custom {
+        height: 55px;
+    }
+    
+    .nav-link-custom {
+        font-size: var(--font-size-base);
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* ============================================
+   11. ACCESSIBILITY
+   ============================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-to-main:focus {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    background: var(--color-gold);
+    color: var(--color-black);
+    padding: 1rem 2rem;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Focus Styles */
+*:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   12. PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* GPU Acceleration */
+.navbar,
+.btn-gold,
+.nav-link-custom,
+.dropdown-menu {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* ============================================
+   END OF UNIFIED CSS
+   ============================================ */
