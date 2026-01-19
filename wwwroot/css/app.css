@@ -30,6 +30,18 @@ body {
     font-family: var(--font-body);
     margin: 0;
     padding: 0;
+    /* Hide Scrollbar but keep functionality */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+/* Hide Scrollbar for Chrome/Safari/Webkit */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    display: none;
 }
 
 /* Headings */
@@ -48,6 +60,13 @@ a {
     color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s ease;
+}
+
+/* Reset #app to normal block layout after load (overrides index.html loading styles) */
+#app {
+    height: auto !important;
+    display: block !important;
+    min-height: 100vh;
 }
 
 a:hover {
@@ -253,11 +272,16 @@ a:hover {
 
 /* Glass Navbar (Scrolled) */
 .navbar.navbar-glass {
-    background: rgba(20, 20, 20, 0.6) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-    transition: all 0.3s ease;
+    background: rgba(18, 18, 18, 0.85) !important;
+    /* Slightly more opaque for better readability */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+    /* Subtle gold border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-in-out;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
 }
 
 /* Transparent Navbar (Top of Home Page) */
@@ -265,8 +289,11 @@ a:hover {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border-bottom: none !important;
+    border-bottom: 1px solid transparent !important;
     box-shadow: none !important;
+    transition: all 0.4s ease-in-out;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
 }
 
 /* Hero Section */
@@ -276,30 +303,192 @@ a:hover {
     background-position: center;
     height: 130vh;
     min-height: 800px;
-    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* =========================================
+   COMPONENT STYLES (Consolidated) 
+   ========================================= */
+
+/* Gold Buttons (Unified) */
+.btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    color: #000;
+}
+
+.btn-outline-gold {
+    background: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+    border-color: #d4af37;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* Portfolio Component */
+.portfolio-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+}
+
+.portfolio-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+/* Services Component */
+.pricing-card {
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3) !important;
+}
+
+.process-step {
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    transform: translateX(10px);
+}
+
+.payment-badge {
+    transition: all 0.3s ease;
+}
+
+.payment-badge:hover {
+    background: rgba(212, 175, 55, 0.2) !important;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Remove potential outline/focus ring from Hero Text */
+.hero-section h1,
+.hero-section p {
+    outline: none !important;
+    border: none !important;
+    user-select: none;
+    /* Prevents accidental selection/highlighting */
 }
 
 /* Custom Logo Styling */
 .navbar-logo-custom {
     height: 75px;
     width: auto;
-    filter: url(#gold-logo-filter);
-    clip-path: inset(8px);
-    opacity: 0.9;
+    opacity: 1;
     transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .navbar .navbar-logo-custom {
-        height: 50px;
-    }
 }
 
 .navbar-logo-custom:hover {
     opacity: 1;
     transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .navbar-logo-custom {
+        height: 50px;
+    }
+}
+
+/* Nav Links Custom Animations */
+.nav-link-custom {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    color: #d4af37 !important;
+}
+
+.nav-link-custom::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #d4af37;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link-custom:hover::after,
+.nav-link-custom.active::after {
+    width: 80%;
+}
+
+/* Responsive Navigation adjustments */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(26, 26, 26, 0.98);
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-link-custom::after {
+        display: none;
+    }
+}
+
+/* Gold Button Style */
+.btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    color: #000;
 }
 
 /* Page Spacers */

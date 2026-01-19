@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11408.102 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlodTattooBlazor", "KlodTattooBlazor.csproj", "{2A1C3B9E-6F0A-4B2C-A3D0-8E5F1B2C3D4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A1C3B9E-6F0A-4B2C-A3D0-8E5F1B2C3D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1C3B9E-6F0A-4B2C-A3D0-8E5F1B2C3D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1C3B9E-6F0A-4B2C-A3D0-8E5F1B2C3D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1C3B9E-6F0A-4B2C-A3D0-8E5F1B2C3D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81A4884D-0A12-4E3D-954A-3CDE8B2B3642}
+	EndGlobalSection
+EndGlobal

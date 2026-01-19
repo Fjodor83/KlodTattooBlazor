@@ -3,86 +3,25 @@
 @inject IJSRuntime JS
 @implements IDisposable
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta Tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Klod Tattoo Studio</title>
-    <base href="/" />
-    
-    <!-- SEO Meta -->
-    <meta name="description" content="Professionelles Tattoo-Studio in Obernburg am Main. Spezialisiert auf Realismus, Traditional und Blackwork.">
-    <meta name="theme-color" content="#d4af37">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    
-    <!-- Custom CSS -->
-    <link href="css/layout.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="css/site.min.css" rel="stylesheet" />
-    <link href="css/cookie-banner.css" rel="stylesheet" />
-</head>
-<body>
-    <div id="app" class="app-container">
-        <!-- SVG Filter Definition for Logo -->
-        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="gold-logo-filter" color-interpolation-filters="sRGB">
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.8353
-                                                         0 0 0 0 0.6824
-                                                         0 0 0 0 0.2157
-                                                         0 0 0 1 0" result="gold-color"/>
-                </filter>
-            </defs>
-        </svg>
+<div class="page-layout d-flex flex-column min-vh-100">
+    <!-- Header/Navbar - Fixed Top -->
+    <header class="fixed-top navbar-container">
+        <NavMenu IsHomePage="@IsDynamicNavbar" />
+    </header>
 
-        <!-- Page Layout -->
-        <div class="page-layout d-flex flex-column min-vh-100">
-            <!-- Header/Navbar - Fixed Top -->
-            <header class="fixed-top navbar-container">
-                <NavMenu IsHomePage="@IsDynamicNavbar" />
-            </header>
+    <!-- Main Content Area -->
+    <main role="main" class="@(IsHomePage ? "hero-page-wrapper" : "page-content-wrapper") flex-grow-1">
+        @Body
+    </main>
 
-            <!-- Main Content Area -->
-            <main role="main" class="@(IsHomePage ? "hero-page-wrapper" : "page-content-wrapper") flex-grow-1">
-                @Body
-            </main>
+    <!-- Footer -->
+    <footer>
+        <Footer />
+    </footer>
+</div>
 
-            <!-- Footer -->
-            <footer>
-                <Footer />
-            </footer>
-        </div>
-
-        <!-- Cookie Consent -->
-        <CookieConsent />
-
-        <!-- Error UI -->
-        <div id="blazor-error-ui">
-            An unhandled error has occurred.
-            <a href="" class="reload">Reload</a>
-            <a class="dismiss">🗙</a>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/site.js"></script>
-    <script src="js/service-worker-register.js"></script>
-    <script src="js/lazy-load.js"></script>
-    <script src="_framework/blazor.web.js"></script>
-</body>
-</html>
+<!-- Cookie Consent -->
+<CookieConsent />
 
 @code {
     // Make navbar dynamic on ALL pages (transparent → glass on scroll)
@@ -103,16 +42,18 @@
     {
         if (firstRender)
         {
-            // Initialize EmailJS (you'll need to replace with your actual public key)
+            // Initialize EmailJS
             await JS.InvokeVoidAsync("eval", @"
                 (function(){
-                    var script = document.createElement('script');
-                    script.type = 'text/javascript';
-                    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-                    script.onload = function() {
-                        emailjs.init('YOUR_EMAILJS_PUBLIC_KEY_HERE');
-                    };
-                    document.head.appendChild(script);
+                    if (!window.emailjs) {
+                        var script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+                        script.onload = function() {
+                            emailjs.init('YOUR_EMAILJS_PUBLIC_KEY_HERE');
+                        };
+                        document.head.appendChild(script);
+                    }
                 })();
             ");
         }

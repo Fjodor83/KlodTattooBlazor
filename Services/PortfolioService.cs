@@ -44,6 +44,19 @@ public class PortfolioService
         if (_cachedData == null)
         {
             _cachedData = await _http.GetFromJsonAsync<PortfolioData>("data/portfolio.json");
+            
+            // Manually link TattooStyle objects since JSON deserialization 
+            // doesn't automatically resolve foreign keys
+            if (_cachedData != null && _cachedData.PortfolioItems != null && _cachedData.TattooStyles != null)
+            {
+                foreach (var item in _cachedData.PortfolioItems)
+                {
+                    if (item.TattooStyleId.HasValue)
+                    {
+                        item.TattooStyle = _cachedData.TattooStyles.FirstOrDefault(s => s.Id == item.TattooStyleId.Value);
+                    }
+                }
+            }
         }
     }
 }

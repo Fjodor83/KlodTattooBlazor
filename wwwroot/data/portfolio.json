@@ -18,73 +18,25 @@
       "id": 1,
       "title": "Portfolio_Item_Portrait1",
       "description": "Hyper-realistic portrait tattoo with incredible detail and shading",
-      "imageUrl": "/images/portfolio/realistic/portrait-1.jpg",
+      "imageUrl": "/images/portfolio/realistic/Realistic.webp",
       "tattooStyleId": 1,
       "createdAt": "2024-12-01T00:00:00"
-    },
-    {
-      "id": 2,
-      "title": "Portfolio_Item_Portrait2",
-      "description": "Black and gray portrait showcasing exceptional realism",
-      "imageUrl": "/images/portfolio/realistic/portrait-2.jpg",
-      "tattooStyleId": 1,
-      "createdAt": "2024-11-15T00:00:00"
-    },
-    {
-      "id": 3,
-      "title": "Portfolio_Item_Animal1",
-      "description": "Realistic wolf tattoo with piercing eyes and detailed fur",
-      "imageUrl": "/images/portfolio/realistic/animal-1.jpg",
-      "tattooStyleId": 1,
-      "createdAt": "2024-11-01T00:00:00"
     },
     {
       "id": 4,
       "title": "Portfolio_Item_Anchor1",
       "description": "Traditional anchor design with bold lines and vibrant colors",
-      "imageUrl": "/images/portfolio/traditional/anchor-1.jpg",
+      "imageUrl": "/images/portfolio/traditional/traditional.webp",
       "tattooStyleId": 2,
       "createdAt": "2024-10-20T00:00:00"
-    },
-    {
-      "id": 5,
-      "title": "Portfolio_Item_Rose1",
-      "description": "Classic traditional rose with timeless styling",
-      "imageUrl": "/images/portfolio/traditional/rose-1.jpg",
-      "tattooStyleId": 2,
-      "createdAt": "2024-10-10T00:00:00"
-    },
-    {
-      "id": 6,
-      "title": "Portfolio_Item_Skull1",
-      "description": "Traditional skull with banner in bold American traditional style",
-      "imageUrl": "/images/portfolio/traditional/skull-1.jpg",
-      "tattooStyleId": 2,
-      "createdAt": "2024-09-25T00:00:00"
     },
     {
       "id": 7,
       "title": "Portfolio_Item_Geometric1",
       "description": "Geometric blackwork sleeve with intricate patterns",
-      "imageUrl": "/images/portfolio/blackwork/geometric-1.jpg",
+      "imageUrl": "/images/portfolio/blackwork/Blackwork.jpg",
       "tattooStyleId": 3,
       "createdAt": "2024-09-15T00:00:00"
-    },
-    {
-      "id": 8,
-      "title": "Portfolio_Item_Mandala1",
-      "description": "Intricate mandala design with perfect symmetry",
-      "imageUrl": "/images/portfolio/blackwork/mandala-1.jpg",
-      "tattooStyleId": 3,
-      "createdAt": "2024-09-01T00:00:00"
-    },
-    {
-      "id": 9,
-      "title": "Portfolio_Item_Tribal1",
-      "description": "Modern tribal blackwork with bold geometric shapes",
-      "imageUrl": "/images/portfolio/blackwork/tribal-1.jpg",
-      "tattooStyleId": 3,
-      "createdAt": "2024-08-20T00:00:00"
     }
   ]
 }
