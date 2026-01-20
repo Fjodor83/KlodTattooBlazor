@@ -7,7 +7,6 @@
 
     // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {
-        console.warn('IntersectionObserver not supported, loading all images immediately');
         loadAllImages();
         return;
     }
@@ -58,7 +57,6 @@
         };
 
         tempImage.onerror = function () {
-            console.error('Failed to load image:', src);
             img.classList.remove('lazy-loading');
             img.classList.add('lazy-error');
         };
@@ -86,8 +84,6 @@
         lazyImages.forEach(img => {
             imageObserver.observe(img);
         });
-
-        console.log(`🖼️ Lazy loading initialized for ${lazyImages.length} images`);
     }
 
     /**

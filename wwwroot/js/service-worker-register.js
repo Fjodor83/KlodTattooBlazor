@@ -11,7 +11,6 @@
             registerServiceWorker();
         });
     } else {
-        console.warn('Service Workers are not supported in this browser');
     }
 
     /**
@@ -23,18 +22,12 @@
                 scope: '/'
             });
 
-            console.log('✅ Service Worker registered successfully');
-            console.log('   Scope:', registration.scope);
-
             // Check for updates
             registration.addEventListener('updatefound', () => {
                 const newWorker = registration.installing;
-                console.log('🔄 Service Worker update found');
 
                 newWorker.addEventListener('statechange', () => {
                     if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                        // New service worker available
-                        console.log('✨ New content available; please refresh.');
 
                         // Optional: Show update notification to user
                         showUpdateNotification(newWorker);
@@ -48,7 +41,6 @@
             }, 60 * 60 * 1000);
 
         } catch (error) {
-            console.error('❌ Service Worker registration failed:', error);
         }
     }
 
@@ -57,8 +49,6 @@
      */
     function showUpdateNotification(worker) {
         // You can implement a custom UI here
-        // For now, we'll just log it
-        console.log('New version available. Refresh to update.');
 
         // Auto-refresh after 5 seconds (optional)
         // setTimeout(() => {
@@ -73,7 +63,6 @@
     if (navigator.serviceWorker) {
         navigator.serviceWorker.addEventListener('message', event => {
             if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
-                console.log('Update available:', event.data.message);
             }
         });
     }

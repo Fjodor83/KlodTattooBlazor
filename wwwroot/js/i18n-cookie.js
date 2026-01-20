@@ -1,7 +1,7 @@
 // Cookie Banner i18n - Traduzioni IT/DE
 // Sistema di internazionalizzazione per il cookie consent banner
 
-(function() {
+(function () {
     'use strict';
 
     // Traduzioni complete per cookie banner
@@ -116,7 +116,7 @@
     };
 
     // Funzione per ottenere la lingua corrente
-    window.getCurrentLanguage = function() {
+    window.getCurrentLanguage = function () {
         // Prende la lingua dall'attributo lang dell'HTML (impostato da ASP.NET)
         const htmlLang = document.documentElement.lang;
 
@@ -140,12 +140,11 @@
     };
 
     // Funzione per ottenere una traduzione
-    window.getCookieTranslation = function(key, lang) {
+    window.getCookieTranslation = function (key, lang) {
         lang = lang || window.getCurrentLanguage();
         const translations = window.cookieTranslations[lang];
 
         if (!translations || !translations[key]) {
-            console.warn(`Translation not found: ${key} for language: ${lang}`);
             // Fallback a italiano se non trova traduzione tedesca
             return window.cookieTranslations['it-IT'][key] || key;
         }
@@ -154,7 +153,7 @@
     };
 
     // Funzione per applicare tutte le traduzioni al DOM
-    window.applyCookieTranslations = function(lang) {
+    window.applyCookieTranslations = function (lang) {
         lang = lang || window.getCurrentLanguage();
 
         // Trova tutti gli elementi con data-i18n
@@ -173,13 +172,11 @@
                 element.textContent = translation;
             }
         });
-
-        console.log(`Cookie banner translations applied: ${lang}`);
     };
 
     // Inizializza le traduzioni quando il DOM è pronto
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             window.applyCookieTranslations();
         });
     } else {

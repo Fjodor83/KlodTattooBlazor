@@ -21,12 +21,10 @@ const STATIC_ASSETS = [
 
 // Install Event - Cache static assets
 self.addEventListener('install', event => {
-    console.log('[Service Worker] Installing...');
 
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('[Service Worker] Caching static assets');
                 return cache.addAll(STATIC_ASSETS);
             })
             .then(() => self.skipWaiting())
@@ -35,7 +33,6 @@ self.addEventListener('install', event => {
 
 // Activate Event - Clean up old caches
 self.addEventListener('activate', event => {
-    console.log('[Service Worker] Activating...');
 
     event.waitUntil(
         caches.keys().then(cacheNames => {
@@ -46,7 +43,6 @@ self.addEventListener('activate', event => {
                         return cacheName.startsWith('klod-tattoo-') && cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE;
                     })
                     .map(cacheName => {
-                        console.log('[Service Worker] Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     })
             );
@@ -148,5 +144,3 @@ self.addEventListener('message', event => {
 //     event.waitUntil(syncBookings());
 //   }
 // });
-
-console.log('[Service Worker] Loaded');

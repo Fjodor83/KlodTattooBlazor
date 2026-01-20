@@ -1,7 +1,7 @@
 // Cookie Consent Manager
 // Gestisce il consenso ai cookie con supporto multi-categoria
 
-(function() {
+(function () {
     'use strict';
 
     const STORAGE_KEY = 'klod_cookie_preferences';
@@ -17,7 +17,7 @@
     };
 
     // Inizializzazione al caricamento del DOM
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         initCookieConsent();
     });
 
@@ -68,7 +68,7 @@
         }
 
         // Chiudi panel con ESC
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const panel = document.getElementById('cookieCustomizePanel');
                 if (panel && panel.style.display === 'block') {
@@ -91,7 +91,6 @@
                 return JSON.parse(stored);
             }
         } catch (e) {
-            console.error('Errore nel leggere le preferenze cookie:', e);
         }
         return null;
     }
@@ -107,7 +106,6 @@
 
             return true;
         } catch (e) {
-            console.error('Errore nel salvare le preferenze cookie:', e);
             return false;
         }
     }
@@ -228,7 +226,6 @@
         // Qui puoi aggiungere logica per abilitare/disabilitare funzionalità
         // basate sulle preferenze dell'utente
 
-        console.log('Preferenze cookie applicate:', preferences);
 
         // Esempio: se functional è false, potresti voler disabilitare alcune animazioni
         if (!preferences.functional) {
@@ -248,7 +245,7 @@
     }
 
     // Funzione per revocare il consenso (può essere chiamata da un link nel footer)
-    window.revokeCookieConsent = function() {
+    window.revokeCookieConsent = function () {
         localStorage.removeItem(STORAGE_KEY);
         // Ricarica la pagina per mostrare di nuovo il banner
         window.location.reload();

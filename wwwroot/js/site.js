@@ -93,7 +93,6 @@
     // ============================================
     window.initGLightbox = function () {
         if (typeof GLightbox === 'undefined') {
-            console.warn('GLightbox not loaded yet');
             return false;
         }
 
@@ -109,10 +108,8 @@
                 preload: true
             });
 
-            console.log('GLightbox initialized successfully');
             return true;
         } catch (error) {
-            console.error('GLightbox initialization error:', error);
             return false;
         }
     };
@@ -122,13 +119,11 @@
     // ============================================
     window.initFlatpickr = function (elementId, locale = 'en') {
         if (typeof flatpickr === 'undefined') {
-            console.warn('Flatpickr not loaded yet');
             return null;
         }
 
         const element = document.getElementById(elementId);
         if (!element) {
-            console.warn(`Element ${elementId} not found`);
             return null;
         }
 
@@ -142,7 +137,6 @@
                 time_24hr: true
             });
         } catch (error) {
-            console.error('Flatpickr initialization error:', error);
             return null;
         }
     };
@@ -340,10 +334,7 @@
         enhanceFormValidation();
         optimizePerformance();
         improveAccessibility();
-
-        console.log('🎨 Klod Tattoo - All scripts initialized');
     }
-
     // DOM Ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAll);
@@ -406,7 +397,6 @@
     (function () {
         'use strict';
 
-        console.log('🔧 Blazor Layout Fix - Loading...');
 
         function applyLayoutFix() {
             // Aspetta che Blazor abbia renderizzato tutto
@@ -422,7 +412,6 @@
 
                 // Se navbar trovata, applica il fix
                 if (navbar) {
-                    console.log('✅ Navbar found! Applying fix...');
                     clearInterval(tryFix);
 
                     const isMobile = window.innerWidth <= 768;
@@ -435,19 +424,12 @@
                     // Fix content SOLO se non è hero
                     if (pageContent && !heroContent) {
                         pageContent.style.paddingTop = navbarHeight + 'px';
-                        console.log('✅ Page content padding set to:', navbarHeight + 'px');
                     } else if (heroContent) {
-                        console.log('✅ Hero page detected - no padding needed');
                     }
 
                     // Verifica
                     setTimeout(() => {
-                        const actualNav = navbar.offsetHeight;
-                        const actualPad = pageContent ? parseInt(window.getComputedStyle(pageContent).paddingTop) : 0;
-                        console.log('📊 Final check:');
-                        console.log('  Navbar:', actualNav + 'px');
-                        console.log('  Content padding:', actualPad + 'px');
-                        console.log('  ✅ Layout fixed!');
+                        // Layout verification logic removed for production
                     }, 100);
 
                     return;
@@ -455,7 +437,6 @@
 
                 // Max attempts raggiunto
                 if (attempts >= maxAttempts) {
-                    console.warn('⚠️ Navbar not found after', maxAttempts, 'attempts');
                     clearInterval(tryFix);
                 }
             }, 100); // Controlla ogni 100ms
@@ -483,8 +464,7 @@
             resizeTimer = setTimeout(applyLayoutFix, 250);
         });
 
-        console.log('🔧 Blazor Layout Fix - Ready');
-
+        // Initial apply removed from log for production
     })();
 
 })();

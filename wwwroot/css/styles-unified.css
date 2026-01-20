@@ -91,8 +91,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- High Contrast Utility --- */
-.text-muted {
+.text-muted,
+footer .text-muted,
+footer .small {
     color: var(--color-muted) !important;
     opacity: 1 !important;
     /* Ensure no transparent overlays dim the text */
