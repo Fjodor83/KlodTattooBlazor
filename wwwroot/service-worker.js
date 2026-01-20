@@ -3,16 +3,17 @@
 // Cache Strategy: Network First with Fallback
 // ========================================
 
-const CACHE_NAME = 'klod-tattoo-v1.0.1';
+const CACHE_NAME = 'klod-tattoo-v1.0.4';
 const RUNTIME_CACHE = 'klod-tattoo-runtime';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
     '/',
     '/index.html',
-    '/css/site.min.css',
+    '/css/styles-unified.css',
     '/lib/bootstrap/dist/css/bootstrap.min.css',
-    '/js/site.min.js',
+    '/KlodTattooBlazor.styles.css',
+    '/js/site.js',
     '/favicon.ico',
     '/favicon.png',
     '/images/klod_logo.png',

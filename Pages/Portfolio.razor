@@ -1,4 +1,4 @@
-@page "/portfolio"
+﻿@page "/portfolio"
 @inject IJSRuntime JS
 @inject KlodTattooBlazor.Services.LocalizationService Localization
 @implements IDisposable
@@ -17,8 +17,8 @@
         <div class="btn-group flex-wrap" role="group">
             @foreach (var filter in FilterOptions)
             {
-                <button type="button" 
-                        class="btn @(SelectedFilter == filter.Key ? "btn-gold" : "btn-outline-gold")" 
+                <button type="button"
+                        class="btn @(SelectedFilter == filter.Key ? "btn-gold" : "btn-outline-gold")"
                         @onclick="@(() => FilterPortfolio(filter.Key))">
                     @Localization[filter.Value]
                 </button>
@@ -70,8 +70,6 @@
     </div>
 </div>
 
-
-
 @inject KlodTattooBlazor.Services.PortfolioService PortfolioService
 
 @code {
@@ -87,8 +85,8 @@
         { "cartoons", "Portfolio_Filter_Cartoons" }
     };
 
-    private List<PortfolioItem> FilteredImages => SelectedFilter == "all" 
-        ? AllImages 
+    private List<PortfolioItem> FilteredImages => SelectedFilter == "all"
+        ? AllImages
         : AllImages.Where(i => i.TattooStyle?.Name.ToLower() == SelectedFilter).ToList();
 
     private void FilterPortfolio(string filter)
@@ -99,7 +97,7 @@
     protected override async Task OnInitializedAsync()
     {
         Localization.OnCultureChanged += StateHasChanged;
-        try 
+        try
         {
             AllImages = await PortfolioService.GetAllItemsAsync();
         }
@@ -111,15 +109,54 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        // ✅ FIXED: Controlla se GLightbox è disponibile prima di chiamarlo
         if (firstRender)
         {
-            // Initialize GLightbox for portfolio gallery
-            await JS.InvokeVoidAsync("initGLightbox");
+            await InitializeGLightbox();
         }
-        else 
+        else
         {
-            // Re-init lightbox when filter changes and DOM updates
-            await JS.InvokeVoidAsync("initGLightbox");
+            // Re-init lightbox quando cambia il filtro
+            await Task.Delay(100); // Piccolo delay per permettere al DOM di aggiornarsi
+            await InitializeGLightbox();
+        }
+    }
+
+    // ✅ NUOVO: Metodo helper per inizializzare GLightbox in modo sicuro
+    private async Task InitializeGLightbox()
+    {
+        try
+        {
+            // Controlla se la funzione esiste prima di chiamarla
+            var functionExists = await JS.InvokeAsync<bool>("eval",
+                "typeof window.initGLightbox === 'function'");
+
+            if (functionExists)
+            {
+                await JS.InvokeVoidAsync("initGLightbox");
+            }
+            else
+            {
+                // Se la funzione non esiste, inizializza GLightbox direttamente
+                await JS.InvokeVoidAsync("eval", @"
+                    if (typeof GLightbox !== 'undefined') {
+                        try {
+                            const lightbox = GLightbox({
+                                touchNavigation: true,
+                                loop: true,
+                                autoplayVideos: true
+                            });
+                        } catch (e) {
+                            console.warn('GLightbox initialization error:', e);
+                        }
+                    }
+                ");
+            }
+        }
+        catch (Exception ex)
+        {
+            // ✅ Gestisci l'errore senza crashare l'app
+            Console.WriteLine($"GLightbox initialization error: {ex.Message}");
         }
     }
 

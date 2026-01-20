@@ -40,7 +40,8 @@ main {
    CHANGED: padding-top from 100px to 80px
    ============================================ */
 .page-content-wrapper {
-    padding-top: 80px; /* ✅ FIXED: Was 100px, now 80px to match navbar height */
+    padding-top: 80px;
+    /* ✅ FIXED: Was 100px, now 80px to match navbar height */
     background-color: #0a0a0a;
     min-height: auto;
     flex: 1 0 auto;
@@ -64,24 +65,14 @@ main {
     transition: all 0.3s ease;
 }
 
-.navbar-glass {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-    transition: all 0.3s ease;
-}
-
-
-
 /* ============================================
    ✅ FIX: Responsive adjustments
    CHANGED: padding-top from 80px to 70px on mobile
    ============================================ */
 @media (max-width: 768px) {
     .page-content-wrapper {
-        padding-top: 70px; /* ✅ FIXED: Reduced for smaller navbar on mobile */
+        padding-top: 70px;
+        /* ✅ FIXED: Reduced for smaller navbar on mobile */
     }
 }
 
@@ -99,13 +90,13 @@ main {
     color: white;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
-        #blazor-error-ui .dismiss::after {
-            content: '✕';
-        }
+#blazor-error-ui .dismiss::after {
+    content: '✕';
+}

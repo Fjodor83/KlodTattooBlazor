@@ -1,4 +1,4 @@
-using KlodTattooBlazor;
+﻿using KlodTattooBlazor;
 using KlodTattooBlazor.Configuration;
 using KlodTattooBlazor.Models;
 using KlodTattooBlazor.Services;
