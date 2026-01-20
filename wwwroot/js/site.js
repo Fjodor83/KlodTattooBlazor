@@ -1,25 +1,19 @@
-﻿// ============================================
-// KLOD TATTOO - MAIN JAVASCRIPT
-// ============================================
-
-(function () {
+﻿(function () {
     'use strict';
 
-    // ============================================
-    // 1. DYNAMIC NAVBAR (Transparent → Glass)
-    // ============================================
+    // ============================================================
+    // 1. NAVBAR DINAMICA (Transparent → Glass)
+    // ============================================================
     function initDynamicNavbar() {
-        const navbar = document.querySelector('.navbar[data-dynamic-navbar="true"], .navbar[data-dynamic-navbar="True"]');
-
+        const navbar = document.querySelector('.navbar[data-dynamic-navbar="true"]');
         if (!navbar) return;
 
-        // Remove existing listener
-        if (window.navbarScrollHandler) {
-            window.removeEventListener('scroll', window.navbarScrollHandler);
+        // Rimuovi eventuali listener precedenti
+        if (window._navbarScrollHandler) {
+            window.removeEventListener('scroll', window._navbarScrollHandler);
         }
 
-        // Create scroll handler
-        window.navbarScrollHandler = function () {
+        window._navbarScrollHandler = () => {
             if (window.scrollY > 50) {
                 navbar.classList.remove("navbar-transparent");
                 navbar.classList.add("navbar-glass");
@@ -29,442 +23,109 @@
             }
         };
 
-        window.addEventListener("scroll", window.navbarScrollHandler, { passive: true });
-        window.navbarScrollHandler(); // Init state
+        window.addEventListener("scroll", window._navbarScrollHandler, { passive: true });
+        window._navbarScrollHandler();
     }
 
-    // ============================================
+    // ============================================================
     // 2. BACK TO TOP BUTTON
-    // ============================================
+    // ============================================================
     function initBackToTop() {
-        let backToTopBtn = document.getElementById("backToTop");
+        let btn = document.getElementById("backToTop");
 
-        if (!backToTopBtn) {
-            // Create button if doesn't exist
-            backToTopBtn = document.createElement("button");
-            backToTopBtn.id = "backToTop";
-            backToTopBtn.className = "btn-back-to-top";
-            backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-            backToTopBtn.setAttribute("aria-label", "Back to top");
-            backToTopBtn.style.display = "none";
-            document.body.appendChild(backToTopBtn);
+        if (!btn) {
+            btn = document.createElement("button");
+            btn.id = "backToTop";
+            btn.className = "btn-back-to-top";
+            btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            btn.style.display = "none";
+            document.body.appendChild(btn);
         }
 
-        // Show/hide on scroll
-        window.addEventListener("scroll", function () {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopBtn.style.display = "flex";
-            } else {
-                backToTopBtn.style.display = "none";
-            }
+        window.addEventListener("scroll", () => {
+            btn.style.display = (window.scrollY > 300) ? "flex" : "none";
         }, { passive: true });
 
-        // Click handler
-        backToTopBtn.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    // ============================================
-    // 3. ACTIVE NAV LINK HIGHLIGHTING
-    // ============================================
+    // ============================================================
+    // 3. ACTIVE NAV LINK
+    // ============================================================
     function highlightActiveNavLink() {
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link-custom');
-
-        navLinks.forEach(link => {
+        const current = window.location.pathname;
+        document.querySelectorAll('.nav-link-custom').forEach(link => {
             const href = link.getAttribute('href');
-
-            // Remove existing active class
-            link.classList.remove('active');
-
-            // Add active class to matching link
-            if (href === currentPath || (currentPath === '/' && href === '')) {
-                link.classList.add('active');
-            }
+            link.classList.toggle('active', href === current || (current === '/' && href === ''));
         });
     }
 
-    // ============================================
-    // 4. GLIGHTBOX INITIALIZATION
-    // ============================================
-    window.initGLightbox = function () {
-        if (typeof GLightbox === 'undefined') {
-            return false;
-        }
-
-        try {
-            const lightbox = GLightbox({
-                selector: '.glightbox',
-                touchNavigation: true,
-                loop: true,
-                closeButton: true,
-                zoomable: true,
-                draggable: true,
-                dragAutoSnap: true,
-                preload: true
-            });
-
-            return true;
-        } catch (error) {
-            return false;
-        }
-    };
-
-    // ============================================
-    // 5. FLATPICKR INITIALIZATION
-    // ============================================
-    window.initFlatpickr = function (elementId, locale = 'en') {
-        if (typeof flatpickr === 'undefined') {
-            return null;
-        }
-
-        const element = document.getElementById(elementId);
-        if (!element) {
-            return null;
-        }
-
-        try {
-            return flatpickr(element, {
-                locale: locale,
-                dateFormat: "Y-m-d",
-                minDate: "today",
-                theme: "dark",
-                disableMobile: false,
-                time_24hr: true
-            });
-        } catch (error) {
-            return null;
-        }
-    };
-
-    // ============================================
-    // 6. LAZY LOADING IMAGES (Legacy support)
-    // ============================================
-    // Note: Main lazy loading is handled by lazy-load.js
-    // This is kept for backward compatibility
-    function initLazyLoading() {
-        const lazyImages = document.querySelectorAll('img.lazy:not([data-lazy-handled]), img[loading="lazy"]:not([data-lazy-handled])');
-
-        if (lazyImages.length === 0) return;
-
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-
-                        // Load actual image
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                        }
-
-                        // Load srcset if exists
-                        if (img.dataset.srcset) {
-                            img.srcset = img.dataset.srcset;
-                        }
-
-                        img.classList.remove('lazy');
-                        img.classList.add('loaded');
-                        img.setAttribute('data-lazy-handled', 'true');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.01
-            });
-
-            lazyImages.forEach(img => {
-                img.setAttribute('data-lazy-handled', 'true');
-                imageObserver.observe(img);
-            });
-        } else {
-            // Fallback for older browsers
-            lazyImages.forEach(img => {
-                if (img.dataset.src) img.src = img.dataset.src;
-                if (img.dataset.srcset) img.srcset = img.dataset.srcset;
-                img.setAttribute('data-lazy-handled', 'true');
-            });
-        }
-    }
-
-    // ============================================
-    // 7. SMOOTH SCROLL FOR ANCHOR LINKS
-    // ============================================
+    // ============================================================
+    // 4. SMOOTH SCROLL
+    // ============================================================
     function initSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-
-                if (href === '#' || href === '#!') return;
-
-                const target = document.querySelector(href);
+            anchor.addEventListener('click', e => {
+                const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
                     e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
             });
         });
     }
 
-    // ============================================
-    // 8. FORM VALIDATION ENHANCEMENT
-    // ============================================
-    function enhanceFormValidation() {
-        const forms = document.querySelectorAll('form');
+    // ============================================================
+    // 5. LAYOUT FIX (Navbar height → padding)
+    // ============================================================
+    function applyLayoutFix() {
+        const navbar = document.querySelector('.navbar');
+        const pageContent = document.querySelector('.page-content-wrapper');
+        const hero = document.querySelector('.hero-page-wrapper');
 
-        forms.forEach(form => {
-            const inputs = form.querySelectorAll('input, textarea, select');
+        if (!navbar) return;
 
-            inputs.forEach(input => {
-                // Add real-time validation
-                input.addEventListener('blur', function () {
-                    if (this.validity.valid) {
-                        this.classList.remove('invalid');
-                        this.classList.add('valid');
-                    } else {
-                        this.classList.remove('valid');
-                        this.classList.add('invalid');
-                    }
-                });
+        const isMobile = window.innerWidth <= 768;
+        const height = isMobile ? 70 : 80;
 
-                // Remove validation classes on input
-                input.addEventListener('input', function () {
-                    this.classList.remove('valid', 'invalid');
-                });
-            });
-        });
-    }
+        navbar.style.height = height + "px";
+        navbar.style.minHeight = height + "px";
 
-    // ============================================
-    // 9. PERFORMANCE OPTIMIZATION
-    // ============================================
-    function optimizePerformance() {
-        // Preload critical resources
-        const criticalResources = [
-            '/css/site.min.css',
-            '/js/site.min.js'
-        ];
-
-        criticalResources.forEach(resource => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = resource.endsWith('.css') ? 'style' : 'script';
-            link.href = resource;
-            document.head.appendChild(link);
-        });
-
-        // Defer non-critical CSS
-        const deferredStyles = document.querySelectorAll('link[rel="stylesheet"][data-defer]');
-        deferredStyles.forEach(style => {
-            style.media = 'print';
-            style.onload = function () {
-                this.media = 'all';
-            };
-        });
-    }
-
-    // ============================================
-    // 10. ACCESSIBILITY IMPROVEMENTS
-    // ============================================
-    function improveAccessibility() {
-        // Add skip to main content link
-        if (!document.querySelector('.skip-to-main')) {
-            const skipLink = document.createElement('a');
-            skipLink.href = '#main';
-            skipLink.className = 'skip-to-main sr-only';
-            skipLink.textContent = 'Skip to main content';
-            skipLink.style.cssText = `
-            position: absolute;
-            left: -10000px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        `;
-            skipLink.addEventListener('focus', function () {
-                this.style.cssText = `
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: auto;
-                height: auto;
-                background: #d4af37;
-                color: #000;
-                padding: 10px 20px;
-                z-index: 10000;
-            `;
-            });
-            skipLink.addEventListener('blur', function () {
-                this.style.cssText = `
-                position: absolute;
-                left: -10000px;
-                top: auto;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-            `;
-            });
-            document.body.insertBefore(skipLink, document.body.firstChild);
-        }
-
-        // Add main landmark if missing
-        const main = document.querySelector('main');
-        if (main && !main.id) {
-            main.id = 'main';
+        if (pageContent && !hero) {
+            pageContent.style.paddingTop = height + "px";
         }
     }
 
-    // ============================================
-    // INITIALIZATION
-    // ============================================
+    // ============================================================
+    // 6. INIZIALIZZAZIONE COMPLETA
+    // ============================================================
     function initAll() {
         initDynamicNavbar();
         initBackToTop();
         highlightActiveNavLink();
-        initLazyLoading();
         initSmoothScroll();
-        enhanceFormValidation();
-        optimizePerformance();
-        improveAccessibility();
+        applyLayoutFix();
     }
+
     // DOM Ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAll);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAll);
     } else {
         initAll();
     }
 
-    // Re-init after Blazor navigation
-    if (typeof Blazor !== 'undefined') {
-        Blazor.addEventListener('enhancedload', function () {
-            setTimeout(initAll, 100);
+    // Re-init dopo navigazione Blazor
+    if (typeof Blazor !== "undefined") {
+        Blazor.addEventListener("enhancedload", () => {
+            setTimeout(initAll, 50);
         });
     }
 
-    // MutationObserver for dynamic content
-    const observer = new MutationObserver(function (mutations) {
-        let shouldReinit = false;
-
-        mutations.forEach(function (mutation) {
-            if (mutation.addedNodes.length) {
-                const navbar = document.querySelector('.navbar[data-dynamic-navbar]');
-                if (navbar) shouldReinit = true;
-            }
-        });
-
-        if (shouldReinit) {
-            setTimeout(initDynamicNavbar, 50);
-        }
+    // Re-init su resize
+    window.addEventListener("resize", () => {
+        setTimeout(applyLayoutFix, 150);
     });
-
-    if (document.body) {
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // Export for global access
-    window.scrollToTop = function () {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
-
-    // Export init functions
-    window.klodTattoo = {
-        initDynamicNavbar,
-        initBackToTop,
-        initGLightbox,
-        initFlatpickr,
-        highlightActiveNavLink
-    };
-    // ========================================
-    // FIX FINALE - Blazor Timing Issue
-    // Sostituisci il contenuto di wwwroot/js/site.js
-    // con questo codice ALLA FINE del file
-    // ========================================
-
-    (function () {
-        'use strict';
-
-
-        function applyLayoutFix() {
-            // Aspetta che Blazor abbia renderizzato tutto
-            const maxAttempts = 20;
-            let attempts = 0;
-
-            const tryFix = setInterval(() => {
-                attempts++;
-
-                const navbar = document.querySelector('.navbar');
-                const pageContent = document.querySelector('.page-content-wrapper');
-                const heroContent = document.querySelector('.hero-page-wrapper');
-
-                // Se navbar trovata, applica il fix
-                if (navbar) {
-                    clearInterval(tryFix);
-
-                    const isMobile = window.innerWidth <= 768;
-                    const navbarHeight = isMobile ? 70 : 80;
-
-                    // Fix navbar
-                    navbar.style.height = navbarHeight + 'px';
-                    navbar.style.minHeight = navbarHeight + 'px';
-
-                    // Fix content SOLO se non è hero
-                    if (pageContent && !heroContent) {
-                        pageContent.style.paddingTop = navbarHeight + 'px';
-                    } else if (heroContent) {
-                    }
-
-                    // Verifica
-                    setTimeout(() => {
-                        // Layout verification logic removed for production
-                    }, 100);
-
-                    return;
-                }
-
-                // Max attempts raggiunto
-                if (attempts >= maxAttempts) {
-                    clearInterval(tryFix);
-                }
-            }, 100); // Controlla ogni 100ms
-        }
-
-        // Apply on load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyLayoutFix);
-        } else {
-            applyLayoutFix();
-        }
-
-        // Re-apply on Blazor navigation
-        document.addEventListener('click', function (e) {
-            const link = e.target.closest('a');
-            if (link && link.href && !link.href.includes('#')) {
-                setTimeout(applyLayoutFix, 100);
-            }
-        });
-
-        // Re-apply on resize
-        let resizeTimer;
-        window.addEventListener('resize', function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(applyLayoutFix, 250);
-        });
-
-        // Initial apply removed from log for production
-    })();
 
 })();

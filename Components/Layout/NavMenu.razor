@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark @NavbarClass" data-dynamic-navbar="@IsHomePage.ToString().ToLower()">
     <div class="container-fluid px-3 px-lg-4">
         <!-- Logo/Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="/">
+        <a class="navbar-brand d-flex align-items-center" href="/" @onclick="CloseNavMenu">
             <img src="/images/klod_logo.png" alt="Klod Tattoo Logo" class="navbar-logo-custom" />
         </a>
 
@@ -20,27 +20,27 @@
             <!-- Main Navigation -->
             <ul class="navbar-nav ms-auto align-items-center gap-2 mb-3 mb-lg-0">
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="" Match="NavLinkMatch.All" @onclick="CloseNavMenu">
                         <i class="fas fa-home me-1"></i>@Localization["Nav_Home"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="portfolio">
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="portfolio" @onclick="CloseNavMenu">
                         <i class="fas fa-images me-1"></i>@Localization["Nav_Portfolio"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="services">
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="services" @onclick="CloseNavMenu">
                         <i class="fas fa-palette me-1"></i>@Localization["Nav_Services"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="info">
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="info" @onclick="CloseNavMenu">
                         <i class="fas fa-info-circle me-1"></i>@Localization["Nav_Info"]
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="contacts">
+                    <NavLink class="nav-link px-2 position-relative nav-link-custom d-flex align-items-center" href="contacts" @onclick="CloseNavMenu">
                         <i class="fas fa-envelope me-1"></i>@Localization["Nav_Contacts"]
                     </NavLink>
                 </li>
@@ -55,7 +55,7 @@
                 <LanguageSwitcher />
 
                 <!-- Booking Button -->
-                <a class="btn btn-gold px-4 py-2 rounded-pill shadow-sm" href="booking">
+                <a class="btn btn-gold px-4 py-2 rounded-pill shadow-sm" href="booking" @onclick="CloseNavMenu">
                     <i class="fas fa-calendar-check me-2"></i>@Localization["Nav_BookNow"]
                 </a>
             </div>
@@ -84,5 +84,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void CloseNavMenu()
+    {
+        collapseNavMenu = true;
     }
 }
