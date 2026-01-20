@@ -1,66 +1,12 @@
 ﻿/* ============================================
    KLOD TATTOO - UNIFIED CSS SYSTEM
    Versione Ottimizzata - Gennaio 2025
+   ✅ FIXED: Added navbar height for proper layout
    ============================================ */
 
 /* ============================================
    1. CSS VARIABLES (Design System)
    ============================================ */
-/* ============================================
-   FLAG ICONS FIX - Patch Rapida
-   Aggiungi questo in cima a styles-unified.css
-   oppure crea un file separato per testare
-   ============================================ */
-
-/* Forza dimensioni corrette per tutte le flag-icon */
-.flag-icon,
-img.flag-icon,
-.dropdown-toggle .flag-icon,
-.dropdown-item .flag-icon,
-.navbar .flag-icon {
-    width: 20px !important;
-    height: 15px !important;
-    min-width: 20px !important;
-    min-height: 15px !important;
-    max-width: 20px !important;
-    max-height: 15px !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    border-radius: 2px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    display: inline-block;
-    vertical-align: middle;
-    flex-shrink: 0;
-}
-
-/* Fix per il contenitore del dropdown toggle */
-.dropdown-toggle {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    line-height: 1;
-}
-
-/* Fix per gli item nel dropdown menu */
-.dropdown-item {
-    display: flex !important;
-    align-items: center !important;
-    line-height: 1.5;
-}
-
-    /* Previeni che le immagini SVG si espandano */
-    .dropdown-toggle img,
-    .dropdown-item img {
-        flex-shrink: 0 !important;
-    }
-
-
-.flag-icon {
-    width: 18px !important;
-    height: 13px !important;
-}
-
 :root {
     /* Colors */
     --color-gold: #d4af37;
@@ -73,12 +19,10 @@ img.flag-icon,
     --color-muted: #999;
     --color-white: #ffffff;
     --color-black: #000000;
-    
     /* Gradients */
     --gradient-gold: linear-gradient(135deg, #d4af37 0%, #c9a22e 100%);
     --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     --gradient-dark-reverse: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-    
     /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -86,7 +30,6 @@ img.flag-icon,
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    
     /* Typography */
     --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-size-xs: 0.75rem;
@@ -96,24 +39,20 @@ img.flag-icon,
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
     --font-size-3xl: 2rem;
-    
     /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
     --shadow-xl: 0 10px 25px rgba(212, 175, 55, 0.4);
-    
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-base: 0.3s ease;
     --transition-slow: 0.5s ease;
-    
     /* Border Radius */
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
     --radius-lg: 1rem;
     --radius-full: 50%;
-    
     /* Z-index */
     --z-dropdown: 1000;
     --z-sticky: 1020;
@@ -122,6 +61,9 @@ img.flag-icon,
     --z-modal: 1050;
     --z-popover: 1060;
     --z-tooltip: 1070;
+    /* ✅ NEW: Layout Heights */
+    --navbar-height: 80px;
+    --navbar-height-mobile: 70px;
 }
 
 /* ============================================
@@ -149,10 +91,10 @@ body {
 }
 
 /* ============================================
-   3. NAVBAR SYSTEM (Completamente Ridisegnato)
+   3. NAVBAR SYSTEM (✅ FIXED WITH HEIGHT)
    ============================================ */
 
-/* Navbar Container */
+/* ✅ FIX: Navbar Container with Fixed Height */
 .navbar {
     position: fixed;
     top: 0;
@@ -162,6 +104,10 @@ body {
     padding: 0;
     z-index: var(--z-fixed);
     transition: all var(--transition-base);
+    height: var(--navbar-height);
+    /* ✅ NEW: Fixed height */
+    min-height: var(--navbar-height);
+    /* ✅ NEW: Minimum height */
 }
 
 /* Navbar States */
@@ -177,7 +123,7 @@ body {
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-/* Navbar Inner Container */
+/* ✅ FIX: Navbar Inner Container with 100% height */
 .navbar .container-fluid {
     max-width: 1400px;
     margin: 0 auto;
@@ -185,6 +131,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
+    /* ✅ NEW: Fill parent height */
 }
 
 /* Logo Section - OTTIMIZZATO */
@@ -321,7 +269,7 @@ body {
 }
 
 /* Functional Group (Language + Booking) */
-.navbar-collapse > div:last-child {
+.navbar-collapse>div:last-child {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -390,12 +338,21 @@ body {
     color: var(--color-gold);
 }
 
+/* ✅ FIX: Flag Icon Dimensions */
 .flag-icon {
-    width: 20px;
-    height: 15px;
-    object-fit: cover;
+    width: 20px !important;
+    height: 15px !important;
+    min-width: 20px !important;
+    min-height: 15px !important;
+    max-width: 20px !important;
+    max-height: 15px !important;
+    object-fit: cover !important;
+    object-position: center !important;
     border-radius: 2px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
 }
 
 .dropdown-menu {
@@ -468,8 +425,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%),
-                url('/images/hero-bg.jpg') center/cover no-repeat;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(26, 26, 26, 0.5) 100%), url('/images/hero.jpg') center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -526,8 +482,15 @@ body {
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 10px); }
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 10px);
+    }
 }
 
 @keyframes fadeInUp {
@@ -535,6 +498,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -544,9 +508,17 @@ body {
 /* ============================================
    6. UTILITY CLASSES
    ============================================ */
-.text-gold { color: var(--color-gold) !important; }
-.bg-gold { background-color: var(--color-gold) !important; }
-.bg-dark-custom { background: var(--gradient-dark); }
+.text-gold {
+    color: var(--color-gold) !important;
+}
+
+.bg-gold {
+    background-color: var(--color-gold) !important;
+}
+
+.bg-dark-custom {
+    background: var(--gradient-dark);
+}
 
 .golden-underline {
     width: 80px;
@@ -657,16 +629,20 @@ img.lazy-error {
    10. RESPONSIVE DESIGN
    ============================================ */
 
-/* Tablet (768px - 991px) */
+/* ✅ FIX: Mobile navbar height adjustment */
 @media (max-width: 991px) {
+    :root {
+        --navbar-height: var(--navbar-height-mobile);
+    }
+
     .navbar-logo-custom {
         height: 45px;
     }
-    
+
     .navbar .container-fluid {
         padding: 0.5rem 1rem;
     }
-    
+
     .navbar-collapse {
         position: absolute;
         top: 100%;
@@ -678,31 +654,31 @@ img.lazy-error {
         padding: 1rem;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    
+
     .navbar-nav {
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
         margin-bottom: 1rem;
     }
-    
+
     .nav-link-custom {
         justify-content: flex-start;
         padding: 0.75rem 1rem;
     }
-    
-    .navbar-collapse > div:last-child {
+
+    .navbar-collapse>div:last-child {
         flex-direction: column;
         gap: 0.75rem;
         width: 100%;
     }
-    
+
     .btn-gold,
     .dropdown-toggle {
         width: 100%;
         justify-content: center;
     }
-    
+
     /* Hide divider on mobile */
     .navbar-nav .d-none.d-lg-block {
         display: none !important;
@@ -713,26 +689,27 @@ img.lazy-error {
 @media (max-width: 767px) {
     :root {
         --font-size-base: 0.9rem;
+        --navbar-height: var(--navbar-height-mobile);
     }
-    
+
     .navbar-logo-custom {
         height: 40px;
     }
-    
+
     .hero-section {
         min-height: 70vh;
     }
-    
+
     .hero-section h1 {
         font-size: 2rem;
         letter-spacing: 3px;
     }
-    
+
     .hero-section p {
         font-size: 1rem;
         letter-spacing: 1px;
     }
-    
+
     .btn-back-to-top {
         width: 45px;
         height: 45px;
@@ -746,7 +723,7 @@ img.lazy-error {
     .navbar-logo-custom {
         height: 55px;
     }
-    
+
     .nav-link-custom {
         font-size: var(--font-size-base);
         padding: 0.7rem 1.2rem;
@@ -792,6 +769,7 @@ img.lazy-error {
    12. PERFORMANCE OPTIMIZATIONS
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {

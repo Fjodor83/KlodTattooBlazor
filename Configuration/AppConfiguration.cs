@@ -69,5 +69,7 @@ public static class AppConfiguration
         public const string Realistic = "realistic";
         public const string Traditional = "traditional";
         public const string Blackwork = "blackwork";
+        public const string Cartoons = "cartoons";
+       
     }
 }

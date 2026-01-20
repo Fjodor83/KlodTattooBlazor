@@ -397,5 +397,94 @@
         initFlatpickr,
         highlightActiveNavLink
     };
+    // ========================================
+    // FIX FINALE - Blazor Timing Issue
+    // Sostituisci il contenuto di wwwroot/js/site.js
+    // con questo codice ALLA FINE del file
+    // ========================================
+
+    (function () {
+        'use strict';
+
+        console.log('🔧 Blazor Layout Fix - Loading...');
+
+        function applyLayoutFix() {
+            // Aspetta che Blazor abbia renderizzato tutto
+            const maxAttempts = 20;
+            let attempts = 0;
+
+            const tryFix = setInterval(() => {
+                attempts++;
+
+                const navbar = document.querySelector('.navbar');
+                const pageContent = document.querySelector('.page-content-wrapper');
+                const heroContent = document.querySelector('.hero-page-wrapper');
+
+                // Se navbar trovata, applica il fix
+                if (navbar) {
+                    console.log('✅ Navbar found! Applying fix...');
+                    clearInterval(tryFix);
+
+                    const isMobile = window.innerWidth <= 768;
+                    const navbarHeight = isMobile ? 70 : 80;
+
+                    // Fix navbar
+                    navbar.style.height = navbarHeight + 'px';
+                    navbar.style.minHeight = navbarHeight + 'px';
+
+                    // Fix content SOLO se non è hero
+                    if (pageContent && !heroContent) {
+                        pageContent.style.paddingTop = navbarHeight + 'px';
+                        console.log('✅ Page content padding set to:', navbarHeight + 'px');
+                    } else if (heroContent) {
+                        console.log('✅ Hero page detected - no padding needed');
+                    }
+
+                    // Verifica
+                    setTimeout(() => {
+                        const actualNav = navbar.offsetHeight;
+                        const actualPad = pageContent ? parseInt(window.getComputedStyle(pageContent).paddingTop) : 0;
+                        console.log('📊 Final check:');
+                        console.log('  Navbar:', actualNav + 'px');
+                        console.log('  Content padding:', actualPad + 'px');
+                        console.log('  ✅ Layout fixed!');
+                    }, 100);
+
+                    return;
+                }
+
+                // Max attempts raggiunto
+                if (attempts >= maxAttempts) {
+                    console.warn('⚠️ Navbar not found after', maxAttempts, 'attempts');
+                    clearInterval(tryFix);
+                }
+            }, 100); // Controlla ogni 100ms
+        }
+
+        // Apply on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyLayoutFix);
+        } else {
+            applyLayoutFix();
+        }
+
+        // Re-apply on Blazor navigation
+        document.addEventListener('click', function (e) {
+            const link = e.target.closest('a');
+            if (link && link.href && !link.href.includes('#')) {
+                setTimeout(applyLayoutFix, 100);
+            }
+        });
+
+        // Re-apply on resize
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(applyLayoutFix, 250);
+        });
+
+        console.log('🔧 Blazor Layout Fix - Ready');
+
+    })();
 
 })();
