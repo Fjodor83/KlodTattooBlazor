@@ -16,7 +16,8 @@
     --color-dark-alt: #1a1a1a;
     --color-dark-light: #2d2d2d;
     --color-light: #e0e0e0;
-    --color-muted: #999;
+    --color-muted: #b0b0b0;
+    /* ✅ IMPROVED: Was #999, lightened for better contrast */
     --color-white: #ffffff;
     --color-black: #000000;
     /* Gradients */
@@ -88,6 +89,18 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- High Contrast Utility --- */
+.text-muted {
+    color: var(--color-muted) !important;
+    opacity: 1 !important;
+    /* Ensure no transparent overlays dim the text */
+}
+
+.small,
+small {
+    color: var(--color-muted);
 }
 
 /* ============================================
@@ -421,7 +434,7 @@ body {
    ============================================ */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 130vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -532,6 +545,8 @@ body {
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
     border: none;
+    opacity: 1 !important;
+    /* Ensure visibility same as div-based underlines */
     margin: 3rem auto;
 }
 
