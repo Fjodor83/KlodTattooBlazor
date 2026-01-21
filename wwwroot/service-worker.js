@@ -3,7 +3,7 @@
 // Cache Strategy: Network First with Fallback
 // ========================================
 
-const CACHE_NAME = 'klod-tattoo-v2.3.0';
+const CACHE_NAME = 'klod-tattoo-v2.4.0';
 const RUNTIME_CACHE = 'klod-tattoo-runtime';
 
 // Assets to cache on install
