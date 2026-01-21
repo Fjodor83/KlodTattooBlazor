@@ -91,6 +91,20 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide Scrollbar */
+html,
+body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Webkit */
+}
+
 .text-muted,
 footer .text-muted,
 footer .small {
@@ -99,9 +113,34 @@ footer .small {
     /* Ensure no transparent overlays dim the text */
 }
 
+/* Remove visible focus outline from headings targeted by FocusOnNavigate */
+h1:focus,
+h2:focus,
+h3:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .small,
 small {
     color: var(--color-muted);
+}
+
+/* Layout Spacing Wrappers */
+.page-content-wrapper {
+    /* Height of navbar + 1cm (~38px) spacer */
+    padding-top: calc(var(--navbar-height) + 40px);
+}
+
+.hero-page-wrapper {
+    /* Home page: content goes under transparent navbar */
+    padding-top: 0;
+}
+
+@media (max-width: 767px) {
+    .page-content-wrapper {
+        padding-top: calc(var(--navbar-height-mobile) + 30px);
+    }
 }
 
 /* ============================================
