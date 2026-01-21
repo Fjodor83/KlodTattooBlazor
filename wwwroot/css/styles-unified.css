@@ -440,6 +440,19 @@ small {
     z-index: calc(var(--z-dropdown) - 10);
 }
 
+/* Nav Backdrop for Mobile Menu */
+.nav-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    /* Invisible overlay */
+    z-index: 1025;
+    /* Below navbar-collapse (usually 1030+) but above content */
+}
+
 /* ============================================
    5. HERO SECTION
    ============================================ */
@@ -1015,6 +1028,126 @@ img.lazy-error {
         height: 45px;
         bottom: 20px;
         right: 20px;
+    }
+}
+
+/* Landscape Mode Fixes */
+@media (max-width: 991px) and (orientation: landscape) {
+    :root {
+        --navbar-height: 50px;
+        /* Smaller navbar for landscape */
+    }
+
+    .navbar-logo-custom {
+        height: 35px;
+        /* Smaller logo */
+    }
+
+    .hero-section {
+        min-height: 100vh;
+        /* Allow it to take full height but not excessive */
+        height: auto;
+        padding-top: 60px;
+        /* Space for navbar */
+        padding-bottom: 30px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+        /* Smaller title */
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-section p.lead {
+        font-size: 1.1rem;
+        /* Smaller subtitle */
+        margin-bottom: 1rem;
+    }
+
+    .hero-section .btn-lg {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Adjust navbar collapse for landscape scrolling if menu is long */
+    .navbar-collapse {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .scroll-indicator {
+        display: none;
+        /* Hide scroll indicator in landscape to save space */
+    }
+
+    .page-content-wrapper {
+        padding-top: calc(var(--navbar-height) + 20px);
+    }
+
+    /* Fix: Constrain navbar container width and padding for better balance */
+    .navbar .container-fluid {
+        max-width: 95%;
+        /* Don't go full edge-to-edge */
+        padding: 0.5rem 1rem;
+        /* Balanced padding */
+    }
+
+    /* Fix: "Book Now" and other buttons should not be full width */
+    .btn-mobile-full,
+    .btn-gold,
+    .btn,
+    .hero-section .btn {
+        width: auto !important;
+        /* Force auto width */
+        display: inline-flex !important;
+        padding: 0.8rem 2rem;
+        /* Standard button padding */
+        min-width: 150px;
+        /* Minimum clickable width */
+        margin: 0.5rem auto;
+        /* Center if block */
+    }
+
+    /* Fix: Dropdown menu (burger menu content) optimization */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        /* Align to right, not full width */
+        left: auto;
+        /* Let it size naturally or rigidly */
+        width: 300px;
+        /* Fixed reasonable width */
+        max-width: 90vw;
+        /* Safety for very small screens */
+        max-height: 80vh;
+        /* Allow scrolling within the menu */
+        overflow-y: auto;
+        /* Scrollable */
+        border-radius: var(--radius-md);
+        /* Rounded corners */
+        background: rgba(10, 10, 10, 0.98);
+        /* Ensure readability */
+        padding: 1rem;
+    }
+
+    /* Fix: Portfolio filter buttons */
+    .nav-pills .nav-link,
+    .portfolio-filter-btn {
+        width: auto !important;
+        display: inline-block !important;
+        margin: 0.2rem;
+    }
+
+    /* Fix: CTA Box Button (Book Your Appointment) */
+    .cta-box .btn-lg {
+        padding: 0.8rem 2rem !important;
+        /* Override px-5 py-3 */
+        font-size: 1rem !important;
+        width: auto !important;
+        display: inline-flex !important;
+        white-space: normal;
+        /* Allow text wrapping if needed, though simpler is better */
     }
 }
 
