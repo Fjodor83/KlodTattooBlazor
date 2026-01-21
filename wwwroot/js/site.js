@@ -6,7 +6,12 @@
     // ============================================================
     function initDynamicNavbar() {
         const navbar = document.querySelector('.navbar[data-dynamic-navbar="true"]');
-        if (!navbar) return;
+        if (!navbar) {
+            console.log('Dynamic navbar not found or not on home page');
+            return;
+        }
+
+        console.log('Initializing dynamic navbar effect');
 
         // Rimuovi eventuali listener precedenti
         if (window._navbarScrollHandler) {

@@ -18,7 +18,6 @@
       <!-- DNS Prefetch & Preconnect for Performance -->
       <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
       <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-      <link rel="dns-prefetch" href="https://code.jquery.com">
       <link rel="dns-prefetch" href="https://fonts.googleapis.com">
       <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
@@ -26,7 +25,6 @@
       <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 
 
 
@@ -39,7 +37,7 @@
             as="font" type="font/woff2" crossorigin>
 
       <!-- PWA Manifest -->
-      <link rel="manifest" href="/manifest.json">
+      <link rel="manifest" href="/manifest.json?v=2.0.0">
 
       <!-- Apple Touch Icons -->
       <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192.png">
@@ -52,10 +50,7 @@
       <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 
       <!-- 2. Custom styles SECOND (override Bootstrap) -->
-      <link rel="stylesheet" href="css/styles-unified.css?v=1.0.4" />
-
-      <!-- 3. Blazor component styles LAST -->
-      <link href="KlodTattooBlazor.styles.css?v=1.0.4" rel="stylesheet" />
+      <link rel="stylesheet" href="css/styles-unified.css?v=2.0.0" />
 
       <!-- Font Awesome - defer load -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -100,10 +95,7 @@
       <!-- Blazor Framework -->
       <script src="_framework/blazor.webassembly.js"></script>
 
-      <!-- jQuery (for some Bootstrap components) -->
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-      <!-- Bootstrap Bundle JS -->
+      <!-- Bootstrap Bundle JS (includes Popper.js, no jQuery needed) -->
       <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
       <!-- GLightbox -->
@@ -114,8 +106,8 @@
       <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
 
-      <!-- Custom JS - (includes lazy-load, site, cookie-consent, i18n) -->
-      <script src="js/site.js?v=1.0.4"></script>
+      <!-- Custom JS (consolidated) -->
+      <script src="js/site.js?v=2.0.0"></script>
 
       <!-- Service Worker Registration -->
       <script src="js/service-worker-register.js"></script>

@@ -36,9 +36,8 @@ builder.Services.AddScoped<LocalizationService>();
 
 var host = builder.Build();
 
-// Initialize localization on app startup
-var localizationService = host.Services.GetRequiredService<LocalizationService>();
-await localizationService.InitializeAsync();
+// NOTE: LocalStorage is not available at this stage in Blazor WASM
+// Localization will be initialized in App.razor or MainLayout.razor
 
 // Run the application
 await host.RunAsync();

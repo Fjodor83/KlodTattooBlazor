@@ -22,9 +22,24 @@ public class LocalizationService
 
     public async Task InitializeAsync()
     {
-        var savedCulture = await _localStorage.GetItemAsync<string>(CULTURE_KEY);
-        _currentCulture = savedCulture ?? "de-DE";
+        // Load default culture first (without LocalStorage dependency)
         await LoadLocalizationAsync(_currentCulture);
+        
+        // Then try to load saved culture from LocalStorage
+        try
+        {
+            var savedCulture = await _localStorage.GetItemAsync<string>(CULTURE_KEY);
+            if (!string.IsNullOrEmpty(savedCulture) && savedCulture != _currentCulture)
+            {
+                _currentCulture = savedCulture;
+                await LoadLocalizationAsync(_currentCulture);
+            }
+        }
+        catch (Exception ex)
+        {
+            // LocalStorage might not be available yet - ignore and use default
+            Console.WriteLine($"Could not load saved culture from LocalStorage: {ex.Message}");
+        }
     }
 
     public async Task SetCultureAsync(string culture)
